@@ -7,6 +7,8 @@ This directory contains all documentation for the VMF-v1 client application.
 ```
 docs/
 ├── README.md                          # This file
+├── components/                        # Component documentation
+│   └── button.md                      # Button component
 └── design-system/                     # Design system documentation
     ├── css-design-system.md           # CSS design tokens and architecture
     ├── responsive-design.md           # Responsive design patterns and utilities
@@ -21,7 +23,7 @@ docs/
 - **[Theming System](./design-system/theming.md)** - How to modify and swap color schemes easily
 
 ### Component Framework
-_(Documentation will be added as components are built)_
+- **[Button](./components/button.md)** - Accessible button component with variants, sizes, and states
 
 ### Testing
 _(Documentation will be added as testing patterns are established)_
