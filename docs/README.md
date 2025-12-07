@@ -17,6 +17,9 @@ docs/
 │   ├── fieldset.md                    # Fieldset component
 │   ├── footer.md                      # Footer component
 │   ├── header.md                      # Header component
+│   ├── input.md                       # Input component
+│   ├── radio.md                       # Radio component
+│   ├── tickbox.md                     # Tickbox component
 │   └── link.md                        # Link component
 └── design-system/                     # Design system documentation
     ├── css-design-system.md           # CSS design tokens and architecture
@@ -43,6 +46,9 @@ docs/
 - **[Fieldset](./components/fieldset.md)** - Native fieldset component with border-breaking legend and flex content layout
 - **[Footer](./components/footer.md)** - Responsive footer with sections, links, and copyright
 - **[Header](./components/header.md)** - Responsive header with logo and navigation
+- **[Input](./components/input.md)** - Input component with floating label animation and very light placeholder text
+- **[Radio](./components/radio.md)** - Custom-styled, accessible radio button component
+- **[Tickbox](./components/tickbox.md)** - Custom-styled, accessible checkbox component
 - **[Link](./components/link.md)** - Smart link component for internal routing and external navigation
 
 ### Testing

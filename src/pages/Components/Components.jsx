@@ -12,6 +12,9 @@ import { Avatar } from '../../components/Avatar'
 import { Accordion } from '../../components/Accordion'
 import { Dialog } from '../../components/Dialog'
 import { Fieldset } from '../../components/Fieldset'
+import { Input } from '../../components/Input'
+import { Tickbox } from '../../components/Tickbox'
+import { Radio } from '../../components/Radio'
 
 function Components() {
   const [loading, setLoading] = useState(false)
@@ -19,6 +22,30 @@ function Components() {
   const [sizeDialogOpen, setSizeDialogOpen] = useState(false)
   const [confirmDialogOpen, setConfirmDialogOpen] = useState(false)
   const [formDialogOpen, setFormDialogOpen] = useState(false)
+  const [tickboxState, setTickboxState] = useState({
+    unchecked: false,
+    checked: true,
+  })
+  const [selectedRadioOption, setSelectedRadioOption] = useState('option1')
+  const [selectedRadioSize, setSelectedRadioSize] = useState('md')
+  const [selectedRadioState, setSelectedRadioState] = useState('active')
+
+  const handleTickboxChange = (e) => {
+    const { id, checked } = e.target
+    setTickboxState((prev) => ({ ...prev, [id]: checked }))
+  }
+
+  const handleRadioOptionChange = (e) => {
+    setSelectedRadioOption(e.target.value)
+  }
+
+  const handleRadioSizeChange = (e) => {
+    setSelectedRadioSize(e.target.value)
+  }
+
+  const handleRadioStateChange = (e) => {
+    setSelectedRadioState(e.target.value)
+  }
 
   const handleAsyncAction = () => {
     setLoading(true)
@@ -851,16 +878,479 @@ function Components() {
         </div>
       </section>
 
+      <section style={{ marginTop: '3rem' }}>
+        <h2 className="text-responsive-lg">Input Component</h2>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Floating Label Animation</h3>
+          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem', maxWidth: '600px' }}>
+            <Input
+              label="Email Address"
+              placeholder="Enter your email"
+              type="email"
+              id="demo-email"
+            />
+            <Input
+              label="Full Name"
+              placeholder="John Doe"
+              type="text"
+              id="demo-name"
+            />
+            <Input
+              label="Password"
+              placeholder="Enter password"
+              type="password"
+              id="demo-password"
+            />
+          </div>
+          <p style={{ marginTop: '1rem', fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+            Labels automatically float (shrink and move outside) when you focus or type in the input.
+            Placeholders appear in very light text (30% opacity).
+          </p>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Variants</h3>
+          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem' }}>
+            <div>
+              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Default</h4>
+              <div style={{ maxWidth: '600px' }}>
+                <Input
+                  label="Default Input"
+                  placeholder="Subtle 1px border"
+                  variant="default"
+                  id="variant-default"
+                />
+              </div>
+            </div>
+
+            <div>
+              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Outlined</h4>
+              <div style={{ maxWidth: '600px' }}>
+                <Input
+                  label="Outlined Input"
+                  placeholder="Emphasized 2px border"
+                  variant="outlined"
+                  id="variant-outlined"
+                />
+              </div>
+            </div>
+
+            <div>
+              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Filled</h4>
+              <div style={{ maxWidth: '600px' }}>
+                <Input
+                  label="Filled Input"
+                  placeholder="Subtle background color"
+                  variant="filled"
+                  id="variant-filled"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Sizes</h3>
+          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem', maxWidth: '600px' }}>
+            <Input
+              label="Small Input"
+              placeholder="Compact size for tight spaces"
+              size="sm"
+              id="size-sm"
+            />
+            <Input
+              label="Medium Input (Default)"
+              placeholder="Standard size for most use cases"
+              size="md"
+              id="size-md"
+            />
+            <Input
+              label="Large Input"
+              placeholder="Prominent size for key fields"
+              size="lg"
+              id="size-lg"
+            />
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Error States</h3>
+          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem', maxWidth: '600px' }}>
+            <Input
+              label="Email"
+              placeholder="email@example.com"
+              type="email"
+              error="Please enter a valid email address"
+              defaultValue="invalid-email"
+              id="error-email"
+            />
+            <Input
+              label="Username"
+              placeholder="Choose a username"
+              error="This username is already taken"
+              defaultValue="admin"
+              id="error-username"
+            />
+          </div>
+          <p style={{ marginTop: '1rem', fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+            Error messages are announced to screen readers and displayed with clear visual indicators.
+          </p>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Helper Text</h3>
+          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem', maxWidth: '600px' }}>
+            <Input
+              label="Password"
+              placeholder="Enter a secure password"
+              type="password"
+              helperText="Must be at least 8 characters with uppercase, lowercase, and numbers"
+              id="helper-password"
+            />
+            <Input
+              label="Phone Number"
+              placeholder="(555) 123-4567"
+              type="tel"
+              helperText="Include area code for faster verification"
+              id="helper-phone"
+            />
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Required Fields</h3>
+          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem', maxWidth: '600px' }}>
+            <Input
+              label="Email Address"
+              placeholder="your@email.com"
+              type="email"
+              required
+              id="required-email"
+            />
+            <Input
+              label="Full Name"
+              placeholder="Enter your full name"
+              required
+              id="required-name"
+            />
+          </div>
+          <p style={{ marginTop: '1rem', fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+            Required fields are marked with a red asterisk (*) and have the required HTML attribute.
+          </p>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Input Types</h3>
+          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem', maxWidth: '600px' }}>
+            <Input
+              label="Email"
+              type="email"
+              placeholder="user@example.com"
+              id="type-email"
+            />
+            <Input
+              label="Password"
+              type="password"
+              placeholder="Enter password"
+              id="type-password"
+            />
+            <Input
+              label="Number"
+              type="number"
+              placeholder="Enter a number"
+              id="type-number"
+            />
+            <Input
+              label="Telephone"
+              type="tel"
+              placeholder="(555) 123-4567"
+              id="type-tel"
+            />
+            <Input
+              label="URL"
+              type="url"
+              placeholder="https://example.com"
+              id="type-url"
+            />
+            <Input
+              label="Search"
+              type="search"
+              placeholder="Search..."
+              id="type-search"
+            />
+          </div>
+          <p style={{ marginTop: '1rem', fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+            Using the correct input type improves mobile keyboards and built-in browser validation.
+          </p>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Disabled State</h3>
+          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem', maxWidth: '600px' }}>
+            <Input
+              label="Disabled Input"
+              value="You cannot edit this field"
+              disabled
+              id="disabled-1"
+            />
+            <Input
+              label="Account Type"
+              value="Premium Member"
+              disabled
+              helperText="Contact support to change your account type"
+              id="disabled-2"
+            />
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Full Width</h3>
+          <div style={{ marginTop: '1rem' }}>
+            <Input
+              label="Full Width Input"
+              placeholder="Takes the full width of its container"
+              fullWidth
+              id="fullwidth-1"
+            />
+          </div>
+          <div style={{ marginTop: '1rem' }}>
+            <Input
+              label="Newsletter Signup"
+              placeholder="Enter your email to subscribe"
+              type="email"
+              fullWidth
+              helperText="We'll never share your email with anyone else"
+              id="fullwidth-2"
+            />
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Form Example</h3>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault()
+              alert('Form submitted!')
+            }}
+            style={{ marginTop: '1rem', maxWidth: '600px' }}
+          >
+            <div style={{ display: 'grid', gap: '1.5rem' }}>
+              <Input
+                label="First Name"
+                placeholder="John"
+                required
+                id="form-firstname"
+              />
+              <Input
+                label="Last Name"
+                placeholder="Doe"
+                required
+                id="form-lastname"
+              />
+              <Input
+                label="Email Address"
+                type="email"
+                placeholder="john.doe@example.com"
+                required
+                helperText="We'll send confirmation to this email"
+                id="form-email"
+              />
+              <Input
+                label="Password"
+                type="password"
+                placeholder="Create a secure password"
+                required
+                helperText="Minimum 8 characters"
+                id="form-password"
+              />
+              <Input
+                label="Phone Number"
+                type="tel"
+                placeholder="(555) 123-4567"
+                id="form-phone"
+              />
+              <div style={{ marginTop: '1rem' }}>
+                <Button type="submit" fullWidth>
+                  Create Account
+                </Button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div style={{ marginTop: '2rem', padding: 'var(--spacing-lg)', backgroundColor: 'color-mix(in srgb, var(--color-primary) 5%, transparent)', borderRadius: 'var(--border-radius-md)', border: '1px solid color-mix(in srgb, var(--color-primary) 20%, transparent)' }}>
+          <h4 style={{ margin: '0 0 0.5rem', fontSize: 'var(--font-size-base)' }}>Input Features</h4>
+          <ul style={{ margin: 0, paddingLeft: '1.5rem', color: 'var(--color-text-secondary)' }}>
+            <li>Smooth floating label animation (shrinks to 75% and moves outside)</li>
+            <li>Very light placeholder text (30% opacity) separate from label</li>
+            <li>Three variants: default, outlined, filled</li>
+            <li>Three sizes: sm, md, lg</li>
+            <li>Error states with red border and descriptive messages</li>
+            <li>Helper text for additional guidance</li>
+            <li>Required field indicator (red asterisk)</li>
+            <li>Full support for all HTML input types</li>
+            <li>Disabled state with reduced opacity</li>
+            <li>Full width option for responsive layouts</li>
+            <li>Ref forwarding for programmatic focus</li>
+            <li>Full ARIA attributes and accessibility support</li>
+          </ul>
+        </div>
+      </section>
+
+      <section style={{ marginTop: '3rem' }}>
+        <h2 className="text-responsive-lg">Tickbox Component</h2>
+        <p className="text-responsive-base" style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
+          A custom-styled, accessible checkbox component.
+        </p>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Sizes</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
+            <Tickbox id="tick-sm" size="sm" label="Small Tickbox" />
+            <Tickbox id="tick-md" size="md" label="Medium Tickbox (Default)" />
+            <Tickbox id="tick-lg" size="lg" label="Large Tickbox" />
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>States</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
+            <Tickbox
+              id="unchecked"
+              label="Unchecked"
+              checked={tickboxState.unchecked}
+              onChange={handleTickboxChange}
+            />
+            <Tickbox
+              id="checked"
+              label="Checked"
+              checked={tickboxState.checked}
+              onChange={handleTickboxChange}
+            />
+            <Tickbox id="tick-indeterminate" label="Indeterminate" indeterminate={true} />
+            <Tickbox id="tick-disabled" label="Disabled" disabled />
+            <Tickbox id="tick-disabled-checked" label="Disabled & Checked" disabled checked />
+            <Tickbox id="tick-disabled-indeterminate" label="Disabled & Indeterminate" disabled indeterminate />
+          </div>
+        </div>
+      </section>
+
+      <section style={{ marginTop: '3rem' }}>
+        <h2 className="text-responsive-lg">Radio Component</h2>
+        <p className="text-responsive-base" style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
+          A custom-styled, accessible radio button component for single-selection choices.
+        </p>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Sizes</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
+            <Radio
+              id="radio-size-sm"
+              name="radio-sizes"
+              value="sm"
+              label="Small Radio"
+              size="sm"
+              checked={selectedRadioSize === 'sm'}
+              onChange={handleRadioSizeChange}
+            />
+            <Radio
+              id="radio-size-md"
+              name="radio-sizes"
+              value="md"
+              label="Medium Radio (Default)"
+              size="md"
+              checked={selectedRadioSize === 'md'}
+              onChange={handleRadioSizeChange}
+            />
+            <Radio
+              id="radio-size-lg"
+              name="radio-sizes"
+              value="lg"
+              label="Large Radio"
+              size="lg"
+              checked={selectedRadioSize === 'lg'}
+              onChange={handleRadioSizeChange}
+            />
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>States</h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
+            <Radio
+              id="radio-state-active"
+              name="radio-states"
+              value="active"
+              label="Active Radio"
+              checked={selectedRadioState === 'active'}
+              onChange={handleRadioStateChange}
+            />
+            <Radio
+              id="radio-state-disabled"
+              name="radio-states"
+              value="disabled"
+              label="Disabled Radio"
+              disabled
+              checked={selectedRadioState === 'disabled'}
+              onChange={handleRadioStateChange}
+            />
+            <Radio
+              id="radio-state-disabled-checked"
+              name="radio-states"
+              value="disabled-checked"
+              label="Disabled & Checked"
+              disabled
+              checked={true}
+              onChange={handleRadioStateChange}
+            />
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Radio Group</h3>
+          <fieldset style={{ border: '1px solid var(--color-border)', padding: '1rem', borderRadius: 'var(--border-radius-md)' }}>
+            <legend style={{ padding: '0 0.5rem', fontWeight: 'var(--font-weight-bold)', color: 'var(--color-text)' }}>Choose an Option:</legend>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
+              <Radio
+                id="radio-opt1"
+                name="radio-options"
+                value="option1"
+                label="Option 1"
+                checked={selectedRadioOption === 'option1'}
+                onChange={handleRadioOptionChange}
+              />
+              <Radio
+                id="radio-opt2"
+                name="radio-options"
+                value="option2"
+                label="Option 2"
+                checked={selectedRadioOption === 'option2'}
+                onChange={handleRadioOptionChange}
+              />
+              <Radio
+                id="radio-opt3"
+                name="radio-options"
+                value="option3"
+                label="Option 3"
+                checked={selectedRadioOption === 'option3'}
+                onChange={handleRadioOptionChange}
+              />
+            </div>
+          </fieldset>
+        </div>
+      </section>
+
       <section style={{ marginTop: '4rem', padding: 'var(--spacing-xl)', backgroundColor: 'var(--color-background-secondary)', borderRadius: 'var(--border-radius-lg)' }}>
         <h2 className="text-responsive-lg">Coming Soon</h2>
         <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
           More components are being built following the same production-ready standards:
         </p>
         <ul style={{ marginTop: 'var(--spacing-md)', color: 'var(--color-text-secondary)' }}>
-          <li>Input fields & Forms</li>
-          <li>Modals & Dialogs</li>
           <li>Tables & Data Grids</li>
           <li>Tooltips & Popovers</li>
+          <li>Select & Dropdown menus</li>
+          <li>Checkbox & Radio buttons</li>
           <li>And more...</li>
         </ul>
       </section>
