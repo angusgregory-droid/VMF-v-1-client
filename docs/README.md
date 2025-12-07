@@ -12,7 +12,8 @@ docs/
 │   ├── button.md                      # Button component
 │   ├── link.md                        # Link component
 │   ├── header.md                      # Header component
-│   └── footer.md                      # Footer component
+│   ├── footer.md                      # Footer component
+│   └── avatar.md                      # Avatar component
 └── design-system/                     # Design system documentation
     ├── css-design-system.md           # CSS design tokens and architecture
     ├── responsive-design.md           # Responsive design patterns and utilities
@@ -30,6 +31,7 @@ docs/
 - **[Theming System](./design-system/theming.md)** - How to modify and swap color schemes easily
 
 ### Component Framework
+- **[Avatar](./components/avatar.md)** - User profile pictures with initials, sizes, shapes, and status indicators
 - **[Button](./components/button.md)** - Accessible button component with variants, sizes, and states
 - **[Link](./components/link.md)** - Smart link component for internal routing and external navigation
 - **[Header](./components/header.md)** - Responsive header with logo and navigation
