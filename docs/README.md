@@ -13,6 +13,7 @@ docs/
 │   ├── avatar.md                      # Avatar component
 │   ├── button.md                      # Button component
 │   ├── card.md                        # Card component
+│   ├── dialog.md                      # Dialog component
 │   ├── footer.md                      # Footer component
 │   ├── header.md                      # Header component
 │   └── link.md                        # Link component
@@ -37,6 +38,7 @@ docs/
 - **[Avatar](./components/avatar.md)** - User profile pictures with initials, sizes, shapes, and status indicators
 - **[Button](./components/button.md)** - Accessible button component with variants, sizes, and states
 - **[Card](./components/card.md)** - Professional card component with variants, sections, and responsive layouts
+- **[Dialog](./components/dialog.md)** - Native HTML dialog component with animations, focus management, and multiple sizes
 - **[Footer](./components/footer.md)** - Responsive footer with sections, links, and copyright
 - **[Header](./components/header.md)** - Responsive header with logo and navigation
 - **[Link](./components/link.md)** - Smart link component for internal routing and external navigation

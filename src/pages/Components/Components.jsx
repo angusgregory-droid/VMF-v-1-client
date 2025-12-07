@@ -10,9 +10,14 @@ import { Link } from '../../components/Link'
 import { Card } from '../../components/Card'
 import { Avatar } from '../../components/Avatar'
 import { Accordion } from '../../components/Accordion'
+import { Dialog } from '../../components/Dialog'
 
 function Components() {
   const [loading, setLoading] = useState(false)
+  const [dialogOpen, setDialogOpen] = useState(false)
+  const [sizeDialogOpen, setSizeDialogOpen] = useState(false)
+  const [confirmDialogOpen, setConfirmDialogOpen] = useState(false)
+  const [formDialogOpen, setFormDialogOpen] = useState(false)
 
   const handleAsyncAction = () => {
     setLoading(true)
@@ -448,6 +453,173 @@ function Components() {
               </Accordion.Content>
             </Accordion.Item>
           </Accordion>
+        </div>
+      </section>
+
+      <section style={{ marginTop: '3rem' }}>
+        <h2 className="text-responsive-lg">Dialog Component</h2>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Basic Dialog</h3>
+          <div style={{ marginTop: '1rem' }}>
+            <Button onClick={() => setDialogOpen(true)}>Open Basic Dialog</Button>
+
+            <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
+              <Dialog.Header>
+                <h2>Welcome</h2>
+              </Dialog.Header>
+              <Dialog.Body>
+                This is a professional dialog component built on the native HTML dialog element.
+                It features smooth animations, focus management, and full accessibility support.
+              </Dialog.Body>
+              <Dialog.Footer>
+                <Button variant="outline" onClick={() => setDialogOpen(false)}>
+                  Cancel
+                </Button>
+                <Button onClick={() => setDialogOpen(false)}>
+                  Confirm
+                </Button>
+              </Dialog.Footer>
+            </Dialog>
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Dialog Sizes</h3>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '1rem' }}>
+            <Button size="sm" onClick={() => setSizeDialogOpen(true)}>Open Large Dialog</Button>
+
+            <Dialog open={sizeDialogOpen} onClose={() => setSizeDialogOpen(false)} size="lg">
+              <Dialog.Header>
+                <h2>Large Dialog</h2>
+              </Dialog.Header>
+              <Dialog.Body>
+                <p>This is a large dialog (720px wide on desktop, full width on mobile).</p>
+                <p style={{ marginTop: '1rem' }}>
+                  Dialogs support multiple sizes: sm (400px), md (560px), lg (720px), xl (960px), and full (viewport).
+                </p>
+                <p style={{ marginTop: '1rem' }}>
+                  All sizes are responsive and adapt to smaller screens automatically.
+                </p>
+              </Dialog.Body>
+              <Dialog.Footer>
+                <Button onClick={() => setSizeDialogOpen(false)}>Close</Button>
+              </Dialog.Footer>
+            </Dialog>
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Confirmation Dialog</h3>
+          <div style={{ marginTop: '1rem' }}>
+            <Button variant="danger" onClick={() => setConfirmDialogOpen(true)}>
+              Delete Item
+            </Button>
+
+            <Dialog
+              open={confirmDialogOpen}
+              onClose={() => setConfirmDialogOpen(false)}
+              size="sm"
+              variant="centered"
+            >
+              <Dialog.Header>
+                <h2>Confirm Deletion</h2>
+              </Dialog.Header>
+              <Dialog.Body>
+                Are you sure you want to delete this item? This action cannot be undone.
+              </Dialog.Body>
+              <Dialog.Footer>
+                <Button variant="outline" onClick={() => setConfirmDialogOpen(false)}>
+                  Cancel
+                </Button>
+                <Button variant="danger" onClick={() => setConfirmDialogOpen(false)}>
+                  Delete
+                </Button>
+              </Dialog.Footer>
+            </Dialog>
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Form Dialog</h3>
+          <div style={{ marginTop: '1rem' }}>
+            <Button onClick={() => setFormDialogOpen(true)}>Add New Item</Button>
+
+            <Dialog open={formDialogOpen} onClose={() => setFormDialogOpen(false)} size="md">
+              <Dialog.Header>
+                <h2>Add New Item</h2>
+              </Dialog.Header>
+              <Dialog.Body>
+                <form
+                  id="item-form"
+                  onSubmit={(e) => {
+                    e.preventDefault()
+                    setFormDialogOpen(false)
+                  }}
+                  style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
+                >
+                  <div>
+                    <label htmlFor="item-name" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'var(--font-weight-medium)' }}>
+                      Name:
+                    </label>
+                    <input
+                      id="item-name"
+                      type="text"
+                      required
+                      style={{
+                        width: '100%',
+                        padding: 'var(--spacing-sm)',
+                        border: '1px solid var(--color-border)',
+                        borderRadius: 'var(--border-radius-sm)',
+                        fontSize: 'var(--font-size-base)',
+                        fontFamily: 'var(--font-sans)',
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="item-description" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'var(--font-weight-medium)' }}>
+                      Description:
+                    </label>
+                    <textarea
+                      id="item-description"
+                      rows="4"
+                      style={{
+                        width: '100%',
+                        padding: 'var(--spacing-sm)',
+                        border: '1px solid var(--color-border)',
+                        borderRadius: 'var(--border-radius-sm)',
+                        fontSize: 'var(--font-size-base)',
+                        fontFamily: 'var(--font-sans)',
+                        resize: 'vertical',
+                      }}
+                    ></textarea>
+                  </div>
+                </form>
+              </Dialog.Body>
+              <Dialog.Footer>
+                <Button variant="outline" onClick={() => setFormDialogOpen(false)}>
+                  Cancel
+                </Button>
+                <Button type="submit" form="item-form">
+                  Save
+                </Button>
+              </Dialog.Footer>
+            </Dialog>
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem', padding: 'var(--spacing-lg)', backgroundColor: 'color-mix(in srgb, var(--color-primary) 5%, transparent)', borderRadius: 'var(--border-radius-md)', border: '1px solid color-mix(in srgb, var(--color-primary) 20%, transparent)' }}>
+          <h4 style={{ margin: '0 0 0.5rem', fontSize: 'var(--font-size-base)' }}>Dialog Features</h4>
+          <ul style={{ margin: 0, paddingLeft: '1.5rem', color: 'var(--color-text-secondary)' }}>
+            <li>Built on native HTML &lt;dialog&gt; element</li>
+            <li>Smooth scale-in and backdrop fade animations</li>
+            <li>Close on ESC key (configurable)</li>
+            <li>Close on backdrop click (configurable)</li>
+            <li>Automatic focus trap and management</li>
+            <li>Multiple sizes: sm, md, lg, xl, full</li>
+            <li>Responsive on all screen sizes</li>
+            <li>Full keyboard and screen reader support</li>
+          </ul>
         </div>
       </section>
 
