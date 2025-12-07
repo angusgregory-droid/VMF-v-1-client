@@ -11,32 +11,13 @@
  */
 
 import { NavLink } from 'react-router-dom'
-import { Link } from '../Link'
 import './Navigation.css'
 
 function Navigation() {
   return (
     <nav className="nav" role="navigation" aria-label="Main navigation">
-      <div className="nav__container container">
-        <div className="nav__brand">
-          <Link to="/" className="nav__logo" variant="subtle" underline="none">
-            StoryLineOS
-          </Link>
-        </div>
-
+      <div className="nav__container">
         <ul className="nav__links" role="menubar">
-          <li role="none">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? 'nav__link nav__link--active' : 'nav__link'
-              }
-              role="menuitem"
-              end
-            >
-              Home
-            </NavLink>
-          </li>
           <li role="none">
             <NavLink
               to="/components"

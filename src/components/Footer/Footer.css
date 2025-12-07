@@ -1,0 +1,165 @@
+/**
+ * Footer Styles
+ *
+ * Uses BEM naming convention for clarity
+ * All values use design system tokens for consistency and theming support
+ */
+
+/* ===========================
+   BASE FOOTER STYLES
+   =========================== */
+
+.footer {
+  /* Background and borders */
+  background-color: var(--color-surface);
+  border-top: 1px solid color-mix(in srgb, var(--color-border) 30%, transparent);
+
+  /* Spacing */
+  margin-top: auto;
+  padding: var(--spacing-2xl) 0 var(--spacing-xl);
+
+  /* Typography */
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.footer__container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xl);
+}
+
+/* ===========================
+   FOOTER SECTIONS
+   =========================== */
+
+.footer__sections {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--spacing-xl);
+}
+
+/* Responsive grid: 2 columns on tablet, 4 on desktop */
+@media (min-width: 640px) {
+  .footer__sections {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer__sections {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.footer__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.footer__section-title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.footer__section-content {
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+/* ===========================
+   FOOTER LINKS
+   =========================== */
+
+.footer__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.footer__link-item {
+  margin: 0;
+  padding: 0;
+}
+
+.footer__link {
+  /* Override default link styles for footer context */
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+
+  /* Transitions */
+  transition: color var(--transition-fast);
+}
+
+.footer__link:hover:not(.link--disabled) {
+  color: var(--color-action-primary);
+}
+
+/* ===========================
+   FOOTER BOTTOM
+   =========================== */
+
+.footer__bottom {
+  border-top: 1px solid color-mix(in srgb, var(--color-border) 30%, transparent);
+  padding-top: var(--spacing-lg);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer__bottom {
+    text-align: left;
+  }
+}
+
+.footer__copyright {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+}
+
+/* ===========================
+   STICKY FOOTER LAYOUT
+   =========================== */
+
+/**
+ * When used in a flex container, footer will stick to bottom
+ * Usage in App.jsx or layout component:
+ *
+ * .app {
+ *   display: flex;
+ *   flex-direction: column;
+ *   min-height: 100vh;
+ * }
+ *
+ * main {
+ *   flex: 1;
+ * }
+ */
+
+/* ===========================
+   ACCESSIBILITY
+   =========================== */
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .footer__link {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .footer {
+    border-top-width: 2px;
+  }
+
+  .footer__bottom {
+    border-top-width: 2px;
+  }
+}

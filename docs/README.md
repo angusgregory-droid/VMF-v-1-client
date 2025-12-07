@@ -10,7 +10,9 @@ docs/
 ├── routing.md                         # Routing and navigation
 ├── components/                        # Component documentation
 │   ├── button.md                      # Button component
-│   └── link.md                        # Link component
+│   ├── link.md                        # Link component
+│   ├── header.md                      # Header component
+│   └── footer.md                      # Footer component
 └── design-system/                     # Design system documentation
     ├── css-design-system.md           # CSS design tokens and architecture
     ├── responsive-design.md           # Responsive design patterns and utilities
@@ -30,6 +32,8 @@ docs/
 ### Component Framework
 - **[Button](./components/button.md)** - Accessible button component with variants, sizes, and states
 - **[Link](./components/link.md)** - Smart link component for internal routing and external navigation
+- **[Header](./components/header.md)** - Responsive header with logo and navigation
+- **[Footer](./components/footer.md)** - Responsive footer with sections, links, and copyright
 
 ### Testing
 _(Documentation will be added as testing patterns are established)_

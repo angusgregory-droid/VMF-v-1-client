@@ -1,0 +1,188 @@
+/**
+ * Header Styles
+ *
+ * Uses BEM naming convention for clarity
+ * All values use design system tokens for consistency and theming support
+ */
+
+/* ===========================
+   BASE HEADER STYLES
+   =========================== */
+
+.header {
+  /* Background and borders */
+  background-color: var(--color-surface);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 30%, transparent);
+
+  /* Z-index for layering */
+  z-index: var(--z-index-sticky);
+}
+
+/* Sticky positioning */
+.header--sticky {
+  position: sticky;
+  top: 0;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+  padding-top: var(--spacing-sm);
+  padding-bottom: var(--spacing-sm);
+}
+
+/* ===========================
+   LOGO / BRAND
+   =========================== */
+
+.header__brand {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.header__logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+
+  /* Transitions */
+  transition: opacity var(--transition-fast);
+}
+
+.header__logo-link:hover {
+  opacity: 0.8;
+}
+
+.header__logo-link:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.header__logo-text {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.header__logo-custom {
+  display: flex;
+  align-items: center;
+  max-height: 40px;
+}
+
+.header__logo-custom img {
+  display: block;
+  max-height: 40px;
+  width: auto;
+}
+
+/* ===========================
+   NAVIGATION
+   =========================== */
+
+.header__nav {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Override Navigation's container since we're providing our own */
+.header__nav .nav {
+  border-bottom: none;
+}
+
+.header__nav .nav__container {
+  padding: 0;
+  max-width: none;
+}
+
+/* ===========================
+   CUSTOM CONTENT
+   =========================== */
+
+.header__content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-left: var(--spacing-md);
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .header__container {
+    min-height: 56px;
+  }
+
+  .header__logo-text {
+    font-size: var(--font-size-lg);
+  }
+
+  .header__logo-custom {
+    max-height: 32px;
+  }
+
+  .header__logo-custom img {
+    max-height: 32px;
+  }
+}
+
+/* Tablet and desktop */
+@media (min-width: 768px) {
+  .header__container {
+    padding-top: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+  }
+}
+
+/* ===========================
+   ACCESSIBILITY
+   =========================== */
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .header__logo-link {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .header {
+    border-bottom-width: 2px;
+  }
+}
+
+/* ===========================
+   UTILITY MODIFIERS
+   =========================== */
+
+/* Shadow variant for non-sticky headers */
+.header--shadow {
+  box-shadow: var(--shadow-sm);
+}
+
+/* Transparent variant */
+.header--transparent {
+  background-color: transparent;
+  border-bottom-color: transparent;
+}
+
+/* Compact variant */
+.header--compact .header__container {
+  min-height: 48px;
+  padding-top: var(--spacing-xs);
+  padding-bottom: var(--spacing-xs);
+}
+
+.header--compact .header__logo-text {
+  font-size: var(--font-size-lg);
+}

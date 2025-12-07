@@ -53,7 +53,7 @@ describe('Router', () => {
 
       // Navigation should be present
       expect(await screen.findByRole('navigation')).toBeInTheDocument()
-      expect(screen.getByText('StoryLineOS')).toBeInTheDocument()
+      expect(screen.getAllByText('StoryLineOS').length).toBeGreaterThan(0)
     })
 
     it('should have correct navigation links', async () => {
@@ -65,11 +65,9 @@ describe('Router', () => {
 
       await screen.findByRole('navigation')
 
-      const homeLink = screen.getByRole('menuitem', { name: /home/i })
       const componentsLink = screen.getByRole('menuitem', { name: /components/i })
       const aboutLink = screen.getByRole('menuitem', { name: /about/i })
 
-      expect(homeLink).toBeInTheDocument()
       expect(componentsLink).toBeInTheDocument()
       expect(aboutLink).toBeInTheDocument()
     })
