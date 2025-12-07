@@ -7,6 +7,8 @@
 import { useState } from 'react'
 import { Button } from '../../components/Button'
 import { Link } from '../../components/Link'
+import { Card } from '../../components/Card'
+import { Avatar } from '../../components/Avatar'
 
 function Components() {
   const [loading, setLoading] = useState(false)
@@ -133,16 +135,166 @@ function Components() {
         </div>
       </section>
 
+      <section style={{ marginTop: '3rem' }}>
+        <h2 className="text-responsive-lg">Card Component</h2>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Variants</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginTop: '1rem' }}>
+            <Card variant="default">
+              <Card.Header>Default Card</Card.Header>
+              <Card.Body>Basic bordered card with clean design.</Card.Body>
+            </Card>
+
+            <Card variant="outlined">
+              <Card.Header>Outlined Card</Card.Header>
+              <Card.Body>Emphasized 2px border for prominence.</Card.Body>
+            </Card>
+
+            <Card variant="elevated">
+              <Card.Header>Elevated Card</Card.Header>
+              <Card.Body>Professional shadow effect for depth.</Card.Body>
+            </Card>
+
+            <Card variant="filled">
+              <Card.Header>Filled Card</Card.Header>
+              <Card.Body>Subtle background color variant.</Card.Body>
+            </Card>
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Interactive Cards</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginTop: '1rem' }}>
+            <Card hoverable variant="elevated">
+              <Card.Header>Hoverable Card</Card.Header>
+              <Card.Body>Hover me! I lift up with a smooth animation.</Card.Body>
+            </Card>
+
+            <Card clickable onClick={() => alert('Card clicked!')}>
+              <Card.Header>Clickable Card</Card.Header>
+              <Card.Body>Click me! The entire card is interactive.</Card.Body>
+            </Card>
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Corner Styles</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginTop: '1rem' }}>
+            <Card rounded variant="elevated">
+              <Card.Header>Rounded Corners</Card.Header>
+              <Card.Body>Smooth, modern rounded corners (default).</Card.Body>
+            </Card>
+
+            <Card rounded={false} variant="elevated">
+              <Card.Header>Square Corners</Card.Header>
+              <Card.Body>Sharp, minimal square corners.</Card.Body>
+            </Card>
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Card with Image</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginTop: '1rem' }}>
+            <Card variant="elevated" hoverable>
+              <Card.Image
+                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
+                alt="Mountain landscape"
+              />
+              <Card.Header>Mountain Adventure</Card.Header>
+              <Card.Body>
+                Explore breathtaking mountain landscapes and discover hidden trails.
+              </Card.Body>
+              <Card.Footer>
+                <Button size="sm">Learn More</Button>
+                <Button size="sm" variant="outline">Share</Button>
+              </Card.Footer>
+            </Card>
+
+            <Card variant="elevated" hoverable>
+              <Card.Image
+                src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&h=200&fit=crop"
+                alt="Night sky"
+              />
+              <Card.Header>Stargazing Guide</Card.Header>
+              <Card.Body>
+                Perfect spots and times for observing the night sky.
+              </Card.Body>
+              <Card.Footer>
+                <Button size="sm">Read Guide</Button>
+                <Button size="sm" variant="outline">Bookmark</Button>
+              </Card.Footer>
+            </Card>
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>User Profile Cards</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '1rem' }}>
+            <Card variant="outlined">
+              <Card.Body>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  <Avatar name="Sarah Johnson" size="lg" status="online" />
+                  <div>
+                    <h4 style={{ margin: 0 }}>Sarah Johnson</h4>
+                    <p style={{ margin: '0.25rem 0 0', color: 'var(--color-text-secondary)', fontSize: 'var(--font-size-sm)' }}>
+                      Product Designer
+                    </p>
+                  </div>
+                </div>
+              </Card.Body>
+              <Card.Footer>
+                <Button size="sm" variant="outline" fullWidth>View Profile</Button>
+              </Card.Footer>
+            </Card>
+
+            <Card variant="outlined">
+              <Card.Body>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  <Avatar name="Michael Chen" size="lg" status="away" shape="rounded" />
+                  <div>
+                    <h4 style={{ margin: 0 }}>Michael Chen</h4>
+                    <p style={{ margin: '0.25rem 0 0', color: 'var(--color-text-secondary)', fontSize: 'var(--font-size-sm)' }}>
+                      Software Engineer
+                    </p>
+                  </div>
+                </div>
+              </Card.Body>
+              <Card.Footer>
+                <Button size="sm" variant="outline" fullWidth>View Profile</Button>
+              </Card.Footer>
+            </Card>
+
+            <Card variant="outlined">
+              <Card.Body>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  <Avatar name="Emily Rodriguez" size="lg" status="busy" />
+                  <div>
+                    <h4 style={{ margin: 0 }}>Emily Rodriguez</h4>
+                    <p style={{ margin: '0.25rem 0 0', color: 'var(--color-text-secondary)', fontSize: 'var(--font-size-sm)' }}>
+                      UX Researcher
+                    </p>
+                  </div>
+                </div>
+              </Card.Body>
+              <Card.Footer>
+                <Button size="sm" variant="outline" fullWidth>View Profile</Button>
+              </Card.Footer>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       <section style={{ marginTop: '4rem', padding: 'var(--spacing-xl)', backgroundColor: 'var(--color-background-secondary)', borderRadius: 'var(--border-radius-lg)' }}>
         <h2 className="text-responsive-lg">Coming Soon</h2>
         <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
           More components are being built following the same production-ready standards:
         </p>
         <ul style={{ marginTop: 'var(--spacing-md)', color: 'var(--color-text-secondary)' }}>
-          <li>Input fields</li>
-          <li>Forms</li>
-          <li>Cards</li>
-          <li>Modals</li>
+          <li>Input fields & Forms</li>
+          <li>Modals & Dialogs</li>
+          <li>Tables & Data Grids</li>
+          <li>Tooltips & Popovers</li>
           <li>And more...</li>
         </ul>
       </section>

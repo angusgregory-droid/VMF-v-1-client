@@ -1,0 +1,325 @@
+/**
+ * Card Styles
+ *
+ * Professional, responsive card component
+ * Uses BEM naming convention and design system tokens
+ */
+
+/* ===========================
+   BASE CARD STYLES
+   =========================== */
+
+.card {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  /* Appearance */
+  background-color: var(--color-surface);
+  border: 1px solid color-mix(in srgb, var(--color-border) 30%, transparent);
+  overflow: hidden;
+
+  /* Spacing */
+  width: 100%;
+
+  /* Transitions */
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+/* ===========================
+   CORNER STYLES
+   =========================== */
+
+.card--rounded {
+  border-radius: var(--border-radius-lg);
+}
+
+.card--square {
+  border-radius: 0;
+}
+
+/* ===========================
+   CARD VARIANTS
+   =========================== */
+
+/* Default - Basic bordered card */
+.card--default {
+  background-color: var(--color-surface);
+}
+
+/* Outlined - Emphasized border */
+.card--outlined {
+  background-color: transparent;
+  border: 2px solid var(--color-border);
+}
+
+/* Elevated - Shadow effect */
+.card--elevated {
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  border-color: transparent;
+}
+
+.card--elevated:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Filled - Subtle background */
+.card--filled {
+  background-color: var(--color-surface-secondary);
+  border-color: transparent;
+}
+
+/* ===========================
+   INTERACTIVE STATES
+   =========================== */
+
+/* Hoverable cards */
+.card--hoverable:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-border);
+}
+
+/* Clickable cards */
+.card--clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.card--clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-500);
+}
+
+.card--clickable:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.card--clickable:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* ===========================
+   CARD SECTIONS
+   =========================== */
+
+/* Card Image */
+.card__image {
+  width: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
+  background-color: var(--color-surface-secondary);
+}
+
+.card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-normal);
+}
+
+.card--hoverable:hover .card__image img,
+.card--clickable:hover .card__image img {
+  transform: scale(1.05);
+}
+
+/* Card Header */
+.card__header {
+  padding: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+}
+
+.card__header:first-child {
+  padding-top: var(--spacing-lg);
+}
+
+.card__header:last-child {
+  padding-bottom: var(--spacing-lg);
+}
+
+/* Card Body */
+.card__body {
+  padding: var(--spacing-md) var(--spacing-lg);
+  flex: 1;
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}
+
+.card__body:first-child {
+  padding-top: var(--spacing-lg);
+}
+
+.card__body:last-child {
+  padding-bottom: var(--spacing-lg);
+}
+
+/* When header + body */
+.card__header + .card__body {
+  padding-top: 0;
+}
+
+/* Card Footer */
+.card__footer {
+  padding: var(--spacing-md) var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid color-mix(in srgb, var(--color-border) 20%, transparent);
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.card__footer:first-child {
+  border-top: none;
+  padding-top: var(--spacing-lg);
+}
+
+.card__footer:last-child {
+  padding-bottom: var(--spacing-lg);
+}
+
+/* ===========================
+   RESPONSIVE BEHAVIOR
+   =========================== */
+
+/* Mobile: Full width, compact padding */
+@media (max-width: 767px) {
+  .card__header,
+  .card__header:first-child,
+  .card__header:last-child {
+    padding: var(--spacing-md);
+  }
+
+  .card__body,
+  .card__body:first-child,
+  .card__body:last-child {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .card__footer,
+  .card__footer:first-child,
+  .card__footer:last-child {
+    padding: var(--spacing-md);
+  }
+
+  .card__footer {
+    flex-wrap: wrap;
+  }
+}
+
+/* Tablet: Better spacing */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .card {
+    max-width: 100%;
+  }
+}
+
+/* Desktop: Optimal card width */
+@media (min-width: 1024px) {
+  .card {
+    max-width: 100%;
+  }
+}
+
+/* ===========================
+   CARD LAYOUTS
+   =========================== */
+
+/* Horizontal layout (side-by-side) */
+.card--horizontal {
+  flex-direction: row;
+}
+
+.card--horizontal .card__image {
+  width: 40%;
+  min-height: 200px;
+}
+
+.card--horizontal .card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mobile: Force vertical layout */
+@media (max-width: 767px) {
+  .card--horizontal {
+    flex-direction: column;
+  }
+
+  .card--horizontal .card__image {
+    width: 100%;
+    min-height: 150px;
+  }
+}
+
+/* ===========================
+   ACCESSIBILITY
+   =========================== */
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card__image img {
+    transition: none;
+  }
+
+  .card--hoverable:hover,
+  .card--clickable:hover,
+  .card--clickable:active {
+    transform: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .card {
+    border-width: 2px;
+  }
+
+  .card--outlined {
+    border-width: 3px;
+  }
+
+  .card__footer {
+    border-top-width: 2px;
+  }
+}
+
+/* ===========================
+   UTILITY CLASSES
+   =========================== */
+
+/* Compact card */
+.card--compact .card__header {
+  padding: var(--spacing-md);
+}
+
+.card--compact .card__body {
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.card--compact .card__footer {
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+/* Spacious card */
+.card--spacious .card__header {
+  padding: var(--spacing-xl);
+}
+
+.card--spacious .card__body {
+  padding: var(--spacing-lg) var(--spacing-xl);
+}
+
+.card--spacious .card__footer {
+  padding: var(--spacing-lg) var(--spacing-xl);
+}
