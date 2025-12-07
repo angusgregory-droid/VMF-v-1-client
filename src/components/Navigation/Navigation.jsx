@@ -30,6 +30,18 @@ function Navigation({ isOpen = false, onLinkClick = () => {} }) {
     >
       <div className="nav__container">
         <ul className="nav__links" role="menubar">
+          <li role="none" className="nav__item--mobile-only">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? 'nav__link nav__link--active' : 'nav__link'
+              }
+              role="menuitem"
+              onClick={onLinkClick}
+            >
+              Home
+            </NavLink>
+          </li>
           <li role="none">
             <NavLink
               to="/components"
