@@ -11,6 +11,7 @@ import { Card } from '../../components/Card'
 import { Avatar } from '../../components/Avatar'
 import { Accordion } from '../../components/Accordion'
 import { Dialog } from '../../components/Dialog'
+import { Fieldset } from '../../components/Fieldset'
 
 function Components() {
   const [loading, setLoading] = useState(false)
@@ -619,6 +620,233 @@ function Components() {
             <li>Multiple sizes: sm, md, lg, xl, full</li>
             <li>Responsive on all screen sizes</li>
             <li>Full keyboard and screen reader support</li>
+          </ul>
+        </div>
+      </section>
+
+      <section style={{ marginTop: '3rem' }}>
+        <h2 className="text-responsive-lg">Fieldset Component</h2>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Basic Fieldset</h3>
+          <Fieldset>
+            <Fieldset.Legend>Contact Information</Fieldset.Legend>
+            <Fieldset.Content>
+              <input
+                type="text"
+                placeholder="Name"
+                style={{
+                  flex: '1 1 250px',
+                  padding: 'var(--spacing-sm)',
+                  border: '1px solid var(--color-border)',
+                  borderRadius: 'var(--border-radius-sm)',
+                  fontSize: 'var(--font-size-base)',
+                }}
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                style={{
+                  flex: '1 1 250px',
+                  padding: 'var(--spacing-sm)',
+                  border: '1px solid var(--color-border)',
+                  borderRadius: 'var(--border-radius-sm)',
+                  fontSize: 'var(--font-size-base)',
+                }}
+              />
+              <input
+                type="tel"
+                placeholder="Phone"
+                style={{
+                  flex: '1 1 200px',
+                  padding: 'var(--spacing-sm)',
+                  border: '1px solid var(--color-border)',
+                  borderRadius: 'var(--border-radius-sm)',
+                  fontSize: 'var(--font-size-base)',
+                }}
+              />
+            </Fieldset.Content>
+          </Fieldset>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Variants</h3>
+          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem' }}>
+            <div>
+              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Default</h4>
+              <Fieldset variant="default">
+                <Fieldset.Legend>Default Style</Fieldset.Legend>
+                <Fieldset.Content>
+                  <Button size="sm">Button 1</Button>
+                  <Button size="sm" variant="outline">Button 2</Button>
+                  <Button size="sm" variant="ghost">Button 3</Button>
+                </Fieldset.Content>
+              </Fieldset>
+            </div>
+
+            <div>
+              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Outlined</h4>
+              <Fieldset variant="outlined">
+                <Fieldset.Legend>Outlined Style</Fieldset.Legend>
+                <Fieldset.Content>
+                  <Button size="sm">Button 1</Button>
+                  <Button size="sm" variant="outline">Button 2</Button>
+                  <Button size="sm" variant="ghost">Button 3</Button>
+                </Fieldset.Content>
+              </Fieldset>
+            </div>
+
+            <div>
+              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Filled</h4>
+              <Fieldset variant="filled">
+                <Fieldset.Legend>Filled Style</Fieldset.Legend>
+                <Fieldset.Content>
+                  <Button size="sm">Button 1</Button>
+                  <Button size="sm" variant="outline">Button 2</Button>
+                  <Button size="sm" variant="ghost">Button 3</Button>
+                </Fieldset.Content>
+              </Fieldset>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Gap Sizes</h3>
+          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem' }}>
+            <div>
+              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Small Gap</h4>
+              <Fieldset variant="outlined" gap="sm">
+                <Fieldset.Legend>Gap: Small</Fieldset.Legend>
+                <Fieldset.Content>
+                  <Button size="sm">Save</Button>
+                  <Button size="sm" variant="outline">Cancel</Button>
+                  <Button size="sm" variant="danger">Delete</Button>
+                </Fieldset.Content>
+              </Fieldset>
+            </div>
+
+            <div>
+              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Medium Gap (Default)</h4>
+              <Fieldset variant="outlined" gap="md">
+                <Fieldset.Legend>Gap: Medium</Fieldset.Legend>
+                <Fieldset.Content>
+                  <Button size="sm">Save</Button>
+                  <Button size="sm" variant="outline">Cancel</Button>
+                  <Button size="sm" variant="danger">Delete</Button>
+                </Fieldset.Content>
+              </Fieldset>
+            </div>
+
+            <div>
+              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Large Gap</h4>
+              <Fieldset variant="outlined" gap="lg">
+                <Fieldset.Legend>Gap: Large</Fieldset.Legend>
+                <Fieldset.Content>
+                  <Button size="sm">Save</Button>
+                  <Button size="sm" variant="outline">Cancel</Button>
+                  <Button size="sm" variant="danger">Delete</Button>
+                </Fieldset.Content>
+              </Fieldset>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Flex Wrapping</h3>
+          <Fieldset variant="outlined">
+            <Fieldset.Legend>Responsive Form Fields</Fieldset.Legend>
+            <Fieldset.Content>
+              <input
+                type="text"
+                placeholder="First Name"
+                style={{
+                  flex: '1 1 200px',
+                  padding: 'var(--spacing-sm)',
+                  border: '1px solid var(--color-border)',
+                  borderRadius: 'var(--border-radius-sm)',
+                  fontSize: 'var(--font-size-base)',
+                }}
+              />
+              <input
+                type="text"
+                placeholder="Last Name"
+                style={{
+                  flex: '1 1 200px',
+                  padding: 'var(--spacing-sm)',
+                  border: '1px solid var(--color-border)',
+                  borderRadius: 'var(--border-radius-sm)',
+                  fontSize: 'var(--font-size-base)',
+                }}
+              />
+              <input
+                type="email"
+                placeholder="Email Address"
+                style={{
+                  flex: '1 1 300px',
+                  padding: 'var(--spacing-sm)',
+                  border: '1px solid var(--color-border)',
+                  borderRadius: 'var(--border-radius-sm)',
+                  fontSize: 'var(--font-size-base)',
+                }}
+              />
+              <input
+                type="tel"
+                placeholder="Phone Number"
+                style={{
+                  flex: '1 1 200px',
+                  padding: 'var(--spacing-sm)',
+                  border: '1px solid var(--color-border)',
+                  borderRadius: 'var(--border-radius-sm)',
+                  fontSize: 'var(--font-size-base)',
+                }}
+              />
+            </Fieldset.Content>
+          </Fieldset>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Disabled State</h3>
+          <Fieldset variant="outlined" disabled>
+            <Fieldset.Legend>Disabled Form Section</Fieldset.Legend>
+            <Fieldset.Content>
+              <input
+                type="text"
+                placeholder="Disabled Input"
+                style={{
+                  flex: '1 1 200px',
+                  padding: 'var(--spacing-sm)',
+                  border: '1px solid var(--color-border)',
+                  borderRadius: 'var(--border-radius-sm)',
+                  fontSize: 'var(--font-size-base)',
+                }}
+              />
+              <input
+                type="email"
+                placeholder="Disabled Email"
+                style={{
+                  flex: '1 1 200px',
+                  padding: 'var(--spacing-sm)',
+                  border: '1px solid var(--color-border)',
+                  borderRadius: 'var(--border-radius-sm)',
+                  fontSize: 'var(--font-size-base)',
+                }}
+              />
+              <Button size="sm">Disabled Button</Button>
+            </Fieldset.Content>
+          </Fieldset>
+        </div>
+
+        <div style={{ marginTop: '2rem', padding: 'var(--spacing-lg)', backgroundColor: 'color-mix(in srgb, var(--color-primary) 5%, transparent)', borderRadius: 'var(--border-radius-md)', border: '1px solid color-mix(in srgb, var(--color-primary) 20%, transparent)' }}>
+          <h4 style={{ margin: '0 0 0.5rem', fontSize: 'var(--font-size-base)' }}>Fieldset Features</h4>
+          <ul style={{ margin: 0, paddingLeft: '1.5rem', color: 'var(--color-text-secondary)' }}>
+            <li>Built on native HTML &lt;fieldset&gt; and &lt;legend&gt; elements</li>
+            <li>Legend naturally breaks the border</li>
+            <li>Flex content layout with automatic wrapping</li>
+            <li>Configurable gap sizes (sm, md, lg, xl)</li>
+            <li>Multiple variants (default, outlined, filled)</li>
+            <li>Native disabled state for all form controls</li>
+            <li>Fully accessible and semantic HTML</li>
+            <li>Responsive on all screen sizes</li>
           </ul>
         </div>
       </section>
