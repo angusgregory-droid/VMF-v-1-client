@@ -16,6 +16,7 @@ import { Input } from '../../components/Input'
 import { Tickbox } from '../../components/Tickbox'
 import { Radio } from '../../components/Radio'
 import { Spinner } from '../../components/Spinner'
+import { Select } from '../../components/Select'
 
 function Components() {
   const [loading, setLoading] = useState(false)
@@ -30,11 +31,25 @@ function Components() {
   const [selectedRadioOption, setSelectedRadioOption] = useState('option1')
   const [selectedRadioSize, setSelectedRadioSize] = useState('md')
   const [selectedRadioState, setSelectedRadioState] = useState('active')
+  const [selectValue, setSelectValue] = useState('')
+  const [tickboxSizeSmChecked, setTickboxSizeSmChecked] = useState(false)
+  const [tickboxSizeMdChecked, setTickboxSizeMdChecked] = useState(true)
+  const [tickboxSizeLgChecked, setTickboxSizeLgChecked] = useState(false)
+  const [tickboxIndeterminateChecked, setTickboxIndeterminateChecked] = useState(false)
+  const [tickboxDisabledCheckedState, setTickboxDisabledCheckedState] = useState(true) // For tick-disabled-checked
+  const [tickboxDisabledIndeterminateChecked, setTickboxDisabledIndeterminateChecked] = useState(false) // For tick-disabled-indeterminate
 
   const handleTickboxChange = (e) => {
     const { id, checked } = e.target
     setTickboxState((prev) => ({ ...prev, [id]: checked }))
   }
+
+  const handleTickboxSizeSmChange = (e) => setTickboxSizeSmChecked(e.target.checked)
+  const handleTickboxSizeMdChange = (e) => setTickboxSizeMdChecked(e.target.checked)
+  const handleTickboxSizeLgChange = (e) => setTickboxSizeLgChecked(e.target.checked)
+  const handleTickboxIndeterminateChange = (e) => setTickboxIndeterminateChecked(e.target.checked)
+  const handleTickboxDisabledCheckedChange = () => {} // No-op for disabled
+  const handleTickboxDisabledIndeterminateChange = () => {} // No-op for disabled
 
   const handleRadioOptionChange = (e) => {
     setSelectedRadioOption(e.target.value)
@@ -46,6 +61,10 @@ function Components() {
 
   const handleRadioStateChange = (e) => {
     setSelectedRadioState(e.target.value)
+  }
+
+  const handleSelectChange = (e) => {
+    setSelectValue(e.target.value)
   }
 
   const handleAsyncAction = () => {
@@ -1208,9 +1227,9 @@ function Components() {
         <div style={{ marginTop: '2rem' }}>
           <h3>Sizes</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
-            <Tickbox id="tick-sm" size="sm" label="Small Tickbox" />
-            <Tickbox id="tick-md" size="md" label="Medium Tickbox (Default)" />
-            <Tickbox id="tick-lg" size="lg" label="Large Tickbox" />
+            <Tickbox id="tick-sm" size="sm" label="Small Tickbox" checked={tickboxSizeSmChecked} onChange={handleTickboxSizeSmChange} />
+            <Tickbox id="tick-md" size="md" label="Medium Tickbox (Default)" checked={tickboxSizeMdChecked} onChange={handleTickboxSizeMdChange} />
+            <Tickbox id="tick-lg" size="lg" label="Large Tickbox" checked={tickboxSizeLgChecked} onChange={handleTickboxSizeLgChange} />
           </div>
         </div>
 
@@ -1229,10 +1248,29 @@ function Components() {
               checked={tickboxState.checked}
               onChange={handleTickboxChange}
             />
-            <Tickbox id="tick-indeterminate" label="Indeterminate" indeterminate={true} />
-            <Tickbox id="tick-disabled" label="Disabled" disabled />
-            <Tickbox id="tick-disabled-checked" label="Disabled & Checked" disabled checked />
-            <Tickbox id="tick-disabled-indeterminate" label="Disabled & Indeterminate" disabled indeterminate />
+            <Tickbox
+              id="tick-indeterminate"
+              label="Indeterminate"
+              indeterminate={true}
+              checked={tickboxIndeterminateChecked}
+              onChange={handleTickboxIndeterminateChange}
+            />
+            <Tickbox id="tick-disabled" label="Disabled" disabled /> {/* No `checked` prop, so not controlled */}
+            <Tickbox
+              id="tick-disabled-checked"
+              label="Disabled & Checked"
+              disabled
+              checked={tickboxDisabledCheckedState}
+              onChange={handleTickboxDisabledCheckedChange}
+            />
+            <Tickbox
+              id="tick-disabled-indeterminate"
+              label="Disabled & Indeterminate"
+              disabled
+              indeterminate
+              checked={tickboxDisabledIndeterminateChecked}
+              onChange={handleTickboxDisabledIndeterminateChange}
+            />
           </div>
         </div>
       </section>
@@ -1383,6 +1421,68 @@ function Components() {
             <Button variant="danger" loading>
               <Spinner size="sm" color="inherit" /> Loading
             </Button>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ marginTop: '3rem' }}>
+        <h2 className="text-responsive-lg">Select Component</h2>
+        <p className="text-responsive-base" style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
+          A custom-styled, accessible select dropdown component.
+        </p>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Basic Select</h3>
+          <div style={{ maxWidth: '400px' }}>
+            <Select
+              id="basic-select"
+              label="Choose a Framework"
+              value={selectValue}
+              onChange={handleSelectChange}
+              options={[
+                { value: 'react', label: 'React' },
+                { value: 'vue', label: 'Vue' },
+                { value: 'angular', label: 'Angular' },
+                { value: 'svelte', label: 'Svelte' },
+              ]}
+              placeholder="Select a framework..."
+            />
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Sizes</h3>
+          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem', maxWidth: '400px' }}>
+            <Select id="select-sm" size="sm" label="Small" options={[]} placeholder="Small Select" />
+            <Select id="select-md" size="md" label="Medium" options={[]} placeholder="Medium Select" />
+            <Select id="select-lg" size="lg" label="Large" options={[]} placeholder="Large Select" />
+          </div>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>States</h3>
+          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem', maxWidth: '400px' }}>
+            <Select
+              id="select-error"
+              label="Error State"
+              options={[]}
+              placeholder="Select an option"
+              error="This field is required"
+            />
+            <Select
+              id="select-helper"
+              label="With Helper Text"
+              options={[]}
+              placeholder="Select an option"
+              helperText="Choose the best option for your project."
+            />
+            <Select
+              id="select-disabled"
+              label="Disabled State"
+              options={[]}
+              placeholder="Disabled"
+              disabled
+            />
           </div>
         </div>
       </section>
