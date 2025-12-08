@@ -14,11 +14,15 @@
   background-color: var(--color-surface);
   border-bottom: 1px solid color-mix(in srgb, var(--color-border) 30%, transparent);
 
+  /* Sticky positioning */
+  position: sticky;
+  top: 0;
+
   /* Z-index for layering */
   z-index: var(--z-index-sticky);
 }
 
-/* Sticky positioning */
+/* Sticky positioning modifier (kept for backwards compatibility) */
 .header--sticky {
   position: sticky;
   top: 0;

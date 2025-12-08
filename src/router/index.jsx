@@ -9,7 +9,8 @@ import { lazy, Suspense } from 'react'
 import { createBrowserRouter, Outlet } from 'react-router-dom'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
-import { Spinner } from '../components/Spinner' // Import the new Spinner component
+import { Spinner } from '../components/Spinner'
+import './router.css'
 
 // Lazy-loaded page components
 const Home = lazy(() => import('../pages/Home'))
@@ -22,18 +23,9 @@ const About = lazy(() => import('../pages/About'))
  */
 function LoadingFallback() {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '60vh',
-        color: 'var(--color-text-secondary)'
-      }}
-    >
-      <Spinner size="lg" /> {/* Use the new Spinner component */}
-      <p style={{ marginTop: 'var(--spacing-md)' }}>Loading...</p>
+    <div className="loading-fallback">
+      <Spinner size="lg" />
+      <p className="loading-fallback__text">Loading...</p>
     </div>
   )
 }
@@ -68,9 +60,9 @@ function RootLayout() {
   ]
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <div className="root-layout">
       <Header logo="StoryLineOS" />
-      <main style={{ flex: 1 }}>
+      <main className="root-layout__main">
         <Suspense fallback={<LoadingFallback />}>
           <Outlet />
         </Suspense>

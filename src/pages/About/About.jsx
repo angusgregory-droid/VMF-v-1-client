@@ -4,109 +4,132 @@
  * Information about the project
  */
 
+import { Card } from '../../components/Card'
+import './About.css'
+
 function About() {
   return (
-    <div className="container" style={{ paddingTop: '2rem', paddingBottom: '3rem' }}>
+    <div className="container about">
       <h1 className="text-fluid-xl">About StoryLineOS</h1>
 
-      <section style={{ marginTop: '2rem' }}>
+      <section className="about__section">
         <h2 className="text-responsive-lg">Project Overview</h2>
-        <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-md)', lineHeight: 'var(--line-height-relaxed)' }}>
+        <p className="about__description">
           StoryLineOS is a production-ready component framework built with modern web technologies and best practices.
           Every component is designed to be accessible, responsive, and maintainable.
         </p>
       </section>
 
-      <section style={{ marginTop: '3rem' }}>
+      <section className="about__section--spacious">
         <h2 className="text-responsive-lg">Technology Stack</h2>
-        <div className="grid grid-cols-1 grid-md-2" style={{ marginTop: '1rem', gap: 'var(--spacing-lg)' }}>
-          <div>
-            <h3 className="text-responsive-md">Frontend</h3>
-            <ul style={{ marginTop: 'var(--spacing-sm)', color: 'var(--color-text-secondary)' }}>
-              <li>React 18.3</li>
-              <li>React Router 6</li>
-              <li>Vite 5.4 (Build tool)</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-responsive-md">Testing</h3>
-            <ul style={{ marginTop: 'var(--spacing-sm)', color: 'var(--color-text-secondary)' }}>
-              <li>Vitest</li>
-              <li>React Testing Library</li>
-              <li>User Event Testing</li>
-            </ul>
-          </div>
+        <div className="grid grid-cols-1 grid-md-2 about__tech-grid">
+          <Card variant="outlined">
+            <Card.Header>Frontend</Card.Header>
+            <Card.Body>
+              <ul className="about__tech-list">
+                <li>React 18.3</li>
+                <li>React Router 6</li>
+                <li>Vite 5.4 (Build tool)</li>
+              </ul>
+            </Card.Body>
+          </Card>
+          <Card variant="outlined">
+            <Card.Header>Testing</Card.Header>
+            <Card.Body>
+              <ul className="about__tech-list">
+                <li>Vitest</li>
+                <li>React Testing Library</li>
+                <li>User Event Testing</li>
+              </ul>
+            </Card.Body>
+          </Card>
         </div>
       </section>
 
-      <section style={{ marginTop: '3rem' }}>
+      <section className="about__section--spacious">
         <h2 className="text-responsive-lg">Design Principles</h2>
-        <div style={{ marginTop: '1rem' }}>
-          <div style={{ marginBottom: 'var(--spacing-lg)' }}>
-            <h3>DRY (Don't Repeat Yourself)</h3>
-            <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-xs)' }}>
-              Design tokens and reusable components eliminate duplication
-            </p>
-          </div>
+        <div className="grid grid-cols-1 grid-md-2 about__principles-grid">
+          <Card variant="default">
+            <Card.Header>DRY (Don't Repeat Yourself)</Card.Header>
+            <Card.Body>
+              <p className="about__principle-text">
+                Design tokens and reusable components eliminate duplication
+              </p>
+            </Card.Body>
+          </Card>
 
-          <div style={{ marginBottom: 'var(--spacing-lg)' }}>
-            <h3>Accessibility First</h3>
-            <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-xs)' }}>
-              WCAG compliant, keyboard navigation, ARIA attributes, screen reader support
-            </p>
-          </div>
+          <Card variant="default">
+            <Card.Header>Accessibility First</Card.Header>
+            <Card.Body>
+              <p className="about__principle-text">
+                WCAG compliant, keyboard navigation, ARIA attributes, screen reader support
+              </p>
+            </Card.Body>
+          </Card>
 
-          <div style={{ marginBottom: 'var(--spacing-lg)' }}>
-            <h3>Mobile-First Responsive</h3>
-            <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-xs)' }}>
-              All components work beautifully on mobile, tablet, and desktop
-            </p>
-          </div>
+          <Card variant="default">
+            <Card.Header>Mobile-First Responsive</Card.Header>
+            <Card.Body>
+              <p className="about__principle-text">
+                All components work beautifully on mobile, tablet, and desktop
+              </p>
+            </Card.Body>
+          </Card>
 
-          <div style={{ marginBottom: 'var(--spacing-lg)' }}>
-            <h3>Single Source of Truth</h3>
-            <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-xs)' }}>
-              Centralized design tokens make theming and updates effortless
-            </p>
-          </div>
+          <Card variant="default">
+            <Card.Header>Single Source of Truth</Card.Header>
+            <Card.Body>
+              <p className="about__principle-text">
+                Centralized design tokens make theming and updates effortless
+              </p>
+            </Card.Body>
+          </Card>
 
-          <div style={{ marginBottom: 'var(--spacing-lg)' }}>
-            <h3>Comprehensive Testing</h3>
-            <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-xs)' }}>
-              Every component has thorough test coverage for reliability
-            </p>
-          </div>
+          <Card variant="default">
+            <Card.Header>Comprehensive Testing</Card.Header>
+            <Card.Body>
+              <p className="about__principle-text">
+                Every component has thorough test coverage for reliability
+              </p>
+            </Card.Body>
+          </Card>
 
-          <div>
-            <h3>Production-Ready</h3>
-            <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-xs)' }}>
-              Code follows best practices: modularity, documentation, and maintainability
-            </p>
-          </div>
+          <Card variant="default">
+            <Card.Header>Production-Ready</Card.Header>
+            <Card.Body>
+              <p className="about__principle-text">
+                Code follows best practices: modularity, documentation, and maintainability
+              </p>
+            </Card.Body>
+          </Card>
         </div>
       </section>
 
-      <section style={{ marginTop: '3rem' }}>
+      <section className="about__section--spacious">
         <h2 className="text-responsive-lg">Architecture</h2>
-        <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-md)', lineHeight: 'var(--line-height-relaxed)' }}>
+        <p className="about__description">
           The project follows a monorepo structure with separate client and API directories.
           The frontend uses a component-based architecture with a comprehensive design system,
           responsive utilities, and theme support for easy customization.
         </p>
       </section>
 
-      <section style={{ marginTop: '3rem', padding: 'var(--spacing-xl)', backgroundColor: 'var(--color-background-secondary)', borderRadius: 'var(--border-radius-lg)' }}>
-        <h2 className="text-responsive-lg">Documentation</h2>
-        <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
-          Comprehensive documentation is available in the <code>/docs</code> directory, covering:
-        </p>
-        <ul style={{ marginTop: 'var(--spacing-md)', color: 'var(--color-text-secondary)' }}>
-          <li>Design system (colors, typography, spacing)</li>
-          <li>Responsive design patterns</li>
-          <li>Theming system</li>
-          <li>Component API references</li>
-          <li>Best practices and guidelines</li>
-        </ul>
+      <section className="about__section--spacious">
+        <Card variant="filled">
+          <Card.Header>Documentation</Card.Header>
+          <Card.Body>
+            <p className="about__principle-text">
+              Comprehensive documentation is available in the <code>/docs</code> directory, covering:
+            </p>
+            <ul className="about__doc-list">
+              <li>Design system (colors, typography, spacing)</li>
+              <li>Responsive design patterns</li>
+              <li>Theming system</li>
+              <li>Component API references</li>
+              <li>Best practices and guidelines</li>
+            </ul>
+          </Card.Body>
+        </Card>
       </section>
     </div>
   )

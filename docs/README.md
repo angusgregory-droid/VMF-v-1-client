@@ -8,6 +8,7 @@ This directory contains all documentation for the VMF-v1 client application.
 docs/
 ├── README.md                          # This file
 ├── routing.md                         # Routing and navigation
+├── styling-conventions.md             # CSS architecture and styling best practices
 ├── components/                        # Component documentation
 │   ├── accordion.md                   # Accordion component
 │   ├── avatar.md                      # Avatar component
@@ -36,6 +37,7 @@ docs/
 
 ### Application
 - **[Routing](./routing.md)** - React Router setup, lazy loading, navigation, and adding new routes
+- **[Styling Conventions](./styling-conventions.md)** - CSS architecture, BEM naming, inline style policy, and best practices
 
 ### Design System
 - **[CSS Design System](./design-system/css-design-system.md)** - Design tokens, color system, typography, spacing, and more
@@ -51,7 +53,7 @@ docs/
 - **[Fieldset](./components/fieldset.md)** - Native fieldset component with border-breaking legend and flex content layout
 - **[Footer](./components/footer.md)** - Responsive footer with sections, links, and copyright
 - **[Header](./components/header.md)** - Responsive header with logo and navigation
-- **[Horizontal Scroll](./components/horizontal-scroll.md)** - Scrollable horizontal rail with snap alignment and controls
+- **[Horizontal Scroll](./components/horizontal-scroll.md)** - Simple full-width horizontal scrollable container with optional snap alignment
 - **[Input](./components/input.md)** - Input component with floating label animation and very light placeholder text
 - **[Link](./components/link.md)** - Smart link component for internal routing and external navigation
 - **[Radio](./components/radio.md)** - Custom-styled, accessible radio button component

@@ -6,50 +6,58 @@
 
 import { Button } from '../../components/Button'
 import { Link } from '../../components/Link'
+import { Card } from '../../components/Card'
+import './Home.css'
 
 function Home() {
   return (
-    <div className="container" style={{ paddingTop: '3rem' }}>
-      <header style={{ textAlign: 'center', marginBottom: '3rem' }}>
+    <div className="container home">
+      <header className="home__header">
         <h1 className="text-fluid-xl">Welcome to StoryLineOS</h1>
-        <p className="text-responsive-base" style={{ color: 'var(--color-text-secondary)', marginTop: '1rem' }}>
+        <p className="text-responsive-base home__subtitle">
           A production-ready component framework built with React
         </p>
       </header>
 
-      <section style={{ marginTop: '3rem' }}>
+      <section className="home__section">
         <h2 className="text-responsive-lg">Features</h2>
-        <div className="grid grid-cols-1 grid-md-3" style={{ marginTop: '2rem' }}>
-          <div style={{ padding: 'var(--spacing-lg)', backgroundColor: 'var(--color-background-secondary)', borderRadius: 'var(--border-radius-lg)' }}>
-            <h3>🎨 Design System</h3>
-            <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
-              Comprehensive design tokens, responsive utilities, and theming support
-            </p>
-          </div>
-          <div style={{ padding: 'var(--spacing-lg)', backgroundColor: 'var(--color-background-secondary)', borderRadius: 'var(--border-radius-lg)' }}>
-            <h3>♿ Accessible</h3>
-            <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
-              WCAG compliant, keyboard navigation, and screen reader support
-            </p>
-          </div>
-          <div style={{ padding: 'var(--spacing-lg)', backgroundColor: 'var(--color-background-secondary)', borderRadius: 'var(--border-radius-lg)' }}>
-            <h3>📱 Responsive</h3>
-            <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
-              Mobile-first design that works beautifully on all devices
-            </p>
-          </div>
+        <div className="grid grid-cols-1 grid-md-3 home__features-grid">
+          <Card variant="filled">
+            <Card.Header>🎨 Design System</Card.Header>
+            <Card.Body>
+              <p className="home__feature-card-body">
+                Comprehensive design tokens, responsive utilities, and theming support
+              </p>
+            </Card.Body>
+          </Card>
+          <Card variant="filled">
+            <Card.Header>♿ Accessible</Card.Header>
+            <Card.Body>
+              <p className="home__feature-card-body">
+                WCAG compliant, keyboard navigation, and screen reader support
+              </p>
+            </Card.Body>
+          </Card>
+          <Card variant="filled">
+            <Card.Header>📱 Responsive</Card.Header>
+            <Card.Body>
+              <p className="home__feature-card-body">
+                Mobile-first design that works beautifully on all devices
+              </p>
+            </Card.Body>
+          </Card>
         </div>
       </section>
 
-      <section style={{ marginTop: '3rem', textAlign: 'center' }}>
+      <section className="home__cta-section">
         <h2 className="text-responsive-lg">Get Started</h2>
-        <div style={{ display: 'flex', gap: 'var(--spacing-md)', justifyContent: 'center', marginTop: '2rem', flexWrap: 'wrap' }}>
-          <Link to="/components" style={{ textDecoration: 'none' }}>
+        <div className="home__cta-buttons">
+          <Link to="/components" underline="none">
             <Button variant="primary" size="lg">
               View Components
             </Button>
           </Link>
-          <Link to="/about" style={{ textDecoration: 'none' }}>
+          <Link to="/about" underline="none">
             <Button variant="outline" size="lg">
               About
             </Button>

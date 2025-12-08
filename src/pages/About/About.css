@@ -1,0 +1,46 @@
+/**
+ * About Page Styles
+ */
+
+.about {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.about__section {
+  margin-top: 2rem;
+}
+
+.about__section--spacious {
+  margin-top: 3rem;
+}
+
+.about__description {
+  color: var(--color-text-secondary);
+  margin-top: var(--spacing-md);
+  line-height: var(--line-height-relaxed);
+}
+
+.about__tech-grid {
+  margin-top: 1rem;
+  gap: var(--spacing-lg);
+}
+
+.about__tech-list {
+  margin-top: var(--spacing-sm);
+  color: var(--color-text-secondary);
+}
+
+.about__principles-grid {
+  margin-top: 1rem;
+}
+
+.about__principle-text {
+  color: var(--color-text-secondary);
+  margin-top: var(--spacing-xs);
+}
+
+.about__doc-list {
+  margin-top: var(--spacing-md);
+  color: var(--color-text-secondary);
+}

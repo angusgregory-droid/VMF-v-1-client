@@ -1,0 +1,43 @@
+/**
+ * Home Page Styles
+ */
+
+.home {
+  padding-top: 3rem;
+}
+
+.home__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.home__subtitle {
+  color: var(--color-text-secondary);
+  margin-top: 1rem;
+}
+
+.home__section {
+  margin-top: 3rem;
+}
+
+.home__features-grid {
+  margin-top: 2rem;
+}
+
+.home__cta-section {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.home__cta-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.home__feature-card-body {
+  color: var(--color-text-secondary);
+  margin-top: var(--spacing-sm);
+}

@@ -20,6 +20,7 @@ import { Select } from '../../components/Select'
 import { Tooltip } from '../../components/Tooltip'
 import { useToaster } from '../../components/Toaster'
 import { HorizontalScroll } from '../../components/HorizontalScroll'
+import './Components.css'
 
 function Components() {
   const { addToast } = useToaster()
@@ -101,18 +102,18 @@ function Components() {
   }
 
   return (
-    <div className="container" style={{ paddingTop: '2rem', paddingBottom: '3rem' }}>
+    <div className="container components">
       <h1 className="text-fluid-xl">Component Showcase</h1>
-      <p className="text-responsive-base" style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
+      <p className="text-responsive-base components__description">
         Production-ready, accessible components for building modern web applications
       </p>
 
-      <section style={{ marginTop: '3rem' }}>
+      <section className="components__section">
         <h2 className="text-responsive-lg">Button Component</h2>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Variants</h3>
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '1rem' }}>
+          <div className="components__flex-group">
             <Button variant="primary">Primary</Button>
             <Button variant="secondary">Secondary</Button>
             <Button variant="outline">Outline</Button>
@@ -121,18 +122,18 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Sizes</h3>
-          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginTop: '1rem' }}>
+          <div className="components__flex-group--center">
             <Button size="sm">Small</Button>
             <Button size="md">Medium</Button>
             <Button size="lg">Large</Button>
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>States</h3>
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '1rem' }}>
+          <div className="components__flex-group">
             <Button disabled>Disabled</Button>
             <Button loading={loading} onClick={handleAsyncAction}>
               {loading ? 'Loading...' : 'Click to Load'}
@@ -140,9 +141,9 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Double Outline</h3>
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '1rem' }}>
+          <div className="components__flex-group">
             <Button variant="outline" doubleOutline>Outline Double</Button>
             <Button variant="primary" doubleOutline>Primary Double</Button>
             <Button variant="secondary" doubleOutline>Secondary Double</Button>
@@ -150,9 +151,9 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Square (No Border Radius)</h3>
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '1rem' }}>
+          <div className="components__flex-group">
             <Button variant="primary" square>Square Primary</Button>
             <Button variant="outline" square>Square Outline</Button>
             <Button variant="danger" square>Square Danger</Button>
@@ -160,21 +161,21 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Full Width</h3>
-          <div style={{ marginTop: '1rem' }}>
+          <div className="components__group">
             <Button fullWidth>Full Width Button</Button>
           </div>
         </div>
       </section>
 
-      <section style={{ marginTop: '3rem' }}>
+      <section className="components__section">
         <h2 className="text-responsive-lg">Horizontal Scroll Component</h2>
-        <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
+        <p className="components__description">
           Scroll horizontally with snap alignment and optional navigation buttons. Great for card rails and media strips.
         </p>
 
-        <div style={{ marginTop: '1.5rem' }}>
+        <div className="components__group">
           <HorizontalScroll ariaLabel="Feature highlights">
             {scrollItems.map((item) => (
               <Card
@@ -184,7 +185,7 @@ function Components() {
                 style={{ minWidth: '240px', flex: '0 0 auto' }}
               >
                 <Card.Header>{item.title}</Card.Header>
-                <Card.Body style={{ color: 'var(--color-text-secondary)' }}>
+                <Card.Body className="components__card-secondary">
                   {item.copy}
                 </Card.Body>
               </Card>
@@ -192,7 +193,7 @@ function Components() {
           </HorizontalScroll>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Mixed Card Styles</h3>
           <HorizontalScroll ariaLabel="Mixed card examples" gap="lg">
             <Card variant="elevated" hoverable style={{ maxWidth: '280px', flex: '0 0 auto' }}>
@@ -258,16 +259,16 @@ function Components() {
         </div>
       </section>
 
-      <section style={{ marginTop: '3rem' }}>
+      <section className="components__section">
         <h2 className="text-responsive-lg">Tooltip Component</h2>
-        <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
+        <p className="components__description">
           Hover or focus to see contextual help. Tooltips respect themes, motion preferences, and keyboard access.
         </p>
 
-        <div style={{ display: 'grid', gap: '1.5rem', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', marginTop: '1.5rem' }}>
+        <div className="components__grid--240">
           <Card variant="outlined">
             <Card.Header>Placements</Card.Header>
-            <Card.Body style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <Card.Body className="components__flex-group">
               <Tooltip content="Top tooltip">
                 <Button size="sm">Top</Button>
               </Tooltip>
@@ -285,7 +286,7 @@ function Components() {
 
           <Card variant="outlined">
             <Card.Header>Alignment</Card.Header>
-            <Card.Body style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <Card.Body className="components__flex-group">
               <Tooltip content="Aligned start" position="bottom" align="start">
                 <Button size="sm">Start</Button>
               </Tooltip>
@@ -300,13 +301,13 @@ function Components() {
 
           <Card variant="outlined">
             <Card.Header>Controlled</Card.Header>
-            <Card.Body style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            <Card.Body className="components__flex-column--sm">
               <Tooltip content="Controlled tooltip" open={controlledTooltipOpen}>
                 <Button size="sm" onClick={() => setControlledTooltipOpen((open) => !open)}>
                   {controlledTooltipOpen ? 'Hide Tooltip' : 'Show Tooltip'}
                 </Button>
               </Tooltip>
-              <p style={{ margin: 0, color: 'var(--color-text-secondary)' }}>
+              <p className="components__card-text">
                 Click toggles visibility; hover/focus do not override controlled state.
               </p>
             </Card.Body>
@@ -314,7 +315,7 @@ function Components() {
 
           <Card variant="outlined">
             <Card.Header>Instant / Default Open</Card.Header>
-            <Card.Body style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <Card.Body className="components__flex-group">
               <Tooltip content="Opens immediately" openDelay={0} closeDelay={0}>
                 <Button size="sm">Instant</Button>
               </Tooltip>
@@ -328,16 +329,16 @@ function Components() {
         </div>
       </section>
 
-      <section style={{ marginTop: '3rem' }}>
+      <section className="components__section">
         <h2 className="text-responsive-lg">Toaster Component</h2>
-        <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
+        <p className="components__description">
           Fire off toast notifications with variants and default durations. Positioning and limits are handled by the provider.
         </p>
 
-        <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', marginTop: '1.5rem' }}>
+        <div className="components__grid--220">
           <Card variant="outlined">
             <Card.Header>Quick Triggers</Card.Header>
-            <Card.Body style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <Card.Body className="components__flex-group--sm">
               <Button size="sm" onClick={() => triggerToast('success')}>Success</Button>
               <Button size="sm" variant="secondary" onClick={() => triggerToast('info')}>Info</Button>
               <Button size="sm" variant="outline" onClick={() => triggerToast('warning')}>Warning</Button>
@@ -347,7 +348,7 @@ function Components() {
           <Card variant="outlined">
             <Card.Header>Example Copy</Card.Header>
             <Card.Body>
-              <p style={{ margin: 0, color: 'var(--color-text-secondary)', lineHeight: 'var(--line-height-normal)' }}>
+              <p className="components__card-text--normal">
                 Toasts auto-dismiss after the default duration and are capped to the maximum queue size. Use them for lightweight, non-blocking feedback.
               </p>
             </Card.Body>
@@ -355,12 +356,12 @@ function Components() {
         </div>
       </section>
 
-      <section style={{ marginTop: '3rem' }}>
+      <section className="components__section">
         <h2 className="text-responsive-lg">Link Component</h2>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Variants</h3>
-          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', marginTop: '1rem' }}>
+          <div className="components__flex-group">
             <Link to="/about" variant="primary">Primary Link</Link>
             <Link to="/about" variant="secondary">Secondary Link</Link>
             <Link to="/about" variant="subtle">Subtle Link</Link>
@@ -368,35 +369,35 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Underline Styles</h3>
-          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', marginTop: '1rem' }}>
+          <div className="components__flex-group">
             <Link to="/about" underline="none">No Underline</Link>
             <Link to="/about" underline="hover">Hover Underline</Link>
             <Link to="/about" underline="always">Always Underlined</Link>
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>External Links</h3>
-          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', marginTop: '1rem' }}>
+          <div className="components__flex-group">
             <Link href="https://react.dev">React Docs</Link>
             <Link href="https://vitejs.dev" openInNewTab>Vite Docs</Link>
             <Link href="https://github.com" variant="secondary" openInNewTab>GitHub</Link>
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>States</h3>
-          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap', marginTop: '1rem' }}>
+          <div className="components__flex-group">
             <Link to="/about">Normal Link</Link>
             <Link to="/about" disabled>Disabled Link</Link>
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>In Paragraphs</h3>
-          <p style={{ marginTop: '1rem', maxWidth: '600px', lineHeight: 'var(--line-height-relaxed)' }}>
+          <p className="components__paragraph">
             Links in paragraphs automatically get subtle underlines for better readability.
             For example, check out the <Link to="/components">components page</Link> or
             read our <Link to="/about">about section</Link> to learn more.
@@ -404,12 +405,12 @@ function Components() {
         </div>
       </section>
 
-      <section style={{ marginTop: '3rem' }}>
+      <section className="components__section">
         <h2 className="text-responsive-lg">Card Component</h2>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Variants</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginTop: '1rem' }}>
+          <div className="components__grid">
             <Card variant="default">
               <Card.Header>Default Card</Card.Header>
               <Card.Body>Basic bordered card with clean design.</Card.Body>
@@ -432,9 +433,9 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Interactive Cards</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginTop: '1rem' }}>
+          <div className="components__grid">
             <Card hoverable variant="elevated">
               <Card.Header>Hoverable Card</Card.Header>
               <Card.Body>Hover me! I lift up with a smooth animation.</Card.Body>
@@ -447,9 +448,9 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Corner Styles</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem', marginTop: '1rem' }}>
+          <div className="components__grid">
             <Card rounded variant="elevated">
               <Card.Header>Rounded Corners</Card.Header>
               <Card.Body>Smooth, modern rounded corners (default).</Card.Body>
@@ -462,9 +463,9 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Card with Image</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginTop: '1rem' }}>
+          <div className="components__grid--300">
             <Card variant="elevated" hoverable>
               <Card.Image
                 src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop"
@@ -497,16 +498,16 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>User Profile Cards</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '1rem' }}>
+          <div className="components__grid--280">
             <Card variant="outlined">
               <Card.Body>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div className="components__user-profile-avatar">
                   <Avatar name="Sarah Johnson" size="lg" status="online" />
                   <div>
-                    <h4 style={{ margin: 0 }}>Sarah Johnson</h4>
-                    <p style={{ margin: '0.25rem 0 0', color: 'var(--color-text-secondary)', fontSize: 'var(--font-size-sm)' }}>
+                    <h4 className="components__user-profile-name">Sarah Johnson</h4>
+                    <p className="components__user-profile-role">
                       Product Designer
                     </p>
                   </div>
@@ -519,11 +520,11 @@ function Components() {
 
             <Card variant="outlined">
               <Card.Body>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div className="components__user-profile-avatar">
                   <Avatar name="Michael Chen" size="lg" status="away" shape="rounded" />
                   <div>
-                    <h4 style={{ margin: 0 }}>Michael Chen</h4>
-                    <p style={{ margin: '0.25rem 0 0', color: 'var(--color-text-secondary)', fontSize: 'var(--font-size-sm)' }}>
+                    <h4 className="components__user-profile-name">Michael Chen</h4>
+                    <p className="components__user-profile-role">
                       Software Engineer
                     </p>
                   </div>
@@ -536,11 +537,11 @@ function Components() {
 
             <Card variant="outlined">
               <Card.Body>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div className="components__user-profile-avatar">
                   <Avatar name="Emily Rodriguez" size="lg" status="busy" />
                   <div>
-                    <h4 style={{ margin: 0 }}>Emily Rodriguez</h4>
-                    <p style={{ margin: '0.25rem 0 0', color: 'var(--color-text-secondary)', fontSize: 'var(--font-size-sm)' }}>
+                    <h4 className="components__user-profile-name">Emily Rodriguez</h4>
+                    <p className="components__user-profile-role">
                       UX Researcher
                     </p>
                   </div>
@@ -554,14 +555,14 @@ function Components() {
         </div>
       </section>
 
-      <section style={{ marginTop: '3rem' }}>
+      <section className="components__section">
         <h2 className="text-responsive-lg">Accordion Component</h2>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Variants</h3>
-          <div style={{ display: 'grid', gap: '2rem', marginTop: '1rem' }}>
+          <div className="components__grid--gap-2">
             <div>
-              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Default</h4>
+              <h4 className="components__section-label">Default</h4>
               <Accordion variant="default">
                 <Accordion.Item id="default-1">
                   <Accordion.Header itemId="default-1">What is this component?</Accordion.Header>
@@ -585,7 +586,7 @@ function Components() {
             </div>
 
             <div>
-              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Outlined</h4>
+              <h4 className="components__section-label">Outlined</h4>
               <Accordion variant="outlined">
                 <Accordion.Item id="outlined-1">
                   <Accordion.Header itemId="outlined-1">Emphasized Borders</Accordion.Header>
@@ -603,7 +604,7 @@ function Components() {
             </div>
 
             <div>
-              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Filled</h4>
+              <h4 className="components__section-label">Filled</h4>
               <Accordion variant="filled">
                 <Accordion.Item id="filled-1">
                   <Accordion.Header itemId="filled-1">Subtle Background</Accordion.Header>
@@ -622,11 +623,11 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Corner Styles</h3>
-          <div style={{ display: 'grid', gap: '2rem', marginTop: '1rem' }}>
+          <div className="components__grid--gap-2">
             <div>
-              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Rounded (Default)</h4>
+              <h4 className="components__section-label">Rounded (Default)</h4>
               <Accordion variant="outlined" rounded>
                 <Accordion.Item id="rounded-1">
                   <Accordion.Header itemId="rounded-1">Smooth Rounded Corners</Accordion.Header>
@@ -638,7 +639,7 @@ function Components() {
             </div>
 
             <div>
-              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Square</h4>
+              <h4 className="components__section-label">Square</h4>
               <Accordion variant="outlined" rounded={false}>
                 <Accordion.Item id="square-1">
                   <Accordion.Header itemId="square-1">Sharp Square Corners</Accordion.Header>
@@ -651,7 +652,7 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Allow Multiple Open</h3>
           <Accordion variant="outlined" allowMultiple defaultOpenItems={['multi-1']}>
             <Accordion.Item id="multi-1">
@@ -678,7 +679,7 @@ function Components() {
           </Accordion>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>FAQ Example</h3>
           <Accordion variant="default" defaultOpenItems={['faq-1']}>
             <Accordion.Item id="faq-1">
@@ -719,12 +720,12 @@ function Components() {
         </div>
       </section>
 
-      <section style={{ marginTop: '3rem' }}>
+      <section className="components__section">
         <h2 className="text-responsive-lg">Dialog Component</h2>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Basic Dialog</h3>
-          <div style={{ marginTop: '1rem' }}>
+          <div className="components__group">
             <Button onClick={() => setDialogOpen(true)}>Open Basic Dialog</Button>
 
             <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
@@ -747,9 +748,9 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Dialog Sizes</h3>
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '1rem' }}>
+          <div className="components__flex-group">
             <Button size="sm" onClick={() => setSizeDialogOpen(true)}>Open Large Dialog</Button>
 
             <Dialog open={sizeDialogOpen} onClose={() => setSizeDialogOpen(false)} size="lg">
@@ -758,10 +759,10 @@ function Components() {
               </Dialog.Header>
               <Dialog.Body>
                 <p>This is a large dialog (720px wide on desktop, full width on mobile).</p>
-                <p style={{ marginTop: '1rem' }}>
+                <p className="components__group">
                   Dialogs support multiple sizes: sm (400px), md (560px), lg (720px), xl (960px), and full (viewport).
                 </p>
-                <p style={{ marginTop: '1rem' }}>
+                <p className="components__group">
                   All sizes are responsive and adapt to smaller screens automatically.
                 </p>
               </Dialog.Body>
@@ -772,9 +773,9 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Confirmation Dialog</h3>
-          <div style={{ marginTop: '1rem' }}>
+          <div className="components__group">
             <Button variant="danger" onClick={() => setConfirmDialogOpen(true)}>
               Delete Item
             </Button>
@@ -803,9 +804,9 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Form Dialog</h3>
-          <div style={{ marginTop: '1rem' }}>
+          <div className="components__group">
             <Button onClick={() => setFormDialogOpen(true)}>Add New Item</Button>
 
             <Dialog open={formDialogOpen} onClose={() => setFormDialogOpen(false)} size="md">
@@ -819,10 +820,10 @@ function Components() {
                     e.preventDefault()
                     setFormDialogOpen(false)
                   }}
-                  style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
+                  className="components__flex-column--md"
                 >
                   <div>
-                    <label htmlFor="item-name" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'var(--font-weight-medium)' }}>
+                    <label htmlFor="item-name" className="components__label">
                       Name:
                     </label>
                     <input
@@ -840,7 +841,7 @@ function Components() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="item-description" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'var(--font-weight-medium)' }}>
+                    <label htmlFor="item-description" className="components__label">
                       Description:
                     </label>
                     <textarea
@@ -871,9 +872,9 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem', padding: 'var(--spacing-lg)', backgroundColor: 'color-mix(in srgb, var(--color-primary) 5%, transparent)', borderRadius: 'var(--border-radius-md)', border: '1px solid color-mix(in srgb, var(--color-primary) 20%, transparent)' }}>
-          <h4 style={{ margin: '0 0 0.5rem', fontSize: 'var(--font-size-base)' }}>Dialog Features</h4>
-          <ul style={{ margin: 0, paddingLeft: '1.5rem', color: 'var(--color-text-secondary)' }}>
+        <div className="components__info-box">
+          <h4 className="components__info-title">Dialog Features</h4>
+          <ul className="components__info-list">
             <li>Built on native HTML &lt;dialog&gt; element</li>
             <li>Smooth scale-in and backdrop fade animations</li>
             <li>Close on ESC key (configurable)</li>
@@ -886,10 +887,10 @@ function Components() {
         </div>
       </section>
 
-      <section style={{ marginTop: '3rem' }}>
+      <section className="components__section">
         <h2 className="text-responsive-lg">Fieldset Component</h2>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Basic Fieldset</h3>
           <Fieldset>
             <Fieldset.Legend>Contact Information</Fieldset.Legend>
@@ -931,11 +932,11 @@ function Components() {
           </Fieldset>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Variants</h3>
-          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem' }}>
+          <div className="components__grid">
             <div>
-              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Default</h4>
+              <h4 className="components__section-label">Default</h4>
               <Fieldset variant="default">
                 <Fieldset.Legend>Default Style</Fieldset.Legend>
                 <Fieldset.Content>
@@ -947,7 +948,7 @@ function Components() {
             </div>
 
             <div>
-              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Outlined</h4>
+              <h4 className="components__section-label">Outlined</h4>
               <Fieldset variant="outlined">
                 <Fieldset.Legend>Outlined Style</Fieldset.Legend>
                 <Fieldset.Content>
@@ -959,7 +960,7 @@ function Components() {
             </div>
 
             <div>
-              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Filled</h4>
+              <h4 className="components__section-label">Filled</h4>
               <Fieldset variant="filled">
                 <Fieldset.Legend>Filled Style</Fieldset.Legend>
                 <Fieldset.Content>
@@ -972,11 +973,11 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Gap Sizes</h3>
-          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem' }}>
+          <div className="components__grid">
             <div>
-              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Small Gap</h4>
+              <h4 className="components__section-label">Small Gap</h4>
               <Fieldset variant="outlined" gap="sm">
                 <Fieldset.Legend>Gap: Small</Fieldset.Legend>
                 <Fieldset.Content>
@@ -988,7 +989,7 @@ function Components() {
             </div>
 
             <div>
-              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Medium Gap (Default)</h4>
+              <h4 className="components__section-label">Medium Gap (Default)</h4>
               <Fieldset variant="outlined" gap="md">
                 <Fieldset.Legend>Gap: Medium</Fieldset.Legend>
                 <Fieldset.Content>
@@ -1000,7 +1001,7 @@ function Components() {
             </div>
 
             <div>
-              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Large Gap</h4>
+              <h4 className="components__section-label">Large Gap</h4>
               <Fieldset variant="outlined" gap="lg">
                 <Fieldset.Legend>Gap: Large</Fieldset.Legend>
                 <Fieldset.Content>
@@ -1013,7 +1014,7 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Flex Wrapping</h3>
           <Fieldset variant="outlined">
             <Fieldset.Legend>Responsive Form Fields</Fieldset.Legend>
@@ -1066,7 +1067,7 @@ function Components() {
           </Fieldset>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Disabled State</h3>
           <Fieldset variant="outlined" disabled>
             <Fieldset.Legend>Disabled Form Section</Fieldset.Legend>
@@ -1098,9 +1099,9 @@ function Components() {
           </Fieldset>
         </div>
 
-        <div style={{ marginTop: '2rem', padding: 'var(--spacing-lg)', backgroundColor: 'color-mix(in srgb, var(--color-primary) 5%, transparent)', borderRadius: 'var(--border-radius-md)', border: '1px solid color-mix(in srgb, var(--color-primary) 20%, transparent)' }}>
-          <h4 style={{ margin: '0 0 0.5rem', fontSize: 'var(--font-size-base)' }}>Fieldset Features</h4>
-          <ul style={{ margin: 0, paddingLeft: '1.5rem', color: 'var(--color-text-secondary)' }}>
+        <div className="components__info-box">
+          <h4 className="components__info-title">Fieldset Features</h4>
+          <ul className="components__info-list">
             <li>Built on native HTML &lt;fieldset&gt; and &lt;legend&gt; elements</li>
             <li>Legend naturally breaks the border</li>
             <li>Flex content layout with automatic wrapping</li>
@@ -1113,12 +1114,12 @@ function Components() {
         </div>
       </section>
 
-      <section style={{ marginTop: '3rem' }}>
+      <section className="components__section">
         <h2 className="text-responsive-lg">Input Component</h2>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Floating Label Animation</h3>
-          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem', maxWidth: '600px' }}>
+          <div className="components__grid-inputs">
             <Input
               label="Email Address"
               placeholder="Enter your email"
@@ -1138,18 +1139,18 @@ function Components() {
               id="demo-password"
             />
           </div>
-          <p style={{ marginTop: '1rem', fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+          <p className="components__footer-note">
             Labels automatically float (shrink and move outside) when you focus or type in the input.
             Placeholders appear in very light text (30% opacity).
           </p>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Variants</h3>
-          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem' }}>
+          <div className="components__grid">
             <div>
-              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Default</h4>
-              <div style={{ maxWidth: '600px' }}>
+              <h4 className="components__section-label">Default</h4>
+              <div className="components__max-width">
                 <Input
                   label="Default Input"
                   placeholder="Subtle 1px border"
@@ -1160,8 +1161,8 @@ function Components() {
             </div>
 
             <div>
-              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Outlined</h4>
-              <div style={{ maxWidth: '600px' }}>
+              <h4 className="components__section-label">Outlined</h4>
+              <div className="components__max-width">
                 <Input
                   label="Outlined Input"
                   placeholder="Emphasized 2px border"
@@ -1172,8 +1173,8 @@ function Components() {
             </div>
 
             <div>
-              <h4 style={{ fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.5rem' }}>Filled</h4>
-              <div style={{ maxWidth: '600px' }}>
+              <h4 className="components__section-label">Filled</h4>
+              <div className="components__max-width">
                 <Input
                   label="Filled Input"
                   placeholder="Subtle background color"
@@ -1185,9 +1186,9 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Sizes</h3>
-          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem', maxWidth: '600px' }}>
+          <div className="components__grid-inputs">
             <Input
               label="Small Input"
               placeholder="Compact size for tight spaces"
@@ -1209,9 +1210,9 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Error States</h3>
-          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem', maxWidth: '600px' }}>
+          <div className="components__grid-inputs">
             <Input
               label="Email"
               placeholder="email@example.com"
@@ -1228,14 +1229,14 @@ function Components() {
               id="error-username"
             />
           </div>
-          <p style={{ marginTop: '1rem', fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+          <p className="components__footer-note">
             Error messages are announced to screen readers and displayed with clear visual indicators.
           </p>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Helper Text</h3>
-          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem', maxWidth: '600px' }}>
+          <div className="components__grid-inputs">
             <Input
               label="Password"
               placeholder="Enter a secure password"
@@ -1253,9 +1254,9 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Required Fields</h3>
-          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem', maxWidth: '600px' }}>
+          <div className="components__grid-inputs">
             <Input
               label="Email Address"
               placeholder="your@email.com"
@@ -1270,14 +1271,14 @@ function Components() {
               id="required-name"
             />
           </div>
-          <p style={{ marginTop: '1rem', fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+          <p className="components__footer-note">
             Required fields are marked with a red asterisk (*) and have the required HTML attribute.
           </p>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Input Types</h3>
-          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem', maxWidth: '600px' }}>
+          <div className="components__grid-inputs">
             <Input
               label="Email"
               type="email"
@@ -1315,14 +1316,14 @@ function Components() {
               id="type-search"
             />
           </div>
-          <p style={{ marginTop: '1rem', fontSize: 'var(--font-size-sm)', color: 'var(--color-text-secondary)' }}>
+          <p className="components__footer-note">
             Using the correct input type improves mobile keyboards and built-in browser validation.
           </p>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Disabled State</h3>
-          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem', maxWidth: '600px' }}>
+          <div className="components__grid-inputs">
             <Input
               label="Disabled Input"
               value="You cannot edit this field"
@@ -1339,9 +1340,9 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Full Width</h3>
-          <div style={{ marginTop: '1rem' }}>
+          <div className="components__group">
             <Input
               label="Full Width Input"
               placeholder="Takes the full width of its container"
@@ -1349,7 +1350,7 @@ function Components() {
               id="fullwidth-1"
             />
           </div>
-          <div style={{ marginTop: '1rem' }}>
+          <div className="components__group">
             <Input
               label="Newsletter Signup"
               placeholder="Enter your email to subscribe"
@@ -1361,7 +1362,7 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Form Example</h3>
           <form
             onSubmit={(e) => {
@@ -1405,7 +1406,7 @@ function Components() {
                 placeholder="(555) 123-4567"
                 id="form-phone"
               />
-              <div style={{ marginTop: '1rem' }}>
+              <div className="components__group">
                 <Button type="submit" fullWidth>
                   Create Account
                 </Button>
@@ -1414,9 +1415,9 @@ function Components() {
           </form>
         </div>
 
-        <div style={{ marginTop: '2rem', padding: 'var(--spacing-lg)', backgroundColor: 'color-mix(in srgb, var(--color-primary) 5%, transparent)', borderRadius: 'var(--border-radius-md)', border: '1px solid color-mix(in srgb, var(--color-primary) 20%, transparent)' }}>
-          <h4 style={{ margin: '0 0 0.5rem', fontSize: 'var(--font-size-base)' }}>Input Features</h4>
-          <ul style={{ margin: 0, paddingLeft: '1.5rem', color: 'var(--color-text-secondary)' }}>
+        <div className="components__info-box">
+          <h4 className="components__info-title">Input Features</h4>
+          <ul className="components__info-list">
             <li>Smooth floating label animation (shrinks to 75% and moves outside)</li>
             <li>Very light placeholder text (30% opacity) separate from label</li>
             <li>Three variants: default, outlined, filled</li>
@@ -1433,24 +1434,24 @@ function Components() {
         </div>
       </section>
 
-      <section style={{ marginTop: '3rem' }}>
+      <section className="components__section">
         <h2 className="text-responsive-lg">Tickbox Component</h2>
-        <p className="text-responsive-base" style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
+        <p className="text-responsive-base components__description">
           A custom-styled, accessible checkbox component.
         </p>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Sizes</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
+          <div className="components__flex-column">
             <Tickbox id="tick-sm" size="sm" label="Small Tickbox" checked={tickboxSizeSmChecked} onChange={handleTickboxSizeSmChange} />
             <Tickbox id="tick-md" size="md" label="Medium Tickbox (Default)" checked={tickboxSizeMdChecked} onChange={handleTickboxSizeMdChange} />
             <Tickbox id="tick-lg" size="lg" label="Large Tickbox" checked={tickboxSizeLgChecked} onChange={handleTickboxSizeLgChange} />
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>States</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
+          <div className="components__flex-column">
             <Tickbox
               id="unchecked"
               label="Unchecked"
@@ -1490,15 +1491,15 @@ function Components() {
         </div>
       </section>
 
-      <section style={{ marginTop: '3rem' }}>
+      <section className="components__section">
         <h2 className="text-responsive-lg">Radio Component</h2>
-        <p className="text-responsive-base" style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
+        <p className="text-responsive-base components__description">
           A custom-styled, accessible radio button component for single-selection choices.
         </p>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Sizes</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
+          <div className="components__flex-column">
             <Radio
               id="radio-size-sm"
               name="radio-sizes"
@@ -1529,9 +1530,9 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>States</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
+          <div className="components__flex-column">
             <Radio
               id="radio-state-active"
               name="radio-states"
@@ -1561,11 +1562,11 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Radio Group</h3>
-          <fieldset style={{ border: '1px solid var(--color-border)', padding: '1rem', borderRadius: 'var(--border-radius-md)' }}>
+          <fieldset className="components__dialog-content">
             <legend style={{ padding: '0 0.5rem', fontWeight: 'var(--font-weight-bold)', color: 'var(--color-text)' }}>Choose an Option:</legend>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
+            <div className="components__flex-column">
               <Radio
                 id="radio-opt1"
                 name="radio-options"
@@ -1595,24 +1596,24 @@ function Components() {
         </div>
       </section>
 
-      <section style={{ marginTop: '3rem' }}>
+      <section className="components__section">
         <h2 className="text-responsive-lg">Spinner Component</h2>
-        <p className="text-responsive-base" style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
+        <p className="text-responsive-base components__description">
           A simple, accessible loading spinner for indicating ongoing processes.
         </p>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Sizes</h3>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', marginTop: '1rem' }}>
+          <div className="components__flex-group--center-spaced">
             <Spinner size="sm" />
             <Spinner size="md" />
             <Spinner size="lg" />
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Colors</h3>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', marginTop: '1rem' }}>
+          <div className="components__flex-group--center-spaced">
             <Spinner color="primary" />
             <Spinner color="secondary" />
             <Spinner color="success" />
@@ -1624,9 +1625,9 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>In Buttons</h3>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', marginTop: '1rem' }}>
+          <div className="components__flex-group--center-spaced">
             <Button loading>
               <Spinner size="sm" color="inherit" /> Loading
             </Button>
@@ -1640,15 +1641,15 @@ function Components() {
         </div>
       </section>
 
-      <section style={{ marginTop: '3rem' }}>
+      <section className="components__section">
         <h2 className="text-responsive-lg">Select Component</h2>
-        <p className="text-responsive-base" style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
+        <p className="text-responsive-base components__description">
           A custom-styled, accessible select dropdown component.
         </p>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Basic Select</h3>
-          <div style={{ maxWidth: '400px' }}>
+          <div className="components__max-width--400">
             <Select
               id="basic-select"
               label="Choose a Framework"
@@ -1665,18 +1666,18 @@ function Components() {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>Sizes</h3>
-          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem', maxWidth: '400px' }}>
+          <div className="components__grid--narrow-max">
             <Select id="select-sm" size="sm" label="Small" options={[]} placeholder="Small Select" />
             <Select id="select-md" size="md" label="Medium" options={[]} placeholder="Medium Select" />
             <Select id="select-lg" size="lg" label="Large" options={[]} placeholder="Large Select" />
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div className="components__subsection">
           <h3>States</h3>
-          <div style={{ display: 'grid', gap: '1.5rem', marginTop: '1rem', maxWidth: '400px' }}>
+          <div className="components__grid--narrow-max">
             <Select
               id="select-error"
               label="Error State"
@@ -1702,12 +1703,12 @@ function Components() {
         </div>
       </section>
 
-      <section style={{ marginTop: '4rem', padding: 'var(--spacing-xl)', backgroundColor: 'var(--color-background-secondary)', borderRadius: 'var(--border-radius-lg)' }}>
+      <section className="components__coming-soon-section">
         <h2 className="text-responsive-lg">Coming Soon</h2>
-        <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
+        <p className="components__description">
           More components are being built following the same production-ready standards:
         </p>
-        <ul style={{ marginTop: 'var(--spacing-md)', color: 'var(--color-text-secondary)' }}>
+        <ul className="components__list-text">
           <li>Tables & Data Grids</li>
           <li>Tooltips & Popovers</li>
           <li>Select & Dropdown menus</li>

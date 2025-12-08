@@ -1,0 +1,27 @@
+/**
+ * Router Styles
+ */
+
+.loading-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  color: var(--color-text-secondary);
+}
+
+.loading-fallback__text {
+  margin-top: var(--spacing-md);
+}
+
+.root-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.root-layout__main {
+  flex: 1;
+  overflow-x: hidden;
+}

@@ -1,15 +1,16 @@
 # Horizontal Scroll Component
 
-A horizontally scrollable container with snap alignment and optional navigation buttons.
+A simple, full-width horizontally scrollable container with optional snap alignment.
 
 ## Features
 
 - ✅ **Horizontal Overflow**: Smooth horizontal scrolling for any children
-- ✅ **Navigation Buttons**: Optional prev/next controls with disabled states
-- ✅ **Snap Support**: Scroll-snap alignment for tidy rails
-- ✅ **Responsive**: Buttons hide on mobile; touch-friendly scrolling
-- ✅ **Design Tokens**: Uses spacing, colors, borders, and shadows from the design system
-- ✅ **Accessible**: Labeled region and focusable controls
+- ✅ **Snap Support**: Optional scroll-snap alignment for clean layouts
+- ✅ **Full Width**: Container spans available width
+- ✅ **Touch-Friendly**: Native touch scrolling on mobile devices
+- ✅ **Design Tokens**: Uses spacing from the design system
+- ✅ **Accessible**: Labeled region with proper ARIA attributes
+- ✅ **Custom Scrollbar**: Styled scrollbar for webkit browsers
 
 ## Basic Usage
 
@@ -19,9 +20,9 @@ import { Card } from '@/components/Card'
 
 function FeatureRail() {
   return (
-    <HorizontalScroll ariaLabel="Feature rail">
+    <HorizontalScroll ariaLabel="Feature rail" gap="lg">
       {[1, 2, 3].map((n) => (
-        <Card key={n} variant="outlined" style={{ minWidth: '240px', flex: '0 0 auto' }}>
+        <Card key={n} variant="outlined" style={{ maxWidth: '280px', flex: '0 0 auto' }}>
           <Card.Header>Item {n}</Card.Header>
           <Card.Body>Scrollable content {n}</Card.Body>
         </Card>
@@ -36,20 +37,18 @@ function FeatureRail() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `gap` | `'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'` | Spacing between items |
-| `snap` | `boolean` | `true` | Enable CSS scroll-snap alignment |
-| `showButtons` | `boolean` | `true` | Show prev/next buttons (hidden on mobile) |
-| `scrollStep` | `number` | `320` | Pixels to scroll per button click |
+| `snap` | `boolean` | `false` | Enable CSS scroll-snap alignment |
 | `ariaLabel` | `string` | `'Horizontal content'` | Accessible label for the scroll region |
 | `className` | `string` | `''` | Additional wrapper classes |
 | `...props` | `div` | - | Standard div attributes |
 
 ## Best Practices
 
-- Set a minimum width on child items (e.g., `minWidth: '240px'`) so snapping feels consistent.
-- Use `ariaLabel` to describe the content (e.g., “Product carousel”).
-- Keep button labels short; they already announce direction (`Scroll left/right`).
-- Reduce `scrollStep` for compact items or increase for larger cards.
-- Leave `snap` enabled for rails; disable if you need freeform scrolling.
+- Set a maximum width on child items (e.g., `maxWidth: '280px'`) for consistent sizing
+- Use `flex: '0 0 auto'` on children to prevent them from shrinking
+- Use `ariaLabel` to describe the content (e.g., "Product carousel", "Feature highlights")
+- Enable `snap` for card rails where alignment matters
+- Use different gap sizes (`sm`, `md`, `lg`, `xl`) to control spacing between items
 
 ## Related Components
 
