@@ -271,6 +271,27 @@
   margin-top: 1rem;
 }
 
+.components__typewriter-demo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--spacing-md);
+  min-height: 64px;
+  flex-direction: column;
+}
+
+.components__typewriter-demo .typewriter {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .components__typewriter-demo {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
 .components__paragraph {
   margin-top: 1rem;
   max-width: 600px;
@@ -295,4 +316,8 @@
 .components__list-text {
   margin-top: var(--spacing-md);
   color: var(--color-text-secondary);
+}
+
+.components__fieldset {
+  margin-top: 3rem;
 }

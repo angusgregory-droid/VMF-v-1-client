@@ -63,6 +63,7 @@ docs/
 - **[Tooltip](./components/tooltip.md)** - Accessible tooltip with hover/focus triggers, positioning, and theming
 - **[Toaster](./components/toaster.md)** - Accessible toast notifications with variants and positioning
 - **[DateTime](./components/datetime.md)** - Live date/time display with real-time updates and formatting options
+- **[Typewriter](./components/typewriter.md)** - Typewriter effect component with configurable speed, delay, and cursor
 
 ### Testing
 _(Documentation will be added as testing patterns are established)_

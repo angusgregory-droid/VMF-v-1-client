@@ -20,6 +20,7 @@ import { Select } from '../../components/Select'
 import { Tooltip } from '../../components/Tooltip'
 import { useToaster } from '../../components/Toaster'
 import { HorizontalScroll } from '../../components/HorizontalScroll'
+import { Typewriter } from '../../components/Typewriter'
 import './Components.css'
 
 function Components() {
@@ -107,6 +108,40 @@ function Components() {
       <p className="text-responsive-base components__description">
         Production-ready, accessible components for building modern web applications
       </p>
+
+      <Fieldset variant="outlined" gap="lg" className="components__fieldset">
+        <Fieldset.Legend>Typewriter Component</Fieldset.Legend>
+        <Fieldset.Content className="components__flex-column">
+          <p className="components__description components__max-width">
+            Use the typewriter effect for hero copy, headlines, or inline emphasis with configurable speed, delay, and looping.
+          </p>
+
+          <div className="components__grid--300">
+            <Card variant="elevated" hoverable>
+              <Card.Header>Default</Card.Header>
+              <Card.Body className="components__typewriter-demo">
+                <Typewriter text="Production-ready typewriter effect." />
+              </Card.Body>
+            </Card>
+
+            <Card variant="outlined" hoverable>
+              <Card.Header>Looping with Custom Speed</Card.Header>
+              <Card.Body className="components__typewriter-demo components__flex-column--sm">
+                <Typewriter
+                  text="Modern. Accessible. Fast."
+                  speed={80}
+                  delay={150}
+                  loop
+                  pauseBetween={900}
+                />
+                <p className="components__card-text">
+                  Adjust speed, delay, and loop to fit your tone.
+                </p>
+              </Card.Body>
+            </Card>
+          </div>
+        </Fieldset.Content>
+      </Fieldset>
 
       <section className="components__section">
         <h2 className="text-responsive-lg">Button Component</h2>
