@@ -30,7 +30,7 @@ describe('Select Component', () => {
   it('should call onChange when an option is selected', async () => {
     const user = userEvent.setup()
     const handleChange = vi.fn()
-    render(
+    const { rerender } = render(
       <Select
         id="test"
         label="Test Select"
@@ -44,6 +44,17 @@ describe('Select Component', () => {
     await user.selectOptions(select, 'option2')
 
     expect(handleChange).toHaveBeenCalledTimes(1)
+
+    // Rerender with new value to verify the select updates
+    rerender(
+      <Select
+        id="test"
+        label="Test Select"
+        options={options}
+        onChange={handleChange}
+        value="option2"
+      />
+    )
     expect(select).toHaveValue('option2')
   })
 

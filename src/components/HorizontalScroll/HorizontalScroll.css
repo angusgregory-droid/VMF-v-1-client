@@ -1,0 +1,51 @@
+/**
+ * HorizontalScroll Styles
+ *
+ * Provides a full-width horizontally scrollable container.
+ */
+
+.h-scroll {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.h-scroll__track {
+  display: flex;
+  gap: var(--spacing-md);
+  overflow-x: auto;
+  padding: var(--spacing-sm);
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--color-border) 60%, transparent) transparent;
+  touch-action: pan-x;
+}
+
+.h-scroll__track::-webkit-scrollbar {
+  height: 8px;
+}
+
+.h-scroll__track::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-border) 60%, transparent);
+  border-radius: var(--border-radius-sm);
+}
+
+.h-scroll__track::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.h-scroll__track--snap {
+  scroll-snap-type: x mandatory;
+}
+
+.h-scroll__track--snap > * {
+  scroll-snap-align: start;
+}
+
+@media (max-width: 768px) {
+  .h-scroll__track {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+}

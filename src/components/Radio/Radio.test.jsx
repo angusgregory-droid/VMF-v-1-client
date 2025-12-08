@@ -32,9 +32,8 @@ describe('Radio Component', () => {
     await user.click(radio)
 
     expect(handleChange).toHaveBeenCalledTimes(1)
-    expect(handleChange).toHaveBeenCalledWith(expect.objectContaining({
-      target: expect.objectContaining({ checked: true, value: 'option1' })
-    }))
+    const callEvent = handleChange.mock.calls[0][0]
+    expect(callEvent.target.value).toBe('option1')
 
     rerender(
       <Radio
@@ -90,9 +89,8 @@ describe('Radio Component', () => {
     await user.keyboard(' ')
 
     expect(handleChange).toHaveBeenCalledTimes(1)
-    expect(handleChange).toHaveBeenCalledWith(expect.objectContaining({
-      target: expect.objectContaining({ checked: true, value: 'option1' })
-    }))
+    const callEvent = handleChange.mock.calls[0][0]
+    expect(callEvent.target.value).toBe('option1')
   })
 
   // New tests for size

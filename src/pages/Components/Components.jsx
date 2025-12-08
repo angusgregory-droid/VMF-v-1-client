@@ -19,6 +19,7 @@ import { Spinner } from '../../components/Spinner'
 import { Select } from '../../components/Select'
 import { Tooltip } from '../../components/Tooltip'
 import { useToaster } from '../../components/Toaster'
+import { HorizontalScroll } from '../../components/HorizontalScroll'
 
 function Components() {
   const { addToast } = useToaster()
@@ -42,6 +43,14 @@ function Components() {
   const [tickboxDisabledCheckedState, setTickboxDisabledCheckedState] = useState(true) // For tick-disabled-checked
   const [tickboxDisabledIndeterminateChecked, setTickboxDisabledIndeterminateChecked] = useState(false) // For tick-disabled-indeterminate
   const [controlledTooltipOpen, setControlledTooltipOpen] = useState(false)
+  const scrollItems = [
+    { title: 'Design Tokens', copy: 'Single source of truth for spacing, colors, and typography.' },
+    { title: 'Responsive Grid', copy: 'Mobile-first utilities that scale with your layout.' },
+    { title: 'Theming', copy: 'Swap palettes instantly with CSS custom properties.' },
+    { title: 'Accessibility', copy: 'WCAG-first components with keyboard and screen reader support.' },
+    { title: 'Performance', copy: 'Lazy loading, code splitting, and lightweight CSS.' },
+    { title: 'Testing', copy: 'Components ship with comprehensive tests out of the box.' },
+  ]
 
   const handleTickboxChange = (e) => {
     const { id, checked } = e.target
@@ -156,6 +165,96 @@ function Components() {
           <div style={{ marginTop: '1rem' }}>
             <Button fullWidth>Full Width Button</Button>
           </div>
+        </div>
+      </section>
+
+      <section style={{ marginTop: '3rem' }}>
+        <h2 className="text-responsive-lg">Horizontal Scroll Component</h2>
+        <p style={{ color: 'var(--color-text-secondary)', marginTop: 'var(--spacing-sm)' }}>
+          Scroll horizontally with snap alignment and optional navigation buttons. Great for card rails and media strips.
+        </p>
+
+        <div style={{ marginTop: '1.5rem' }}>
+          <HorizontalScroll ariaLabel="Feature highlights">
+            {scrollItems.map((item) => (
+              <Card
+                key={item.title}
+                variant="outlined"
+                hoverable
+                style={{ minWidth: '240px', flex: '0 0 auto' }}
+              >
+                <Card.Header>{item.title}</Card.Header>
+                <Card.Body style={{ color: 'var(--color-text-secondary)' }}>
+                  {item.copy}
+                </Card.Body>
+              </Card>
+            ))}
+          </HorizontalScroll>
+        </div>
+
+        <div style={{ marginTop: '2rem' }}>
+          <h3>Mixed Card Styles</h3>
+          <HorizontalScroll ariaLabel="Mixed card examples" gap="lg">
+            <Card variant="elevated" hoverable style={{ maxWidth: '280px', flex: '0 0 auto' }}>
+              <Card.Header>Elevated Design</Card.Header>
+              <Card.Body>
+                Elevated cards with shadow effects stand out beautifully in horizontal scrolls.
+              </Card.Body>
+              <Card.Footer>
+                <Button size="sm">Explore</Button>
+              </Card.Footer>
+            </Card>
+
+            <Card variant="filled" hoverable style={{ maxWidth: '280px', flex: '0 0 auto' }}>
+              <Card.Header>Filled Style</Card.Header>
+              <Card.Body>
+                Subtle background colors create a softer, more integrated appearance in your layouts.
+              </Card.Body>
+              <Card.Footer>
+                <Button size="sm" variant="outline">Learn More</Button>
+              </Card.Footer>
+            </Card>
+
+            <Card variant="outlined" hoverable style={{ maxWidth: '280px', flex: '0 0 auto' }}>
+              <Card.Header>Outlined Cards</Card.Header>
+              <Card.Body>
+                Emphasized borders provide clear visual separation between content sections.
+              </Card.Body>
+              <Card.Footer>
+                <Button size="sm" variant="ghost">View</Button>
+              </Card.Footer>
+            </Card>
+
+            <Card variant="default" hoverable style={{ maxWidth: '280px', flex: '0 0 auto' }}>
+              <Card.Header>Default Variant</Card.Header>
+              <Card.Body>
+                Clean, minimal design that works perfectly for any type of content presentation.
+              </Card.Body>
+              <Card.Footer>
+                <Button size="sm">Read More</Button>
+              </Card.Footer>
+            </Card>
+
+            <Card variant="elevated" clickable onClick={() => alert('Card 5 clicked!')} style={{ maxWidth: '280px', flex: '0 0 auto' }}>
+              <Card.Header>Interactive Card</Card.Header>
+              <Card.Body>
+                Clickable cards respond to user interaction with smooth animations and feedback.
+              </Card.Body>
+              <Card.Footer style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--font-size-sm)' }}>
+                Click anywhere to interact
+              </Card.Footer>
+            </Card>
+
+            <Card variant="filled" hoverable rounded={false} style={{ maxWidth: '280px', flex: '0 0 auto' }}>
+              <Card.Header>Sharp Corners</Card.Header>
+              <Card.Body>
+                Square cards offer a modern, geometric aesthetic for technical or formal content.
+              </Card.Body>
+              <Card.Footer>
+                <Button size="sm" variant="outline">Details</Button>
+              </Card.Footer>
+            </Card>
+          </HorizontalScroll>
         </div>
       </section>
 

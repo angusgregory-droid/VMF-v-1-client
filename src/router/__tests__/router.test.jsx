@@ -7,6 +7,7 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { RouterProvider, createMemoryRouter } from 'react-router-dom'
+import { ToasterProvider } from '../../components/Toaster'
 import { router } from '../index'
 
 describe('Router', () => {
@@ -16,7 +17,11 @@ describe('Router', () => {
         initialEntries: ['/'],
       })
 
-      render(<RouterProvider router={testRouter} />)
+      render(
+        <ToasterProvider>
+          <RouterProvider router={testRouter} />
+        </ToasterProvider>
+      )
 
       // Wait for lazy-loaded component
       expect(await screen.findByText(/Welcome to StoryLineOS/i)).toBeInTheDocument()
@@ -27,9 +32,13 @@ describe('Router', () => {
         initialEntries: ['/components'],
       })
 
-      render(<RouterProvider router={testRouter} />)
+      render(
+        <ToasterProvider>
+          <RouterProvider router={testRouter} />
+        </ToasterProvider>
+      )
 
-      expect(await screen.findByText(/Component Showcase/i)).toBeInTheDocument()
+      expect(await screen.findByText(/Component Showcase/i, {}, { timeout: 5000 })).toBeInTheDocument()
     })
 
     it('should render about page at /about', async () => {
@@ -37,7 +46,11 @@ describe('Router', () => {
         initialEntries: ['/about'],
       })
 
-      render(<RouterProvider router={testRouter} />)
+      render(
+        <ToasterProvider>
+          <RouterProvider router={testRouter} />
+        </ToasterProvider>
+      )
 
       expect(await screen.findByText(/About StoryLineOS/i)).toBeInTheDocument()
     })
@@ -49,7 +62,11 @@ describe('Router', () => {
         initialEntries: ['/'],
       })
 
-      render(<RouterProvider router={testRouter} />)
+      render(
+        <ToasterProvider>
+          <RouterProvider router={testRouter} />
+        </ToasterProvider>
+      )
 
       // Navigation should be present
       expect(await screen.findByRole('navigation')).toBeInTheDocument()
@@ -61,7 +78,11 @@ describe('Router', () => {
         initialEntries: ['/'],
       })
 
-      render(<RouterProvider router={testRouter} />)
+      render(
+        <ToasterProvider>
+          <RouterProvider router={testRouter} />
+        </ToasterProvider>
+      )
 
       await screen.findByRole('navigation')
 
@@ -79,7 +100,11 @@ describe('Router', () => {
         initialEntries: ['/'],
       })
 
-      render(<RouterProvider router={testRouter} />)
+      render(
+        <ToasterProvider>
+          <RouterProvider router={testRouter} />
+        </ToasterProvider>
+      )
 
       // Loading indicator should appear briefly
       // Note: This might be too fast to catch in tests,

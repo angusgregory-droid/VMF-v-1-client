@@ -17,6 +17,7 @@ docs/
 │   ├── fieldset.md                    # Fieldset component
 │   ├── footer.md                      # Footer component
 │   ├── header.md                      # Header component
+│   ├── horizontal-scroll.md           # Horizontal scroll component
 │   ├── input.md                       # Input component
 │   ├── link.md                        # Link component
 │   ├── radio.md                       # Radio component
@@ -50,6 +51,7 @@ docs/
 - **[Fieldset](./components/fieldset.md)** - Native fieldset component with border-breaking legend and flex content layout
 - **[Footer](./components/footer.md)** - Responsive footer with sections, links, and copyright
 - **[Header](./components/header.md)** - Responsive header with logo and navigation
+- **[Horizontal Scroll](./components/horizontal-scroll.md)** - Scrollable horizontal rail with snap alignment and controls
 - **[Input](./components/input.md)** - Input component with floating label animation and very light placeholder text
 - **[Link](./components/link.md)** - Smart link component for internal routing and external navigation
 - **[Radio](./components/radio.md)** - Custom-styled, accessible radio button component
