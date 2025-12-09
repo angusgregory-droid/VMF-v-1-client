@@ -16,6 +16,13 @@ import './router.css'
 const Home = lazy(() => import('../pages/Home'))
 const Components = lazy(() => import('../pages/Components'))
 const About = lazy(() => import('../pages/About'))
+const VMF = lazy(() => import('../pages/VMF'))
+const VMFA = lazy(() => import('../pages/VMF/VMF-A'))
+const VMFB = lazy(() => import('../pages/VMF/VMF-B'))
+const VMFC = lazy(() => import('../pages/VMF/VMF-C'))
+const VMFD = lazy(() => import('../pages/VMF/VMF-D'))
+const VMFE = lazy(() => import('../pages/VMF/VMF-E'))
+const VMFF = lazy(() => import('../pages/VMF/VMF-F'))
 
 /**
  * Loading Fallback Component
@@ -92,6 +99,34 @@ export const router = createBrowserRouter([
       {
         path: 'about',
         element: <About />,
+      },
+      {
+        path: 'vmf',
+        element: <VMF />,
+      },
+      {
+        path: 'vmf/a',
+        element: <VMFA />,
+      },
+      {
+        path: 'vmf/b',
+        element: <VMFB />,
+      },
+      {
+        path: 'vmf/c',
+        element: <VMFC />,
+      },
+      {
+        path: 'vmf/d',
+        element: <VMFD />,
+      },
+      {
+        path: 'vmf/e',
+        element: <VMFE />,
+      },
+      {
+        path: 'vmf/f',
+        element: <VMFF />,
       },
     ],
   },

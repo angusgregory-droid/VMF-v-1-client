@@ -1,0 +1,96 @@
+.vmf {
+  padding-block: var(--spacing-xl);
+}
+
+.vmf__title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.vmf__subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.vmf fieldset {
+  margin-bottom: var(--spacing-xl);
+}
+
+.vmf__field {
+  flex: 1 1 200px;
+  padding: var(--spacing-sm);
+  background-color: var(--color-background-secondary);
+  border-radius: var(--border-radius-sm);
+}
+
+.vmf__field strong {
+  color: var(--color-text-primary);
+  margin-right: var(--spacing-xs);
+}
+
+.vmf input {
+  flex: 1 1 250px;
+  padding: var(--spacing-sm);
+  border: var(--border-width-thin) solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+}
+
+.vmf input:focus {
+  outline: var(--border-width-medium) solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+.vmf__split-layout {
+  display: flex;
+  gap: var(--spacing-lg);
+  width: 100%;
+  min-height: 500px;
+}
+
+.vmf__split-left {
+  flex: 0 0 33.333%;
+  min-width: 0;
+  padding: var(--spacing-md);
+  background-color: var(--color-background-secondary);
+  border-radius: var(--border-radius-sm);
+}
+
+.vmf__split-right {
+  flex: 1;
+  min-width: 0;
+  padding: var(--spacing-md);
+  background-color: var(--color-background-secondary);
+  border-radius: var(--border-radius-sm);
+}
+
+.vmf__content-placeholder {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: var(--color-surface);
+  border: var(--border-width-thin) dashed var(--color-border);
+  border-radius: var(--border-radius-sm);
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .vmf__split-layout {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .vmf__split-left {
+    flex: 1;
+    width: 100%;
+  }
+
+  .vmf__split-right {
+    flex: 1;
+    width: 100%;
+  }
+}

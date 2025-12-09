@@ -66,6 +66,18 @@ function Navigation({ isOpen = false, onLinkClick = () => {} }) {
               About
             </NavLink>
           </li>
+          <li role="none">
+            <NavLink
+              to="/vmf"
+              className={({ isActive }) =>
+                isActive ? 'nav__link nav__link--active' : 'nav__link'
+              }
+              role="menuitem"
+              onClick={onLinkClick}
+            >
+              VMF
+            </NavLink>
+          </li>
         </ul>
       </div>
     </nav>
