@@ -23,11 +23,12 @@
 
 import { useState, useEffect } from 'react'
 import { Link } from '../Link'
+import { Logo } from '../Logo'
 import Navigation from '../Navigation'
 import './Header.css'
 
 export function Header({
-  logo = 'App',
+  logo = <Logo size="small" />,
   logoLink = '/',
   showNavigation = true,
   sticky = true,

@@ -24,8 +24,8 @@
      TYPOGRAPHY
      =========================== */
   /* Font Families */
-  --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-primary: Arial, Helvetica, sans-serif;
+  --font-sans: Arial, Helvetica, sans-serif;
   --font-mono: 'Courier New', Courier, monospace;
 
   /* Font Sizes (Modular Scale 1.250 - Major Third) */

@@ -1,0 +1,30 @@
+/**
+ * Logo Component Styles
+ */
+
+.logo {
+  display: inline-block;
+}
+
+.logo__image {
+  display: block;
+  height: auto;
+}
+
+/* Size variants */
+.logo--small .logo__image {
+  width: 100px;
+}
+
+.logo--medium .logo__image {
+  width: 150px;
+}
+
+.logo--large .logo__image {
+  width: 200px;
+}
+
+.logo--full .logo__image {
+  width: 100%;
+  max-width: 435px;
+}

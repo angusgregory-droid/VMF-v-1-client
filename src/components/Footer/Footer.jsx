@@ -28,7 +28,13 @@
 import { DateTime } from '../DateTime'
 import './Footer.css'
 
-export function Footer({ className = '', ...props }) {
+export function Footer({
+  className = '',
+  sections,
+  copyright,
+  showYear,
+  ...props
+}) {
   const currentYear = new Date().getFullYear()
 
   return (

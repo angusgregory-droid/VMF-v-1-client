@@ -65,13 +65,13 @@ describe('Header Component', () => {
   // ===========================
 
   describe('Logo', () => {
-    it('should render default text logo', () => {
+    it('should render default StoryLineOS logo', () => {
       render(
         <RouterWrapper>
           <Header />
         </RouterWrapper>
       )
-      expect(screen.getByText('App')).toBeInTheDocument()
+      expect(screen.getByAltText('StoryLineOS Logo')).toBeInTheDocument()
     })
 
     it('should render custom text logo', () => {

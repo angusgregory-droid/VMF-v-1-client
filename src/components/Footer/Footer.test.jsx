@@ -49,43 +49,32 @@ describe('Footer Component', () => {
   // ===========================
 
   describe('Copyright', () => {
-    it('should render copyright text', () => {
-      render(
-        <RouterWrapper>
-          <Footer copyright="Test Company" />
-        </RouterWrapper>
-      )
-      expect(screen.getByText(/Test Company/)).toBeInTheDocument()
-    })
-
-    it('should include current year by default', () => {
-      const currentYear = new Date().getFullYear()
-      render(
-        <RouterWrapper>
-          <Footer copyright="Test Company" />
-        </RouterWrapper>
-      )
-      expect(screen.getByText(new RegExp(`© ${currentYear}`))).toBeInTheDocument()
-    })
-
-    it('should not show year when showYear is false', () => {
-      const currentYear = new Date().getFullYear()
-      render(
-        <RouterWrapper>
-          <Footer copyright="Test Company" showYear={false} />
-        </RouterWrapper>
-      )
-      expect(screen.queryByText(new RegExp(`© ${currentYear}`))).not.toBeInTheDocument()
-      expect(screen.getByText('Test Company')).toBeInTheDocument()
-    })
-
-    it('should not render copyright section when copyright is not provided', () => {
+    it('should render StoryLineOS copyright text', () => {
       render(
         <RouterWrapper>
           <Footer />
         </RouterWrapper>
       )
-      expect(screen.queryByText(/©/)).not.toBeInTheDocument()
+      expect(screen.getByText(/StoryLineOS. All rights reserved./)).toBeInTheDocument()
+    })
+
+    it('should include current year', () => {
+      const currentYear = new Date().getFullYear()
+      render(
+        <RouterWrapper>
+          <Footer />
+        </RouterWrapper>
+      )
+      expect(screen.getByText(new RegExp(`© ${currentYear} StoryLineOS. All rights reserved.`))).toBeInTheDocument()
+    })
+
+    it('should always render copyright', () => {
+      render(
+        <RouterWrapper>
+          <Footer />
+        </RouterWrapper>
+      )
+      expect(screen.getByText(/©/)).toBeInTheDocument()
     })
   })
 
@@ -101,7 +90,7 @@ describe('Footer Component', () => {
 
       render(
         <RouterWrapper>
-          <Footer copyright="Date Test" />
+          <Footer />
         </RouterWrapper>
       )
 
@@ -110,240 +99,6 @@ describe('Footer Component', () => {
     })
   })
 
-  // ===========================
-  // SECTIONS
-  // ===========================
-
-  describe('Sections', () => {
-    it('should render section with title', () => {
-      const sections = [
-        {
-          title: 'Products',
-          links: []
-        }
-      ]
-      render(
-        <RouterWrapper>
-          <Footer sections={sections} />
-        </RouterWrapper>
-      )
-      expect(screen.getByText('Products')).toBeInTheDocument()
-    })
-
-    it('should render multiple sections', () => {
-      const sections = [
-        { title: 'Products' },
-        { title: 'Company' },
-        { title: 'Resources' }
-      ]
-      render(
-        <RouterWrapper>
-          <Footer sections={sections} />
-        </RouterWrapper>
-      )
-      expect(screen.getByText('Products')).toBeInTheDocument()
-      expect(screen.getByText('Company')).toBeInTheDocument()
-      expect(screen.getByText('Resources')).toBeInTheDocument()
-    })
-
-    it('should render section without title', () => {
-      const sections = [
-        {
-          content: 'Custom content here'
-        }
-      ]
-      render(
-        <RouterWrapper>
-          <Footer sections={sections} />
-        </RouterWrapper>
-      )
-      expect(screen.getByText('Custom content here')).toBeInTheDocument()
-    })
-
-    it('should render custom content in section', () => {
-      const sections = [
-        {
-          title: 'About',
-          content: <p>Custom paragraph content</p>
-        }
-      ]
-      render(
-        <RouterWrapper>
-          <Footer sections={sections} />
-        </RouterWrapper>
-      )
-      expect(screen.getByText('About')).toBeInTheDocument()
-      expect(screen.getByText('Custom paragraph content')).toBeInTheDocument()
-    })
-  })
-
-  // ===========================
-  // LINKS
-  // ===========================
-
-  describe('Links', () => {
-    it('should render links in section', () => {
-      const sections = [
-        {
-          title: 'Products',
-          links: [
-            { label: 'Features', to: '/features' },
-            { label: 'Pricing', to: '/pricing' }
-          ]
-        }
-      ]
-      render(
-        <RouterWrapper>
-          <Footer sections={sections} />
-        </RouterWrapper>
-      )
-      expect(screen.getByText('Features')).toBeInTheDocument()
-      expect(screen.getByText('Pricing')).toBeInTheDocument()
-    })
-
-    it('should render internal links with to prop', () => {
-      const sections = [
-        {
-          title: 'Navigation',
-          links: [{ label: 'Home', to: '/' }]
-        }
-      ]
-      render(
-        <RouterWrapper>
-          <Footer sections={sections} />
-        </RouterWrapper>
-      )
-      const link = screen.getByText('Home')
-      expect(link).toHaveAttribute('href', '/')
-    })
-
-    it('should render external links with href prop', () => {
-      const sections = [
-        {
-          title: 'Social',
-          links: [
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com',
-              external: true
-            }
-          ]
-        }
-      ]
-      render(
-        <RouterWrapper>
-          <Footer sections={sections} />
-        </RouterWrapper>
-      )
-      const link = screen.getByText('Twitter')
-      expect(link).toHaveAttribute('href', 'https://twitter.com')
-    })
-
-    it('should render links with openInNewTab', () => {
-      const sections = [
-        {
-          title: 'External',
-          links: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com',
-              openInNewTab: true
-            }
-          ]
-        }
-      ]
-      render(
-        <RouterWrapper>
-          <Footer sections={sections} />
-        </RouterWrapper>
-      )
-      const link = screen.getByText(/GitHub/)
-      expect(link).toHaveAttribute('target', '_blank')
-    })
-
-    it('should render multiple links in section', () => {
-      const sections = [
-        {
-          title: 'Company',
-          links: [
-            { label: 'About', to: '/about' },
-            { label: 'Team', to: '/team' },
-            { label: 'Careers', to: '/careers' }
-          ]
-        }
-      ]
-      render(
-        <RouterWrapper>
-          <Footer sections={sections} />
-        </RouterWrapper>
-      )
-      expect(screen.getByText('About')).toBeInTheDocument()
-      expect(screen.getByText('Team')).toBeInTheDocument()
-      expect(screen.getByText('Careers')).toBeInTheDocument()
-    })
-  })
-
-  // ===========================
-  // COMPLEX SCENARIOS
-  // ===========================
-
-  describe('Complex Scenarios', () => {
-    it('should render complete footer with all features', () => {
-      const currentYear = new Date().getFullYear()
-      const sections = [
-        {
-          title: 'Product',
-          links: [
-            { label: 'Features', to: '/features' },
-            { label: 'Pricing', to: '/pricing' }
-          ]
-        },
-        {
-          title: 'Company',
-          links: [
-            { label: 'About', to: '/about' },
-            { label: 'Blog', href: 'https://blog.example.com', external: true }
-          ]
-        },
-        {
-          title: 'Connect',
-          content: <p>Follow us on social media</p>
-        }
-      ]
-
-      render(
-        <RouterWrapper>
-          <Footer sections={sections} copyright="Example Inc." />
-        </RouterWrapper>
-      )
-
-      // Check sections
-      expect(screen.getByText('Product')).toBeInTheDocument()
-      expect(screen.getByText('Company')).toBeInTheDocument()
-      expect(screen.getByText('Connect')).toBeInTheDocument()
-
-      // Check links
-      expect(screen.getByText('Features')).toBeInTheDocument()
-      expect(screen.getByText('Pricing')).toBeInTheDocument()
-      expect(screen.getByText('About')).toBeInTheDocument()
-      expect(screen.getByText('Blog')).toBeInTheDocument()
-
-      // Check content
-      expect(screen.getByText('Follow us on social media')).toBeInTheDocument()
-
-      // Check copyright
-      expect(screen.getByText(new RegExp(`© ${currentYear} Example Inc.`))).toBeInTheDocument()
-    })
-
-    it('should handle empty sections array', () => {
-      render(
-        <RouterWrapper>
-          <Footer sections={[]} copyright="Test Company" />
-        </RouterWrapper>
-      )
-      expect(screen.getByText(/Test Company/)).toBeInTheDocument()
-    })
-  })
 
   // ===========================
   // ACCESSIBILITY
@@ -357,25 +112,6 @@ describe('Footer Component', () => {
         </RouterWrapper>
       )
       expect(screen.getByRole('contentinfo')).toBeInTheDocument()
-    })
-
-    it('should render links with proper list structure', () => {
-      const sections = [
-        {
-          title: 'Navigation',
-          links: [
-            { label: 'Home', to: '/' },
-            { label: 'About', to: '/about' }
-          ]
-        }
-      ]
-      render(
-        <RouterWrapper>
-          <Footer sections={sections} />
-        </RouterWrapper>
-      )
-      const lists = screen.getAllByRole('list')
-      expect(lists.length).toBeGreaterThan(0)
     })
   })
 })
