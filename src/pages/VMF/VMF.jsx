@@ -1,12 +1,30 @@
+import { useMemo, useState } from 'react'
 import { Fieldset } from '../../components/Fieldset'
 import { VMFNavbar } from '../../components/VMFNavbar'
 import { Status } from '../../components/Status'
 import { Card } from '../../components/Card'
 import { Button } from '../../components/Button'
+import { Select } from '../../components/Select'
 import { MdCheck, MdError } from 'react-icons/md'
 import './VMF.css'
 
 function VMF() {
+  const environmentOptions = useMemo(
+    () => [
+      { value: 'production', label: 'Production' },
+      { value: 'staging', label: 'Staging' },
+      { value: 'development', label: 'Development' },
+    ],
+    []
+  )
+
+  const [environment, setEnvironment] = useState('')
+
+  const environmentLabel = useMemo(() => {
+    const match = environmentOptions.find((option) => option.value === environment)
+    return match?.label ?? 'Not selected'
+  }, [environment, environmentOptions])
+
   return (
     <div className="container vmf">
       <h1 className="vmf__title">VMF Dashboard</h1>
@@ -14,32 +32,46 @@ function VMF() {
 
       <VMFNavbar />
 
-      <Fieldset variant="outlined" gap="md" style={{ marginBottom: 'var(--spacing-xl)' }}>
-        <Fieldset.Legend>System Status</Fieldset.Legend>
-        <Fieldset.Content>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--spacing-lg)', alignItems: 'flex-start' }}>
-            <Status variant="success" pulse>API Server</Status>
-            <Status variant="success">Database</Status>
-            <Status variant="warning" showIcon>Cache</Status>
-            <Status variant="info" pulse>Processing</Status>
-            <Status variant="error" showIcon>Email Service</Status>
-          </div>
-        </Fieldset.Content>
-      </Fieldset>
+      <div className="vmf__summary-grid">
+        <Fieldset variant="outlined" gap="md">
+          <Fieldset.Legend>System Status</Fieldset.Legend>
+          <Fieldset.Content>
+            <div className="vmf__status-row">
+              <Status variant="success" pulse>API Server</Status>
+              <Status variant="success">Database</Status>
+              <Status variant="warning" showIcon>Cache</Status>
+              <Status variant="info" pulse>Processing</Status>
+              <Status variant="error" showIcon>Email Service</Status>
+            </div>
+          </Fieldset.Content>
+        </Fieldset>
 
-      <Fieldset variant="outlined" gap="md" style={{ marginBottom: 'var(--spacing-xl)' }}>
-        <Fieldset.Legend>Quick Actions</Fieldset.Legend>
-        <Fieldset.Content>
-          <div style={{ display: 'flex', gap: 'var(--spacing-md)', flexWrap: 'wrap' }}>
-            <Button variant="primary" leftIcon={<MdCheck />}>
-              Deploy
-            </Button>
-            <Button variant="danger" leftIcon={<MdError />}>
-              Halt
-            </Button>
-          </div>
-        </Fieldset.Content>
-      </Fieldset>
+        <Fieldset variant="outlined" gap="md">
+          <Fieldset.Legend>Quick Actions</Fieldset.Legend>
+          <Fieldset.Content>
+            <div className="vmf__actions-row">
+              <Button variant="primary" leftIcon={<MdCheck />}>
+                Deploy
+              </Button>
+              <Button variant="danger" leftIcon={<MdError />}>
+                Halt
+              </Button>
+            </div>
+            <div className="vmf__actions-select">
+              <Select
+                id="vmf-environment"
+                label="Target Environment"
+                placeholder="Select environment"
+                name="environment"
+                value={environment}
+                onChange={(e) => setEnvironment(e.target.value)}
+                options={environmentOptions}
+                helperText={`Current target: ${environmentLabel}`}
+              />
+            </div>
+          </Fieldset.Content>
+        </Fieldset>
+      </div>
 
       <Fieldset variant="outlined">
         <Fieldset.Legend>Main Workspace</Fieldset.Legend>

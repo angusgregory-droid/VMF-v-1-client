@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Fieldset } from '../../components/Fieldset'
 import { Button } from '../../components/Button'
 import { Input } from '../../components/Input'
@@ -8,6 +9,25 @@ import { VMFNavbar } from '../../components/VMFNavbar'
 import './VMF.css'
 
 function VMFA() {
+  const [radioValue, setRadioValue] = useState('1')
+  const [selectValue, setSelectValue] = useState('')
+  const [name, setName] = useState('')
+  const [checkboxes, setCheckboxes] = useState({
+    terms: false,
+    newsletter: false,
+    notifications: false,
+  })
+
+  const selectOptions = [
+    { value: 'production', label: 'Production' },
+    { value: 'staging', label: 'Staging' },
+    { value: 'development', label: 'Development' },
+  ]
+
+  const handleCheckboxChange = (key) => (e) => {
+    setCheckboxes((prev) => ({ ...prev, [key]: e.target.checked }))
+  }
+
   return (
     <div className="container vmf">
       <h1 className="vmf__title">VMF-A: Form Elements</h1>
@@ -20,41 +40,105 @@ function VMFA() {
         <Fieldset.Content>
           <div className="vmf__split-layout">
             <div className="vmf__split-left">
-              <h3>Button Variants</h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <Button variant="primary">Primary Button</Button>
-                <Button variant="secondary">Secondary Button</Button>
-                <Button variant="outline">Outline Button</Button>
-                <Button variant="danger">Danger Button</Button>
-                <Button variant="primary" disabled>Disabled Button</Button>
+              <div className="vmf__section-block">
+                <h3 className="vmf__section-heading">Button Variants</h3>
+                <div className="vmf__stack">
+                  <Button variant="primary">Primary Button</Button>
+                  <Button variant="secondary">Secondary Button</Button>
+                  <Button variant="outline">Outline Button</Button>
+                  <Button variant="danger">Danger Button</Button>
+                  <Button variant="primary" disabled>Disabled Button</Button>
+                </div>
               </div>
 
-              <h3 style={{ marginTop: '24px' }}>Radio Buttons</h3>
-              <Radio name="option" value="1" label="Option 1" />
-              <Radio name="option" value="2" label="Option 2" />
-              <Radio name="option" value="3" label="Option 3" />
+              <div className="vmf__section-block">
+                <h3 className="vmf__section-heading">Radio Buttons</h3>
+                <div className="vmf__stack">
+                  <Radio
+                    name="vmf-radio"
+                    value="1"
+                    label="Option 1"
+                    checked={radioValue === '1'}
+                    onChange={(e) => setRadioValue(e.target.value)}
+                  />
+                  <Radio
+                    name="vmf-radio"
+                    value="2"
+                    label="Option 2"
+                    checked={radioValue === '2'}
+                    onChange={(e) => setRadioValue(e.target.value)}
+                  />
+                  <Radio
+                    name="vmf-radio"
+                    value="3"
+                    label="Option 3"
+                    checked={radioValue === '3'}
+                    onChange={(e) => setRadioValue(e.target.value)}
+                  />
+                  <p className="vmf__helper-inline">Selected: {radioValue}</p>
+                </div>
+              </div>
             </div>
 
             <div className="vmf__split-right">
-              <h3>Input Fields</h3>
-              <Input type="text" placeholder="Text input" />
-              <Input type="email" placeholder="Email input" />
-              <Input type="password" placeholder="Password input" />
-              <Input type="text" placeholder="Disabled input" disabled />
+              <div className="vmf__section-block">
+                <h3 className="vmf__section-heading">Input Fields</h3>
+                <div className="vmf__stack">
+                  <Input
+                    label="Name"
+                    placeholder="Enter your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    id="vmf-name"
+                  />
+                  <Input label="Email" placeholder="email@example.com" type="email" id="vmf-email" />
+                  <Input label="Password" placeholder="••••••••" type="password" id="vmf-password" />
+                  <Input label="Disabled" value="Read-only" disabled id="vmf-disabled" />
+                  <p className="vmf__helper-inline">Typed name: {name || '—'}</p>
+                </div>
+              </div>
 
-              <h3 style={{ marginTop: '24px' }}>Select Dropdown</h3>
-              <Select>
-                <option value="">Select an option</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
-              </Select>
+              <div className="vmf__section-block">
+                <h3 className="vmf__section-heading">Select Dropdown</h3>
+                <div className="vmf__stack">
+                  <Select
+                    id="vmf-select"
+                    label="Environment"
+                    placeholder="Choose environment"
+                    value={selectValue}
+                    onChange={(e) => setSelectValue(e.target.value)}
+                    options={selectOptions}
+                    helperText={`Selected: ${selectValue || 'None'}`}
+                  />
+                </div>
+              </div>
 
-              <h3 style={{ marginTop: '24px' }}>Checkboxes</h3>
-              <Tickbox label="Accept terms and conditions" />
-              <Tickbox label="Subscribe to newsletter" />
-              <Tickbox label="Enable notifications" />
-              <Tickbox label="Disabled checkbox" disabled />
+              <div className="vmf__section-block">
+                <h3 className="vmf__section-heading">Checkboxes</h3>
+                <div className="vmf__stack">
+                  <Tickbox
+                    label="Accept terms and conditions"
+                    checked={checkboxes.terms}
+                    onChange={handleCheckboxChange('terms')}
+                  />
+                  <Tickbox
+                    label="Subscribe to newsletter"
+                    checked={checkboxes.newsletter}
+                    onChange={handleCheckboxChange('newsletter')}
+                  />
+                  <Tickbox
+                    label="Enable notifications"
+                    checked={checkboxes.notifications}
+                    onChange={handleCheckboxChange('notifications')}
+                  />
+                  <Tickbox label="Disabled checkbox" disabled />
+                  <p className="vmf__helper-inline">
+                    Status: {checkboxes.terms ? 'Terms accepted' : 'Terms not accepted'} •{' '}
+                    {checkboxes.newsletter ? 'Subscribed' : 'Not subscribed'} •{' '}
+                    {checkboxes.notifications ? 'Notifications on' : 'Notifications off'}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </Fieldset.Content>
