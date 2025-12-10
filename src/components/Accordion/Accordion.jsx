@@ -6,6 +6,7 @@
  */
 
 import { useState, createContext, useContext } from 'react'
+import { MdExpandMore } from 'react-icons/md'
 import './Accordion.css'
 
 // Context for sharing accordion state
@@ -116,23 +117,12 @@ Accordion.Header = function AccordionHeader({ itemId, children, className = '', 
       {...props}
     >
       <span className="accordion__header-text">{children}</span>
-      <svg
+      <MdExpandMore
         className={`accordion__icon ${isOpen ? 'accordion__icon--open' : ''}`}
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+        size={20}
         aria-hidden="true"
-      >
-        <path
-          d="M5 7.5L10 12.5L15 7.5"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+        focusable="false"
+      />
     </button>
   )
 }

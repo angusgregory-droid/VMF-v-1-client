@@ -44,6 +44,21 @@ describe('Status Component', () => {
     })
   })
 
+  describe('Icons', () => {
+    it('should render icon when showIcon is true', () => {
+      const { container } = render(<Status variant="success" showIcon />)
+      const icon = container.querySelector('.status__icon')
+      expect(icon).toBeInTheDocument()
+      expect(icon?.getAttribute('aria-hidden')).toBe('true')
+    })
+
+    it('should render indicator when showIcon is false', () => {
+      const { container } = render(<Status variant="success" />)
+      expect(container.querySelector('.status__indicator')).toBeInTheDocument()
+      expect(container.querySelector('.status__icon')).not.toBeInTheDocument()
+    })
+  })
+
   describe('Variants', () => {
     it('should apply neutral variant by default', () => {
       render(<Status>Neutral</Status>)

@@ -10,6 +10,7 @@ A flexible avatar component for displaying user profile pictures, initials, or f
 - ✅ **Multiple Shapes**: circle, square, rounded
 - ✅ **Status Indicators**: online, offline, away, busy
 - ✅ **Fallback Handling**: Graceful degradation when images fail
+- ✅ **Icon Fallback**: Person icon when no name or image is provided
 - ✅ **Accessible**: Proper alt text, ARIA labels, and semantic HTML
 - ✅ **Theme Support**: Works with all color schemes
 - ✅ **Hover Effects**: Subtle scale animation
@@ -101,6 +102,9 @@ function UserProfile() {
   src="/broken-link.jpg"
   name="John Doe"
 />
+
+{/* If no name and no image, person icon is used */}
+<Avatar />
 ```
 
 ## Sizes

@@ -25,6 +25,7 @@
  * </Status>
  */
 
+import { MdCheckCircle, MdError, MdInfo, MdOutlineWarningAmber } from 'react-icons/md'
 import './Status.css'
 
 export function Status({
@@ -32,9 +33,20 @@ export function Status({
   variant = 'neutral',
   size = 'md',
   pulse = false,
+  showIcon = false,
   className = '',
   ...props
 }) {
+  const iconMap = {
+    success: MdCheckCircle,
+    warning: MdOutlineWarningAmber,
+    error: MdError,
+    info: MdInfo,
+    neutral: null,
+  }
+
+  const IconComponent = showIcon ? iconMap[variant] ?? null : null
+
   // Build class names
   const classNames = [
     'status',
@@ -53,7 +65,11 @@ export function Status({
       aria-label={children ? `Status: ${children}` : `Status: ${variant}`}
       {...props}
     >
-      <span className="status__indicator" aria-hidden="true"></span>
+      {IconComponent ? (
+        <IconComponent className="status__icon" aria-hidden="true" focusable="false" />
+      ) : (
+        <span className="status__indicator" aria-hidden="true"></span>
+      )}
       {children && <span className="status__text">{children}</span>}
     </span>
   )

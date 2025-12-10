@@ -65,9 +65,11 @@ describe('Avatar Component', () => {
       expect(screen.getByText('JD')).toBeInTheDocument()
     })
 
-    it('should show question mark when no name provided', () => {
-      render(<Avatar />)
-      expect(screen.getByText('?')).toBeInTheDocument()
+    it('should show person icon when no name provided', () => {
+      const { container } = render(<Avatar />)
+      const icon = container.querySelector('.avatar__icon')
+      expect(icon).toBeInTheDocument()
+      expect(icon?.querySelector('svg')).toBeInTheDocument()
     })
 
     it('should uppercase initials', () => {

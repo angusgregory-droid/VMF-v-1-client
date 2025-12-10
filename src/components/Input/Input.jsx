@@ -16,6 +16,8 @@ export const Input = forwardRef(function Input(
     type = 'text',
     label,
     placeholder,
+    leftIcon,
+    rightIcon,
     value,
     defaultValue,
     error,
@@ -34,6 +36,8 @@ export const Input = forwardRef(function Input(
 ) {
   const [isFocused, setIsFocused] = useState(false)
   const [hasValue, setHasValue] = useState(!!defaultValue || !!value)
+  const hasLeftIcon = Boolean(leftIcon)
+  const hasRightIcon = Boolean(rightIcon)
 
   const handleFocus = (e) => {
     setIsFocused(true)
@@ -70,6 +74,8 @@ export const Input = forwardRef(function Input(
     'input',
     `input--${variant}`,
     `input--${size}`,
+    hasLeftIcon && 'input--with-left-icon',
+    hasRightIcon && 'input--with-right-icon',
   ]
     .filter(Boolean)
     .join(' ')
@@ -77,6 +83,11 @@ export const Input = forwardRef(function Input(
   return (
     <div className={containerClasses}>
       <div className="input-wrapper">
+        {hasLeftIcon && (
+          <span className="input__icon input__icon--left" aria-hidden="true">
+            {leftIcon}
+          </span>
+        )}
         <input
           ref={ref}
           type={type}
@@ -99,6 +110,11 @@ export const Input = forwardRef(function Input(
           }
           {...props}
         />
+        {hasRightIcon && (
+          <span className="input__icon input__icon--right" aria-hidden="true">
+            {rightIcon}
+          </span>
+        )}
         {label && (
           <label
             className={`input-label ${isLabelFloating ? 'input-label--floating' : ''}`}

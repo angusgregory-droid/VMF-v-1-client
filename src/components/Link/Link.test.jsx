@@ -212,7 +212,7 @@ describe('Link Component', () => {
       )
       const icon = screen.getByLabelText('(opens in new tab)')
       expect(icon).toBeInTheDocument()
-      expect(icon).toHaveTextContent('↗')
+      expect(icon.querySelector('svg')).toBeInTheDocument()
     })
 
     it('should not show external icon when not opening in new tab', () => {

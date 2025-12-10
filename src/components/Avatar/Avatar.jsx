@@ -21,6 +21,7 @@
  * <Avatar name="Jane Smith" status="online" shape="rounded" />
  */
 
+import { MdPerson } from 'react-icons/md'
 import './Avatar.css'
 
 export function Avatar({
@@ -35,7 +36,7 @@ export function Avatar({
 }) {
   // Generate initials from name
   const getInitials = (name) => {
-    if (!name) return '?'
+    if (!name) return null
 
     const parts = name.trim().split(' ')
     if (parts.length >= 2) {
@@ -81,6 +82,12 @@ export function Avatar({
       {!src && (
         <span className="avatar__initials" aria-label={name || 'Avatar'}>
           {initials}
+        </span>
+      )}
+
+      {!src && !name && (
+        <span className="avatar__icon" aria-label="Avatar">
+          <MdPerson aria-hidden="true" focusable="false" />
         </span>
       )}
 

@@ -28,6 +28,9 @@ import './Button.css'
 
 export function Button({
   children,
+  leftIcon,
+  rightIcon,
+  iconOnly = false,
   variant = 'primary',
   size = 'md',
   disabled = false,
@@ -49,6 +52,7 @@ export function Button({
     loading && 'btn--loading',
     doubleOutline && 'btn--double-outline',
     square && 'btn--square',
+    iconOnly && 'btn--icon-only',
     className
   ]
     .filter(Boolean)
@@ -79,7 +83,9 @@ export function Button({
         </span>
       )}
       <span className={loading ? 'btn__content--hidden' : 'btn__content'}>
+        {leftIcon && <span className="btn__icon btn__icon--left">{leftIcon}</span>}
         {children}
+        {rightIcon && <span className="btn__icon btn__icon--right">{rightIcon}</span>}
       </span>
     </button>
   )

@@ -342,4 +342,37 @@ describe('Button Component', () => {
       expect(button).toHaveClass('custom')
     })
   })
+
+  describe('Icons', () => {
+    it('should render left icon', () => {
+      render(
+        <Button leftIcon={<span data-testid="left-icon" />}>
+          With Icon
+        </Button>
+      )
+      expect(screen.getByTestId('left-icon')).toBeInTheDocument()
+    })
+
+    it('should render right icon', () => {
+      render(
+        <Button rightIcon={<span data-testid="right-icon" />}>
+          With Icon
+        </Button>
+      )
+      expect(screen.getByTestId('right-icon')).toBeInTheDocument()
+    })
+
+    it('should apply icon-only class', () => {
+      render(
+        <Button
+          iconOnly
+          aria-label="Settings"
+          leftIcon={<span data-testid="icon-only" />}
+        />
+      )
+      const button = screen.getByRole('button', { name: 'Settings' })
+      expect(button).toHaveClass('btn--icon-only')
+      expect(screen.getByTestId('icon-only')).toBeInTheDocument()
+    })
+  })
 })

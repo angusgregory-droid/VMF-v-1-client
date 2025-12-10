@@ -13,6 +13,7 @@
  */
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import { MdClose } from 'react-icons/md'
 import './Toaster.css'
 
 const ToasterContext = createContext(null)
@@ -105,7 +106,7 @@ export function ToasterProvider({
               aria-label="Dismiss notification"
               onClick={() => removeToast(toast.id)}
             >
-              ×
+              <MdClose className="toast__close-icon" aria-hidden="true" focusable="false" />
             </button>
           </div>
         ))}

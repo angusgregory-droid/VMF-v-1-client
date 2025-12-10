@@ -79,10 +79,15 @@
   border: none;
   color: var(--color-text-secondary);
   cursor: pointer;
-  font-size: var(--font-size-lg);
   line-height: 1;
   padding: 0;
   transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.toast__close-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
 }
 
 .toast__close:hover {

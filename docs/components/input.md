@@ -8,6 +8,7 @@ A professional input component with floating label animation that reduces in siz
 - ✅ **Very Light Placeholder**: Placeholder displayed in extremely light text (30% opacity)
 - ✅ **Multiple Variants**: default, outlined, filled
 - ✅ **Three Sizes**: sm, md, lg
+- ✅ **Icon Slots**: Optional left/right icons with automatic padding
 - ✅ **Error States**: Visual error indication with messages
 - ✅ **Helper Text**: Optional descriptive text below input
 - ✅ **Required Field**: Asterisk indicator for required fields
@@ -41,6 +42,8 @@ function MyForm() {
 | `type` | `string` | `'text'` | HTML input type |
 | `label` | `string` | - | Floating label text |
 | `placeholder` | `string` | - | Very light placeholder text |
+| `leftIcon` | `ReactNode` | - | Optional icon rendered before the text |
+| `rightIcon` | `ReactNode` | - | Optional icon rendered after the text |
 | `value` | `string` | - | Controlled value |
 | `defaultValue` | `string` | - | Uncontrolled default value |
 | `error` | `string` | - | Error message to display |
@@ -86,6 +89,13 @@ function MyForm() {
   type="password"
   helperText="Must be at least 8 characters"
   id="password"
+/>
+
+<Input
+  label="Search"
+  placeholder="Search"
+  leftIcon={<SearchIcon />}
+  id="search"
 />
 ```
 

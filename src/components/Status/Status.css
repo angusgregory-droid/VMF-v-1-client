@@ -35,6 +35,16 @@
   transition: background-color var(--transition-fast);
 }
 
+.status__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: currentColor;
+}
+
 /* ===========================
    STATUS TEXT
    =========================== */
@@ -102,6 +112,11 @@
   height: 8px;
 }
 
+.status--sm .status__icon {
+  width: 14px;
+  height: 14px;
+}
+
 .status--sm .status__text {
   font-size: var(--font-size-sm);
 }
@@ -111,6 +126,11 @@
   height: 10px;
 }
 
+.status--md .status__icon {
+  width: 16px;
+  height: 16px;
+}
+
 .status--md .status__text {
   font-size: var(--font-size-base);
 }
@@ -118,6 +138,11 @@
 .status--lg .status__indicator {
   width: 12px;
   height: 12px;
+}
+
+.status--lg .status__icon {
+  width: 18px;
+  height: 18px;
 }
 
 .status--lg .status__text {

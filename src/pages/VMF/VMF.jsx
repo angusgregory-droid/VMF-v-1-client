@@ -2,6 +2,8 @@ import { Fieldset } from '../../components/Fieldset'
 import { VMFNavbar } from '../../components/VMFNavbar'
 import { Status } from '../../components/Status'
 import { Card } from '../../components/Card'
+import { Button } from '../../components/Button'
+import { MdCheck, MdError } from 'react-icons/md'
 import './VMF.css'
 
 function VMF() {
@@ -18,9 +20,23 @@ function VMF() {
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--spacing-lg)', alignItems: 'flex-start' }}>
             <Status variant="success" pulse>API Server</Status>
             <Status variant="success">Database</Status>
-            <Status variant="warning">Cache</Status>
+            <Status variant="warning" showIcon>Cache</Status>
             <Status variant="info" pulse>Processing</Status>
-            <Status variant="error">Email Service</Status>
+            <Status variant="error" showIcon>Email Service</Status>
+          </div>
+        </Fieldset.Content>
+      </Fieldset>
+
+      <Fieldset variant="outlined" gap="md" style={{ marginBottom: 'var(--spacing-xl)' }}>
+        <Fieldset.Legend>Quick Actions</Fieldset.Legend>
+        <Fieldset.Content>
+          <div style={{ display: 'flex', gap: 'var(--spacing-md)', flexWrap: 'wrap' }}>
+            <Button variant="primary" leftIcon={<MdCheck />}>
+              Deploy
+            </Button>
+            <Button variant="danger" leftIcon={<MdError />}>
+              Halt
+            </Button>
           </div>
         </Fieldset.Content>
       </Fieldset>

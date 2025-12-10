@@ -22,6 +22,7 @@
  */
 
 import { useState, useEffect } from 'react'
+import { MdMenu } from 'react-icons/md'
 import { Link } from '../Link'
 import { Logo } from '../Logo'
 import Navigation from '../Navigation'
@@ -108,9 +109,12 @@ export function Header({
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation"
             >
-              <span className="header__hamburger-line"></span>
-              <span className="header__hamburger-line"></span>
-              <span className="header__hamburger-line"></span>
+              <MdMenu
+                className="header__hamburger-icon"
+                aria-hidden="true"
+                focusable="false"
+                size={24}
+              />
             </button>
 
             <div className="header__nav">

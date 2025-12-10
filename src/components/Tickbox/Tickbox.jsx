@@ -5,6 +5,7 @@
  */
 
 import { forwardRef, useEffect, useRef } from 'react'
+import { MdCheck, MdRemove } from 'react-icons/md'
 import './Tickbox.css'
 
 export const Tickbox = forwardRef(function Tickbox(
@@ -48,34 +49,15 @@ export const Tickbox = forwardRef(function Tickbox(
         className="tickbox-input"
         checked={checked}
         onChange={onChange}
-        disabled={disabled}
-        {...props}
-      />
+      disabled={disabled}
+      {...props}
+    />
       <span className="tickbox-box">
-        <svg
-          className="tickbox-icon"
-          viewBox="0 0 14 14"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          {indeterminate ? (
-            <path
-              d="M2.33333 7H11.6667"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          ) : (
-            <path
-              d="M11.6667 3.5L5.25 9.91667L2.33333 7"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          )}
-        </svg>
+        {indeterminate ? (
+          <MdRemove className="tickbox-icon" aria-hidden="true" focusable="false" />
+        ) : (
+          <MdCheck className="tickbox-icon" aria-hidden="true" focusable="false" />
+        )}
       </span>
       {label && <span className="tickbox-label">{label}</span>}
     </label>

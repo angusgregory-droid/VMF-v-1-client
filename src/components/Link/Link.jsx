@@ -27,6 +27,7 @@
  */
 
 import { Link as RouterLink } from 'react-router-dom'
+import { MdOpenInNew } from 'react-icons/md'
 import './Link.css'
 
 export function Link({
@@ -88,7 +89,7 @@ export function Link({
         {children}
         {openInNewTab && !disabled && (
           <span className="link__external-icon" aria-label="(opens in new tab)">
-            ↗
+            <MdOpenInNew aria-hidden="true" focusable="false" />
           </span>
         )}
       </a>

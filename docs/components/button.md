@@ -7,6 +7,7 @@ A fully accessible, responsive button component with multiple variants, sizes, a
 - ✅ **5 Variants**: Primary, Secondary, Outline, Ghost, Danger
 - ✅ **3 Sizes**: Small, Medium, Large
 - ✅ **Loading State**: Built-in spinner
+- ✅ **Icon Support**: Left/right icons and icon-only buttons
 - ✅ **Fully Accessible**: ARIA attributes, keyboard navigation
 - ✅ **Touch-Friendly**: Minimum 44px touch targets (48px on mobile)
 - ✅ **Responsive**: Adapts to all screen sizes
@@ -34,6 +35,9 @@ function MyComponent() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `children` | `ReactNode` | - | Button content |
+| `leftIcon` | `ReactNode` | - | Optional icon displayed before the text |
+| `rightIcon` | `ReactNode` | - | Optional icon displayed after the text |
+| `iconOnly` | `boolean` | `false` | Render as icon-only button (provides tight padding; requires `aria-label`) |
 | `variant` | `'primary' \| 'secondary' \| 'outline' \| 'ghost' \| 'danger'` | `'primary'` | Visual style variant |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size |
 | `disabled` | `boolean` | `false` | Disables the button |
@@ -279,6 +283,20 @@ function DeleteDialog() {
 <Button variant="ghost" size="sm" aria-label="Close">
   <CloseIcon />
 </Button>
+
+<Button
+  variant="primary"
+  leftIcon={<SaveIcon />}
+  rightIcon={<ArrowRightIcon />}
+>
+  Save & Continue
+</Button>
+
+<Button
+  iconOnly
+  aria-label="Settings"
+  leftIcon={<SettingsIcon />}
+/>
 ```
 
 ## Accessibility

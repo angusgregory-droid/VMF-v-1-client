@@ -164,6 +164,24 @@
   font-size: var(--font-size-lg);
 }
 
+/* Icon-only buttons */
+.btn--icon-only {
+  min-width: 44px;
+  padding: var(--spacing-2xs);
+  justify-content: center;
+  gap: 0;
+}
+
+.btn--icon-only.btn--sm {
+  min-width: 36px;
+  padding: var(--spacing-3xs);
+}
+
+.btn--icon-only.btn--lg {
+  min-width: 52px;
+  padding: var(--spacing-xs);
+}
+
 /* ===========================
    DOUBLE OUTLINE MODIFIER
    =========================== */
@@ -257,6 +275,19 @@
   border-right-color: transparent;
   border-radius: 50%;
   animation: btn-spin 0.6s linear infinite;
+}
+
+/* Icon wrappers */
+.btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.btn__icon svg {
+  width: 1.1em;
+  height: 1.1em;
 }
 
 @keyframes btn-spin {

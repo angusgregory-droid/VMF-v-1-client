@@ -6,6 +6,7 @@
  */
 
 import { useRef, useEffect } from 'react'
+import { MdClose } from 'react-icons/md'
 import './Dialog.css'
 
 /**
@@ -94,26 +95,11 @@ export function Dialog({
         {showCloseButton && (
           <button
             type="button"
-            className="dialog__close"
-            onClick={handleCloseClick}
-            aria-label="Close dialog"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path
-                d="M18 6L6 18M6 6L18 18"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+          className="dialog__close"
+          onClick={handleCloseClick}
+          aria-label="Close dialog"
+        >
+          <MdClose size={24} aria-hidden="true" focusable="false" />
           </button>
         )}
         {children}

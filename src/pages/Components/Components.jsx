@@ -22,6 +22,7 @@ import { Tooltip } from '../../components/Tooltip'
 import { useToaster } from '../../components/Toaster'
 import { HorizontalScroll } from '../../components/HorizontalScroll'
 import { Typewriter } from '../../components/Typewriter'
+import { MdCheck, MdArrowForward, MdSettings, MdSearch } from 'react-icons/md'
 import './Components.css'
 
 function Components() {
@@ -194,6 +195,19 @@ function Components() {
             <Button variant="outline" square>Square Outline</Button>
             <Button variant="danger" square>Square Danger</Button>
             <Button variant="outline" square doubleOutline>Square Double</Button>
+          </div>
+        </div>
+
+        <div className="components__subsection">
+          <h3>Icons</h3>
+          <div className="components__flex-group">
+            <Button variant="primary" leftIcon={<MdCheck />} rightIcon={<MdArrowForward />}>
+              Save &amp; Continue
+            </Button>
+            <Button variant="outline" leftIcon={<MdSettings />}>
+              Settings
+            </Button>
+            <Button variant="ghost" iconOnly aria-label="Preferences" leftIcon={<MdSettings />} />
           </div>
         </div>
 
@@ -1174,6 +1188,12 @@ function Components() {
               type="password"
               id="demo-password"
             />
+            <Input
+              label="Search"
+              placeholder="Search"
+              leftIcon={<MdSearch />}
+              id="demo-search"
+            />
           </div>
           <p className="components__footer-note">
             Labels automatically float (shrink and move outside) when you focus or type in the input.
@@ -1711,6 +1731,24 @@ function Components() {
             <Status variant="error" />
             <Status variant="info" />
             <Status variant="neutral" />
+          </div>
+        </div>
+
+        <div className="components__subsection">
+          <h3>With Icons</h3>
+          <div className="components__flex-group components__flex-wrap">
+            <Status variant="success" showIcon>
+              Healthy
+            </Status>
+            <Status variant="warning" showIcon>
+              Pending
+            </Status>
+            <Status variant="error" showIcon>
+              Action Needed
+            </Status>
+            <Status variant="info" showIcon>
+              Info
+            </Status>
           </div>
         </div>
 

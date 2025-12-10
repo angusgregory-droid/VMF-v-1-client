@@ -65,7 +65,9 @@
 }
 
 .nav__link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2xs);
   padding: var(--spacing-sm) var(--spacing-md);
   color: var(--color-text-secondary);
   text-decoration: none;
@@ -96,6 +98,18 @@
 
 .nav__link--active:hover {
   color: var(--color-primary-700);
+}
+
+.nav__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+}
+
+.nav__text {
+  line-height: 1;
 }
 
 /* ===========================

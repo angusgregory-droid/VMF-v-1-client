@@ -91,6 +91,20 @@ describe('Input Component', () => {
     })
   })
 
+  describe('Icons', () => {
+    it('should render left icon', () => {
+      const { container } = render(<Input leftIcon={<span data-testid="left-icon" />} />)
+      expect(container.querySelector('.input__icon--left')).toBeInTheDocument()
+      expect(screen.getByTestId('left-icon')).toBeInTheDocument()
+    })
+
+    it('should render right icon', () => {
+      const { container } = render(<Input rightIcon={<span data-testid="right-icon" />} />)
+      expect(container.querySelector('.input__icon--right')).toBeInTheDocument()
+      expect(screen.getByTestId('right-icon')).toBeInTheDocument()
+    })
+  })
+
   // ===========================
   // SIZES
   // ===========================

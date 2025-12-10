@@ -115,8 +115,9 @@ describe('Tickbox Component', () => {
       // This is a visual test, in a real scenario you would use storybook or visual regression testing
       // For now we assume the CSS classes are applied correctly and do their job.
       // We can check if the icon for indeterminate is rendered.
-      const iconPath = container.querySelector('svg path')
-      expect(iconPath).toHaveAttribute('d', 'M2.33333 7H11.6667')
+      const icon = container.querySelector('.tickbox-icon')
+      expect(icon).toBeInTheDocument()
+      expect(icon?.getAttribute('aria-hidden')).toBe('true')
     })
   })
 })
