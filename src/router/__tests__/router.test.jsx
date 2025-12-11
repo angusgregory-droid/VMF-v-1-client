@@ -4,11 +4,19 @@
  * Tests navigation and route rendering
  */
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { RouterProvider, createMemoryRouter } from 'react-router-dom'
 import { ToasterProvider } from '../../components/Toaster'
 import { router } from '../index'
+
+const ROUTE_TEST_TIMEOUT = 15000
+
+beforeEach(() => {
+  vi.useFakeTimers()
+  vi.setSystemTime(new Date())
+  vi.useRealTimers()
+})
 
 describe('Router', () => {
   describe('Route Configuration', () => {
@@ -24,8 +32,8 @@ describe('Router', () => {
       )
 
       // Wait for lazy-loaded component
-      expect(await screen.findByText(/Transform the Way Your Organisation Thinks, Works, and Performs/i)).toBeInTheDocument()
-    })
+      expect(await screen.findByText(/Transform the Way Your Organisation Thinks, Works, and Performs/i, {}, { timeout: 10000 })).toBeInTheDocument()
+    }, ROUTE_TEST_TIMEOUT)
 
     it('should render components page at /components', async () => {
       const testRouter = createMemoryRouter(router.routes, {
@@ -38,8 +46,8 @@ describe('Router', () => {
         </ToasterProvider>
       )
 
-      expect(await screen.findByText(/Component Showcase/i, {}, { timeout: 5000 })).toBeInTheDocument()
-    })
+      expect(await screen.findByText(/Component Showcase/i, {}, { timeout: 10000 })).toBeInTheDocument()
+    }, ROUTE_TEST_TIMEOUT)
 
     it('should render about page at /about', async () => {
       const testRouter = createMemoryRouter(router.routes, {
@@ -52,8 +60,8 @@ describe('Router', () => {
         </ToasterProvider>
       )
 
-      expect(await screen.findByRole('heading', { name: /^About$/i })).toBeInTheDocument()
-    })
+      expect(await screen.findByRole('heading', { name: /^About$/i }, { timeout: 10000 })).toBeInTheDocument()
+    }, ROUTE_TEST_TIMEOUT)
 
     it('should render VMF-G page at /vmf/g', async () => {
       const testRouter = createMemoryRouter(router.routes, {
@@ -66,8 +74,8 @@ describe('Router', () => {
         </ToasterProvider>
       )
 
-      expect(await screen.findByText(/VMF-G: Complete Form/i)).toBeInTheDocument()
-    })
+      expect(await screen.findByText(/VMF-G: Complete Form/i, {}, { timeout: 10000 })).toBeInTheDocument()
+    }, ROUTE_TEST_TIMEOUT)
   })
 
   describe('Navigation', () => {

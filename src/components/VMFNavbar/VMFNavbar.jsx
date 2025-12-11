@@ -23,7 +23,7 @@ import './VMFNavbar.css'
 export function VMFNavbar() {
   // Define all VMF pages in order
   const pages = [
-    { to: '/vmf', label: 'Dashboard', end: true },
+    { to: '/vmf', label: 'MAIN', end: true },
     { to: '/vmf/a', label: '[a]' },
     { to: '/vmf/b', label: '[b]' },
     { to: '/vmf/c', label: '[c]' },

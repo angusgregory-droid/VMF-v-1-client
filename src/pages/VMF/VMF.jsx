@@ -32,6 +32,40 @@ function VMF() {
 
       <VMFNavbar />
 
+      
+
+      <Fieldset variant="outlined">
+        <Fieldset.Legend>Main Workspace</Fieldset.Legend>
+        <Fieldset.Content>
+          <div className="vmf__split-layout">
+            <div className="vmf__split-left">
+              <h3>Left Panel (1/3)</h3>
+              <p>This is filler content for the left side panel.</p>
+              <ul>
+                <li>Navigation item 1</li>
+                <li>Navigation item 2</li>
+                <li>Navigation item 3</li>
+                <li>Navigation item 4</li>
+              </ul>
+            </div>
+            <div className="vmf__split-right">
+              <h3>Right Panel (2/3)</h3>
+              <p>This is filler content for the right side panel.</p>
+              <p>This larger area will contain the main content.</p>
+              <div className="vmf__content-placeholder">
+                <p>Content block 1</p>
+              </div>
+              <div className="vmf__content-placeholder">
+                <p>Content block 2</p>
+              </div>
+              <div className="vmf__content-placeholder">
+                <p>Content block 3</p>
+              </div>
+            </div>
+          </div>
+        </Fieldset.Content>
+      </Fieldset>
+
       <div className="vmf__summary-grid">
         <Fieldset variant="outlined" gap="md">
           <Fieldset.Legend>System Status</Fieldset.Legend>
@@ -72,38 +106,6 @@ function VMF() {
           </Fieldset.Content>
         </Fieldset>
       </div>
-
-      <Fieldset variant="outlined">
-        <Fieldset.Legend>Main Workspace</Fieldset.Legend>
-        <Fieldset.Content>
-          <div className="vmf__split-layout">
-            <div className="vmf__split-left">
-              <h3>Left Panel (1/3)</h3>
-              <p>This is filler content for the left side panel.</p>
-              <ul>
-                <li>Navigation item 1</li>
-                <li>Navigation item 2</li>
-                <li>Navigation item 3</li>
-                <li>Navigation item 4</li>
-              </ul>
-            </div>
-            <div className="vmf__split-right">
-              <h3>Right Panel (2/3)</h3>
-              <p>This is filler content for the right side panel.</p>
-              <p>This larger area will contain the main content.</p>
-              <div className="vmf__content-placeholder">
-                <p>Content block 1</p>
-              </div>
-              <div className="vmf__content-placeholder">
-                <p>Content block 2</p>
-              </div>
-              <div className="vmf__content-placeholder">
-                <p>Content block 3</p>
-              </div>
-            </div>
-          </div>
-        </Fieldset.Content>
-      </Fieldset>
     </div>
   )
 }

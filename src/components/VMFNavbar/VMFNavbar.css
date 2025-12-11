@@ -1,9 +1,5 @@
 .vmf-navbar {
   width: 100%;
-  background-color: var(--color-surface);
-  border-bottom: var(--border-width-thin) solid var(--color-border);
-  padding: var(--spacing-md) 0;
-  margin-bottom: var(--spacing-xl);
 }
 
 .vmf-navbar__links {
@@ -80,7 +76,7 @@
   }
 
   .vmf-navbar__link {
-    padding: var(--spacing-3xs) var(--spacing-xs);
+    /* padding: var(--spacing-3xs) var(--spacing-xs); */
     font-size: 0.7rem;
   }
 }

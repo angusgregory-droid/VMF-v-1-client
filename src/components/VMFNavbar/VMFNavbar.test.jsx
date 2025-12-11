@@ -36,7 +36,7 @@ describe('VMFNavbar Component', () => {
         </BrowserRouter>
       )
 
-      expect(getLink('Dashboard')).toBeInTheDocument()
+      expect(getLink('MAIN')).toBeInTheDocument()
       expect(getLink('[a]')).toBeInTheDocument()
       expect(getLink('[b]')).toBeInTheDocument()
       expect(getLink('[c]')).toBeInTheDocument()
@@ -53,7 +53,7 @@ describe('VMFNavbar Component', () => {
         </BrowserRouter>
       )
 
-      expect(getLink('Dashboard')).toHaveAttribute('href', '/vmf')
+      expect(getLink('MAIN')).toHaveAttribute('href', '/vmf')
       expect(getLink('[a]')).toHaveAttribute('href', '/vmf/a')
       expect(getLink('[b]')).toHaveAttribute('href', '/vmf/b')
       expect(getLink('[c]')).toHaveAttribute('href', '/vmf/c')
@@ -72,7 +72,7 @@ describe('VMFNavbar Component', () => {
         </MemoryRouter>
       )
 
-      const dashboardLink = getLink('Dashboard')
+      const dashboardLink = getLink('MAIN')
       expect(dashboardLink).toHaveClass('vmf-navbar__link--active')
     })
 
@@ -212,7 +212,7 @@ describe('VMFNavbar Component', () => {
       )
       const links = screen.getAllByRole('link')
 
-      expect(links[0]).toHaveTextContent('Dashboard')
+      expect(links[0]).toHaveTextContent('MAIN')
       expect(links[1]).toHaveTextContent('[a]')
       expect(links[2]).toHaveTextContent('[b]')
       expect(links[3]).toHaveTextContent('[c]')
@@ -225,44 +225,44 @@ describe('VMFNavbar Component', () => {
 
   describe('Progressive Navigation', () => {
     describe('Initial State', () => {
-    it('should have only Dashboard accessible initially', () => {
-      render(
-        <MemoryRouter initialEntries={['/vmf']}>
-          <VMFNavbar />
-        </MemoryRouter>
-      )
+      it('should have only MAIN accessible initially', () => {
+        render(
+          <MemoryRouter initialEntries={['/vmf']}>
+            <VMFNavbar />
+          </MemoryRouter>
+        )
 
-      const dashboardLink = getLink('Dashboard')
-      expect(dashboardLink).not.toHaveClass('vmf-navbar__link--disabled')
-      expect(dashboardLink).not.toHaveAttribute('aria-disabled', 'true')
-    })
+        const dashboardLink = getLink('MAIN')
+        expect(dashboardLink).not.toHaveClass('vmf-navbar__link--disabled')
+        expect(dashboardLink).not.toHaveAttribute('aria-disabled', 'true')
+      })
 
-    it('should have all other links disabled initially', () => {
-      render(
-        <MemoryRouter initialEntries={['/vmf']}>
-          <VMFNavbar />
-        </MemoryRouter>
-      )
+      it('should have all other links disabled initially', () => {
+        render(
+          <MemoryRouter initialEntries={['/vmf']}>
+            <VMFNavbar />
+          </MemoryRouter>
+        )
 
-      const disabledLinks = ['[a]', '[b]', '[c]', '[d]', '[e]', '[f]', '[g]']
+        const disabledLinks = ['[a]', '[b]', '[c]', '[d]', '[e]', '[f]', '[g]']
 
-      disabledLinks.forEach(linkName => {
-        const link = getLink(linkName)
-        expect(link).toHaveClass('vmf-navbar__link--disabled')
-        expect(link).toHaveAttribute('aria-disabled', 'true')
+        disabledLinks.forEach(linkName => {
+          const link = getLink(linkName)
+          expect(link).toHaveClass('vmf-navbar__link--disabled')
+          expect(link).toHaveAttribute('aria-disabled', 'true')
+        })
       })
     })
-  })
 
     describe('Progressive Unlocking', () => {
-      it('should unlock [a] when Dashboard is clicked', () => {
+      it('should unlock [a] when MAIN is clicked', () => {
       render(
         <MemoryRouter initialEntries={['/vmf']}>
           <VMFNavbar />
         </MemoryRouter>
       )
 
-      const dashboardLink = getLink('Dashboard')
+      const dashboardLink = getLink('MAIN')
       const vmfALink = getLink('[a]')
 
       expect(vmfALink).toHaveClass('vmf-navbar__link--disabled')
@@ -274,13 +274,13 @@ describe('VMFNavbar Component', () => {
       })
 
       it('should unlock [b] when [a] is clicked', () => {
-      render(
-        <MemoryRouter initialEntries={['/vmf']}>
-          <VMFNavbar />
-        </MemoryRouter>
-      )
+        render(
+          <MemoryRouter initialEntries={['/vmf']}>
+            <VMFNavbar />
+          </MemoryRouter>
+        )
 
-      const dashboardLink = getLink('Dashboard')
+        const dashboardLink = getLink('MAIN')
       const vmfALink = getLink('[a]')
       const vmfBLink = getLink('[b]')
 
@@ -300,7 +300,7 @@ describe('VMFNavbar Component', () => {
         </MemoryRouter>
       )
 
-      const pages = ['Dashboard', '[a]', '[b]', '[c]', '[d]', '[e]', '[f]']
+        const pages = ['MAIN', '[a]', '[b]', '[c]', '[d]', '[e]', '[f]']
 
       pages.forEach((pageName, index) => {
         const currentLink = getLink(pageName)
@@ -330,7 +330,7 @@ describe('VMFNavbar Component', () => {
 
       const vmfBLink = getLink('[b]')
 
-      // [b] should be disabled initially (when on Dashboard)
+      // [b] should be disabled initially (when on MAIN)
       expect(vmfBLink).toHaveClass('vmf-navbar__link--disabled')
 
         // Click should be prevented
@@ -364,13 +364,13 @@ describe('VMFNavbar Component', () => {
         </MemoryRouter>
       )
 
-      const dashboardLink = getLink('Dashboard')
+      const dashboardLink = getLink('MAIN')
       const vmfALink = getLink('[a]')
 
       // Unlock [a]
       fireEvent.click(dashboardLink)
 
-        // Should be able to click Dashboard again (backward navigation)
+        // Should be able to click MAIN again (backward navigation)
         expect(dashboardLink).not.toHaveClass('vmf-navbar__link--disabled')
         fireEvent.click(dashboardLink)
 
@@ -385,7 +385,7 @@ describe('VMFNavbar Component', () => {
         </MemoryRouter>
       )
 
-      const dashboardLink = getLink('Dashboard')
+      const dashboardLink = getLink('MAIN')
       const vmfALink = getLink('[a]')
       const vmfBLink = getLink('[b]')
 
@@ -393,7 +393,7 @@ describe('VMFNavbar Component', () => {
         fireEvent.click(dashboardLink)
         fireEvent.click(vmfALink)
 
-        // Go back to Dashboard
+        // Go back to MAIN
         fireEvent.click(dashboardLink)
 
         // [a] and [b] should still be unlocked
@@ -421,7 +421,7 @@ describe('VMFNavbar Component', () => {
         </MemoryRouter>
       )
 
-      const dashboardLink = getLink('Dashboard')
+      const dashboardLink = getLink('MAIN')
       const vmfALink = getLink('[a]')
 
       expect(vmfALink).toHaveClass('vmf-navbar__link--disabled')
@@ -438,9 +438,9 @@ describe('VMFNavbar Component', () => {
         </MemoryRouter>
       )
 
-      const dashboardLink = getLink('Dashboard')
+      const dashboardLink = getLink('MAIN')
 
-      // Dashboard should be active (current route) but not disabled
+      // MAIN should be active (current route) but not disabled
       expect(dashboardLink).toHaveClass('vmf-navbar__link--active')
         expect(dashboardLink).not.toHaveClass('vmf-navbar__link--disabled')
       })
@@ -465,7 +465,7 @@ describe('VMFNavbar Component', () => {
         </MemoryRouter>
       )
 
-      const dashboardLink = getLink('Dashboard')
+      const dashboardLink = getLink('MAIN')
       const vmfALink = getLink('[a]')
 
       fireEvent.click(dashboardLink)
@@ -484,7 +484,7 @@ describe('VMFNavbar Component', () => {
       )
 
         // When directly navigating to [d], all pages up to [d] should be unlocked
-        const dashboardLink = getLink('Dashboard')
+        const dashboardLink = getLink('MAIN')
         const vmfALink = getLink('[a]')
         const vmfBLink = getLink('[b]')
         const vmfCLink = getLink('[c]')
