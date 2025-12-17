@@ -16,6 +16,13 @@
   margin-top: 3rem;
 }
 
+.components__section-content {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--spacing-lg);
+  overflow: hidden;
+}
+
 .components__subsection {
   margin-top: 2rem;
 }

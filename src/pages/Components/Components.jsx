@@ -27,6 +27,20 @@ import { Stepper } from '../../components/Stepper'
 import { MdCheck, MdArrowForward, MdSettings, MdSearch } from 'react-icons/md'
 import './Components.css'
 
+const DemoSection = ({ title, description, children }) => (
+  <Fieldset variant="outlined" gap="lg" className="components__section">
+    <Fieldset.Legend>{title}</Fieldset.Legend>
+    <Fieldset.Content className="components__section-content">
+      {description ? (
+        <p className="text-responsive-base components__description">
+          {description}
+        </p>
+      ) : null}
+      {children}
+    </Fieldset.Content>
+  </Fieldset>
+)
+
 function Components() {
   const { addToast } = useToaster()
   const [loading, setLoading] = useState(false)
@@ -142,42 +156,37 @@ function Components() {
         Production-ready, accessible components for building modern web applications
       </p>
 
-      <Fieldset variant="outlined" gap="lg" className="components__fieldset">
-        <Fieldset.Legend>Typewriter Component</Fieldset.Legend>
-        <Fieldset.Content className="components__flex-column">
-          <p className="components__description components__max-width">
-            Use the typewriter effect for hero copy, headlines, or inline emphasis with configurable speed, delay, and looping.
-          </p>
+      <DemoSection
+        title="Typewriter Component"
+        description="Use the typewriter effect for hero copy, headlines, or inline emphasis with configurable speed, delay, and looping."
+      >
+        <div className="components__grid--300">
+          <Card variant="elevated" hoverable>
+            <Card.Header>Default</Card.Header>
+            <Card.Body className="components__typewriter-demo">
+              <Typewriter text="Production-ready typewriter effect." />
+            </Card.Body>
+          </Card>
 
-          <div className="components__grid--300">
-            <Card variant="elevated" hoverable>
-              <Card.Header>Default</Card.Header>
-              <Card.Body className="components__typewriter-demo">
-                <Typewriter text="Production-ready typewriter effect." />
-              </Card.Body>
-            </Card>
+          <Card variant="outlined" hoverable>
+            <Card.Header>Looping with Custom Speed</Card.Header>
+            <Card.Body className="components__typewriter-demo components__flex-column--sm">
+              <Typewriter
+                text="Modern. Accessible. Fast."
+                speed={80}
+                delay={150}
+                loop
+                pauseBetween={900}
+              />
+              <p className="components__card-text">
+                Adjust speed, delay, and loop to fit your tone.
+              </p>
+            </Card.Body>
+          </Card>
+        </div>
+      </DemoSection>
 
-            <Card variant="outlined" hoverable>
-              <Card.Header>Looping with Custom Speed</Card.Header>
-              <Card.Body className="components__typewriter-demo components__flex-column--sm">
-                <Typewriter
-                  text="Modern. Accessible. Fast."
-                  speed={80}
-                  delay={150}
-                  loop
-                  pauseBetween={900}
-                />
-                <p className="components__card-text">
-                  Adjust speed, delay, and loop to fit your tone.
-                </p>
-              </Card.Body>
-            </Card>
-          </div>
-        </Fieldset.Content>
-      </Fieldset>
-
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Button Component</h2>
+      <DemoSection title="Button Component">
 
         <div className="components__subsection">
           <h3>Variants</h3>
@@ -248,13 +257,12 @@ function Components() {
             <Button fullWidth>Full Width Button</Button>
           </div>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Horizontal Scroll Component</h2>
-        <p className="components__description">
-          Scroll horizontally with snap alignment and optional navigation buttons. Great for card rails and media strips.
-        </p>
+      <DemoSection
+        title="Horizontal Scroll Component"
+        description="Scroll horizontally with snap alignment and optional navigation buttons. Great for card rails and media strips."
+      >
 
         <div className="components__group">
           <HorizontalScroll ariaLabel="Feature highlights">
@@ -338,13 +346,12 @@ function Components() {
             </Card>
           </HorizontalScroll>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Tooltip Component</h2>
-        <p className="components__description">
-          Hover or focus to see contextual help. Tooltips respect themes, motion preferences, and keyboard access.
-        </p>
+      <DemoSection
+        title="Tooltip Component"
+        description="Hover or focus to see contextual help. Tooltips respect themes, motion preferences, and keyboard access."
+      >
 
         <div className="components__grid--240">
           <Card variant="outlined">
@@ -408,13 +415,12 @@ function Components() {
             </Card.Body>
           </Card>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Toaster Component</h2>
-        <p className="components__description">
-          Fire off toast notifications with variants and default durations. Positioning and limits are handled by the provider.
-        </p>
+      <DemoSection
+        title="Toaster Component"
+        description="Fire off toast notifications with variants and default durations. Positioning and limits are handled by the provider."
+      >
 
         <div className="components__grid--220">
           <Card variant="outlined">
@@ -435,10 +441,9 @@ function Components() {
             </Card.Body>
           </Card>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Link Component</h2>
+      <DemoSection title="Link Component">
 
         <div className="components__subsection">
           <h3>Variants</h3>
@@ -484,10 +489,9 @@ function Components() {
             read our <Link to="/about">about section</Link> to learn more.
           </p>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Card Component</h2>
+      <DemoSection title="Card Component">
 
         <div className="components__subsection">
           <h3>Variants</h3>
@@ -634,10 +638,9 @@ function Components() {
             </Card>
           </div>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Accordion Component</h2>
+      <DemoSection title="Accordion Component">
 
         <div className="components__subsection">
           <h3>Variants</h3>
@@ -799,10 +802,9 @@ function Components() {
             </Accordion.Item>
           </Accordion>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Dialog Component</h2>
+      <DemoSection title="Dialog Component">
 
         <div className="components__subsection">
           <h3>Basic Dialog</h3>
@@ -966,10 +968,9 @@ function Components() {
             <li>Full keyboard and screen reader support</li>
           </ul>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Fieldset Component</h2>
+      <DemoSection title="Fieldset Component">
 
         <div className="components__subsection">
           <h3>Basic Fieldset</h3>
@@ -1193,11 +1194,9 @@ function Components() {
             <li>Responsive on all screen sizes</li>
           </ul>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Input Component</h2>
-
+      <DemoSection title="Input Component">
         <div className="components__subsection">
           <h3>Floating Label Animation</h3>
           <div className="components__grid-inputs">
@@ -1519,13 +1518,12 @@ function Components() {
             <li>Full ARIA attributes and accessibility support</li>
           </ul>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Tickbox Component</h2>
-        <p className="text-responsive-base components__description">
-          A custom-styled, accessible checkbox component.
-        </p>
+      <DemoSection
+        title="Tickbox Component"
+        description="A custom-styled, accessible checkbox component."
+      >
 
         <div className="components__subsection">
           <h3>Sizes</h3>
@@ -1576,13 +1574,12 @@ function Components() {
             />
           </div>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Radio Component</h2>
-        <p className="text-responsive-base components__description">
-          A custom-styled, accessible radio button component for single-selection choices.
-        </p>
+      <DemoSection
+        title="Radio Component"
+        description="A custom-styled, accessible radio button component for single-selection choices."
+      >
 
         <div className="components__subsection">
           <h3>Sizes</h3>
@@ -1681,13 +1678,12 @@ function Components() {
             </div>
           </fieldset>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Spinner Component</h2>
-        <p className="text-responsive-base components__description">
-          A simple, accessible loading spinner for indicating ongoing processes.
-        </p>
+      <DemoSection
+        title="Spinner Component"
+        description="A simple, accessible loading spinner for indicating ongoing processes."
+      >
 
         <div className="components__subsection">
           <h3>Sizes</h3>
@@ -1807,13 +1803,12 @@ function Components() {
             </div>
           </div>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Status Component</h2>
-        <p className="text-responsive-base components__description">
-          A flexible status indicator with circle and optional inline text for showing states and activity.
-        </p>
+      <DemoSection
+        title="Status Component"
+        description="A flexible status indicator with circle and optional inline text for showing states and activity."
+      >
 
         <div className="components__subsection">
           <h3>Variants</h3>
@@ -1959,13 +1954,12 @@ function Components() {
             <li>High contrast mode support</li>
           </ul>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Select Component</h2>
-        <p className="text-responsive-base components__description">
-          A custom-styled, accessible select dropdown component.
-        </p>
+      <DemoSection
+        title="Select Component"
+        description="A custom-styled, accessible select dropdown component."
+      >
 
         <div className="components__subsection">
           <h3>Basic Select</h3>
@@ -2063,13 +2057,12 @@ function Components() {
             />
           </div>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Stepper Component</h2>
-        <p className="text-responsive-base components__description">
-          A professional, accessible stepper for multi-step workflows. Perfect for forms, wizards, and processes that need step-by-step navigation.
-        </p>
+      <DemoSection
+        title="Stepper Component"
+        description="A professional, accessible stepper for multi-step workflows. Perfect for forms, wizards, and processes that need step-by-step navigation."
+      >
 
         <div className="components__subsection">
           <h3>Horizontal Stepper (Responsive)</h3>
@@ -2268,7 +2261,7 @@ function Components() {
             <li>Smooth transitions and animations</li>
           </ul>
         </div>
-      </section>
+      </DemoSection>
 
       <section className="components__coming-soon-section">
         <h2 className="text-responsive-lg">Coming Soon</h2>
