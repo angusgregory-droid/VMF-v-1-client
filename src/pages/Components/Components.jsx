@@ -23,6 +23,7 @@ import { useToaster } from '../../components/Toaster'
 import { HorizontalScroll } from '../../components/HorizontalScroll'
 import { Typewriter } from '../../components/Typewriter'
 import { BrandSwitcher } from '../../components/BrandSwitcher'
+import { Stepper } from '../../components/Stepper'
 import { MdCheck, MdArrowForward, MdSettings, MdSearch } from 'react-icons/md'
 import './Components.css'
 
@@ -48,6 +49,13 @@ function Components() {
   const [tickboxDisabledCheckedState, setTickboxDisabledCheckedState] = useState(true) // For tick-disabled-checked
   const [tickboxDisabledIndeterminateChecked, setTickboxDisabledIndeterminateChecked] = useState(false) // For tick-disabled-indeterminate
   const [controlledTooltipOpen, setControlledTooltipOpen] = useState(false)
+
+  // Stepper state
+  const [stepperHorizontalActive, setStepperHorizontalActive] = useState(0)
+  const [stepperHorizontalCompleted, setStepperHorizontalCompleted] = useState(new Set())
+  const [stepperVerticalActive, setStepperVerticalActive] = useState(0)
+  const [stepperVerticalCompleted, setStepperVerticalCompleted] = useState(new Set())
+
   const scrollItems = [
     { title: 'Design Tokens', copy: 'Single source of truth for spacing, colors, and typography.' },
     { title: 'Responsive Grid', copy: 'Mobile-first utilities that scale with your layout.' },
@@ -103,6 +111,26 @@ function Components() {
               : 'Here is some neutral information.',
       variant
     })
+  }
+
+  // Stepper handlers - Horizontal
+  const handleHorizontalNext = (currentIndex) => {
+    setStepperHorizontalCompleted((prev) => new Set([...prev, currentIndex]))
+    setStepperHorizontalActive(currentIndex + 1)
+  }
+
+  const handleHorizontalPrev = (currentIndex) => {
+    setStepperHorizontalActive(currentIndex - 1)
+  }
+
+  // Stepper handlers - Vertical
+  const handleVerticalNext = (currentIndex) => {
+    setStepperVerticalCompleted((prev) => new Set([...prev, currentIndex]))
+    setStepperVerticalActive(currentIndex + 1)
+  }
+
+  const handleVerticalPrev = (currentIndex) => {
+    setStepperVerticalActive(currentIndex - 1)
   }
 
   return (
@@ -2034,6 +2062,211 @@ function Components() {
               disabled
             />
           </div>
+        </div>
+      </section>
+
+      <section className="components__section">
+        <h2 className="text-responsive-lg">Stepper Component</h2>
+        <p className="text-responsive-base components__description">
+          A professional, accessible stepper for multi-step workflows. Perfect for forms, wizards, and processes that need step-by-step navigation.
+        </p>
+
+        <div className="components__subsection">
+          <h3>Horizontal Stepper (Responsive)</h3>
+          <p className="components__description">
+            Horizontal layout on desktop, automatically switches to vertical on mobile devices.
+          </p>
+
+          <Stepper
+            key={stepperHorizontalActive}
+            defaultActiveStep={stepperHorizontalActive}
+            orientation="horizontal"
+            prevCallback={handleHorizontalPrev}
+            nextCallback={handleHorizontalNext}
+          >
+            <Stepper.Panel>
+              <div style={{ padding: 'var(--spacing-md)' }}>
+                <h3 style={{ marginBottom: 'var(--spacing-md)' }}>Personal Information</h3>
+                <p style={{ marginBottom: 'var(--spacing-lg)', color: 'var(--color-text-secondary)' }}>
+                  Enter your basic personal details to get started.
+                </p>
+                <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+                  <Button
+                    variant="primary"
+                    onClick={() => handleHorizontalNext(0)}
+                    disabled={stepperHorizontalActive !== 0}
+                  >
+                    Next Step
+                  </Button>
+                </div>
+              </div>
+            </Stepper.Panel>
+
+            <Stepper.Panel>
+              <div style={{ padding: 'var(--spacing-md)' }}>
+                <h3 style={{ marginBottom: 'var(--spacing-md)' }}>Account Setup</h3>
+                <p style={{ marginBottom: 'var(--spacing-lg)', color: 'var(--color-text-secondary)' }}>
+                  Create your account credentials and preferences.
+                </p>
+                <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+                  <Button
+                    variant="outline"
+                    onClick={() => handleHorizontalPrev(1)}
+                    disabled={stepperHorizontalActive !== 1}
+                  >
+                    Previous
+                  </Button>
+                  <Button
+                    variant="primary"
+                    onClick={() => handleHorizontalNext(1)}
+                    disabled={stepperHorizontalActive !== 1}
+                  >
+                    Next Step
+                  </Button>
+                </div>
+              </div>
+            </Stepper.Panel>
+
+            <Stepper.Panel>
+              <div style={{ padding: 'var(--spacing-md)' }}>
+                <h3 style={{ marginBottom: 'var(--spacing-md)' }}>Review & Confirm</h3>
+                <p style={{ marginBottom: 'var(--spacing-lg)', color: 'var(--color-text-secondary)' }}>
+                  Review your information and complete the setup.
+                </p>
+                <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+                  <Button
+                    variant="outline"
+                    onClick={() => handleHorizontalPrev(2)}
+                    disabled={stepperHorizontalActive !== 2}
+                  >
+                    Previous
+                  </Button>
+                  <Button
+                    variant="primary"
+                    onClick={() => {
+                      addToast({
+                        title: 'Success!',
+                        description: 'Setup completed successfully.',
+                        variant: 'success'
+                      })
+                      setStepperHorizontalActive(0)
+                      setStepperHorizontalCompleted(new Set())
+                    }}
+                    disabled={stepperHorizontalActive !== 2}
+                  >
+                    Complete Setup
+                  </Button>
+                </div>
+              </div>
+            </Stepper.Panel>
+          </Stepper>
+        </div>
+
+        <div className="components__subsection">
+          <h3>Vertical Stepper</h3>
+          <p className="components__description">
+            Vertical layout on all screen sizes, great for sidebars or tall workflows.
+          </p>
+
+          <Stepper
+            key={stepperVerticalActive}
+            defaultActiveStep={stepperVerticalActive}
+            orientation="vertical"
+            prevCallback={handleVerticalPrev}
+            nextCallback={handleVerticalNext}
+          >
+            <Stepper.Panel>
+              <div style={{ padding: 'var(--spacing-md)' }}>
+                <h3 style={{ marginBottom: 'var(--spacing-md)' }}>Choose Plan</h3>
+                <p style={{ marginBottom: 'var(--spacing-lg)', color: 'var(--color-text-secondary)' }}>
+                  Select a plan that fits your needs.
+                </p>
+                <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+                  <Button
+                    variant="primary"
+                    onClick={() => handleVerticalNext(0)}
+                    disabled={stepperVerticalActive !== 0}
+                  >
+                    Continue
+                  </Button>
+                </div>
+              </div>
+            </Stepper.Panel>
+
+            <Stepper.Panel>
+              <div style={{ padding: 'var(--spacing-md)' }}>
+                <h3 style={{ marginBottom: 'var(--spacing-md)' }}>Payment Details</h3>
+                <p style={{ marginBottom: 'var(--spacing-lg)', color: 'var(--color-text-secondary)' }}>
+                  Enter your payment information securely.
+                </p>
+                <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+                  <Button
+                    variant="outline"
+                    onClick={() => handleVerticalPrev(1)}
+                    disabled={stepperVerticalActive !== 1}
+                  >
+                    Back
+                  </Button>
+                  <Button
+                    variant="primary"
+                    onClick={() => handleVerticalNext(1)}
+                    disabled={stepperVerticalActive !== 1}
+                  >
+                    Continue
+                  </Button>
+                </div>
+              </div>
+            </Stepper.Panel>
+
+            <Stepper.Panel>
+              <div style={{ padding: 'var(--spacing-md)' }}>
+                <h3 style={{ marginBottom: 'var(--spacing-md)' }}>Confirmation</h3>
+                <p style={{ marginBottom: 'var(--spacing-lg)', color: 'var(--color-text-secondary)' }}>
+                  Confirm your subscription and get started!
+                </p>
+                <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+                  <Button
+                    variant="outline"
+                    onClick={() => handleVerticalPrev(2)}
+                    disabled={stepperVerticalActive !== 2}
+                  >
+                    Back
+                  </Button>
+                  <Button
+                    variant="primary"
+                    onClick={() => {
+                      addToast({
+                        title: 'Subscribed!',
+                        description: 'Your subscription is now active.',
+                        variant: 'success'
+                      })
+                      setStepperVerticalActive(0)
+                      setStepperVerticalCompleted(new Set())
+                    }}
+                    disabled={stepperVerticalActive !== 2}
+                  >
+                    Subscribe
+                  </Button>
+                </div>
+              </div>
+            </Stepper.Panel>
+          </Stepper>
+        </div>
+
+        <div className="components__info-box">
+          <h4 className="components__info-title">Stepper Features</h4>
+          <ul className="components__info-list">
+            <li>Numbered step indicators with visual states (active, completed, inactive)</li>
+            <li>Checkmark icons automatically shown for completed steps</li>
+            <li>Click completed steps to navigate backward</li>
+            <li>Horizontal orientation (responsive - switches to vertical on mobile)</li>
+            <li>Vertical orientation (always vertical on all screen sizes)</li>
+            <li>Connector lines between steps showing progress</li>
+            <li>Customizable navigation with prevCallback and nextCallback</li>
+            <li>Full keyboard navigation support (Tab, Enter, Space)</li>
+            <li>Comprehensive accessibility (ARIA labels, screen reader support)</li>
+            <li>Smooth transitions and animations</li>
+          </ul>
         </div>
       </section>
 
