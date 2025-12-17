@@ -23,8 +23,23 @@ import { useToaster } from '../../components/Toaster'
 import { HorizontalScroll } from '../../components/HorizontalScroll'
 import { Typewriter } from '../../components/Typewriter'
 import { BrandSwitcher } from '../../components/BrandSwitcher'
+import { Stepper } from '../../components/Stepper'
 import { MdCheck, MdArrowForward, MdSettings, MdSearch } from 'react-icons/md'
 import './Components.css'
+
+const DemoSection = ({ title, description, children }) => (
+  <Fieldset variant="outlined" gap="lg" className="components__section">
+    <Fieldset.Legend>{title}</Fieldset.Legend>
+    <Fieldset.Content className="components__section-content">
+      {description ? (
+        <p className="text-responsive-base components__description">
+          {description}
+        </p>
+      ) : null}
+      {children}
+    </Fieldset.Content>
+  </Fieldset>
+)
 
 function Components() {
   const { addToast } = useToaster()
@@ -45,9 +60,16 @@ function Components() {
   const [tickboxSizeMdChecked, setTickboxSizeMdChecked] = useState(true)
   const [tickboxSizeLgChecked, setTickboxSizeLgChecked] = useState(false)
   const [tickboxIndeterminateChecked, setTickboxIndeterminateChecked] = useState(false)
-  const [tickboxDisabledCheckedState, setTickboxDisabledCheckedState] = useState(true) // For tick-disabled-checked
-  const [tickboxDisabledIndeterminateChecked, setTickboxDisabledIndeterminateChecked] = useState(false) // For tick-disabled-indeterminate
   const [controlledTooltipOpen, setControlledTooltipOpen] = useState(false)
+
+  // Stepper state
+  const [stepperHorizontalActive, setStepperHorizontalActive] = useState(0)
+  const [stepperVerticalActive, setStepperVerticalActive] = useState(0)
+
+  // Disabled tickbox states (read-only)
+  const tickboxDisabledCheckedState = true
+  const tickboxDisabledIndeterminateChecked = false
+
   const scrollItems = [
     { title: 'Design Tokens', copy: 'Single source of truth for spacing, colors, and typography.' },
     { title: 'Responsive Grid', copy: 'Mobile-first utilities that scale with your layout.' },
@@ -105,6 +127,24 @@ function Components() {
     })
   }
 
+  // Stepper handlers - Horizontal
+  const handleHorizontalNext = (currentIndex) => {
+    setStepperHorizontalActive(currentIndex + 1)
+  }
+
+  const handleHorizontalPrev = (currentIndex) => {
+    setStepperHorizontalActive(currentIndex - 1)
+  }
+
+  // Stepper handlers - Vertical
+  const handleVerticalNext = (currentIndex) => {
+    setStepperVerticalActive(currentIndex + 1)
+  }
+
+  const handleVerticalPrev = (currentIndex) => {
+    setStepperVerticalActive(currentIndex - 1)
+  }
+
   return (
     <div className="container components">
       <BrandSwitcher />
@@ -114,42 +154,37 @@ function Components() {
         Production-ready, accessible components for building modern web applications
       </p>
 
-      <Fieldset variant="outlined" gap="lg" className="components__fieldset">
-        <Fieldset.Legend>Typewriter Component</Fieldset.Legend>
-        <Fieldset.Content className="components__flex-column">
-          <p className="components__description components__max-width">
-            Use the typewriter effect for hero copy, headlines, or inline emphasis with configurable speed, delay, and looping.
-          </p>
+      <DemoSection
+        title="Typewriter Component"
+        description="Use the typewriter effect for hero copy, headlines, or inline emphasis with configurable speed, delay, and looping."
+      >
+        <div className="components__grid--300">
+          <Card variant="elevated" hoverable>
+            <Card.Header>Default</Card.Header>
+            <Card.Body className="components__typewriter-demo">
+              <Typewriter text="Production-ready typewriter effect." />
+            </Card.Body>
+          </Card>
 
-          <div className="components__grid--300">
-            <Card variant="elevated" hoverable>
-              <Card.Header>Default</Card.Header>
-              <Card.Body className="components__typewriter-demo">
-                <Typewriter text="Production-ready typewriter effect." />
-              </Card.Body>
-            </Card>
+          <Card variant="outlined" hoverable>
+            <Card.Header>Looping with Custom Speed</Card.Header>
+            <Card.Body className="components__typewriter-demo components__flex-column--sm">
+              <Typewriter
+                text="Modern. Accessible. Fast."
+                speed={80}
+                delay={150}
+                loop
+                pauseBetween={900}
+              />
+              <p className="components__card-text">
+                Adjust speed, delay, and loop to fit your tone.
+              </p>
+            </Card.Body>
+          </Card>
+        </div>
+      </DemoSection>
 
-            <Card variant="outlined" hoverable>
-              <Card.Header>Looping with Custom Speed</Card.Header>
-              <Card.Body className="components__typewriter-demo components__flex-column--sm">
-                <Typewriter
-                  text="Modern. Accessible. Fast."
-                  speed={80}
-                  delay={150}
-                  loop
-                  pauseBetween={900}
-                />
-                <p className="components__card-text">
-                  Adjust speed, delay, and loop to fit your tone.
-                </p>
-              </Card.Body>
-            </Card>
-          </div>
-        </Fieldset.Content>
-      </Fieldset>
-
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Button Component</h2>
+      <DemoSection title="Button Component">
 
         <div className="components__subsection">
           <h3>Variants</h3>
@@ -220,13 +255,12 @@ function Components() {
             <Button fullWidth>Full Width Button</Button>
           </div>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Horizontal Scroll Component</h2>
-        <p className="components__description">
-          Scroll horizontally with snap alignment and optional navigation buttons. Great for card rails and media strips.
-        </p>
+      <DemoSection
+        title="Horizontal Scroll Component"
+        description="Scroll horizontally with snap alignment and optional navigation buttons. Great for card rails and media strips."
+      >
 
         <div className="components__group">
           <HorizontalScroll ariaLabel="Feature highlights">
@@ -310,13 +344,12 @@ function Components() {
             </Card>
           </HorizontalScroll>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Tooltip Component</h2>
-        <p className="components__description">
-          Hover or focus to see contextual help. Tooltips respect themes, motion preferences, and keyboard access.
-        </p>
+      <DemoSection
+        title="Tooltip Component"
+        description="Hover or focus to see contextual help. Tooltips respect themes, motion preferences, and keyboard access."
+      >
 
         <div className="components__grid--240">
           <Card variant="outlined">
@@ -380,13 +413,12 @@ function Components() {
             </Card.Body>
           </Card>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Toaster Component</h2>
-        <p className="components__description">
-          Fire off toast notifications with variants and default durations. Positioning and limits are handled by the provider.
-        </p>
+      <DemoSection
+        title="Toaster Component"
+        description="Fire off toast notifications with variants and default durations. Positioning and limits are handled by the provider."
+      >
 
         <div className="components__grid--220">
           <Card variant="outlined">
@@ -407,10 +439,9 @@ function Components() {
             </Card.Body>
           </Card>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Link Component</h2>
+      <DemoSection title="Link Component">
 
         <div className="components__subsection">
           <h3>Variants</h3>
@@ -456,10 +487,9 @@ function Components() {
             read our <Link to="/about">about section</Link> to learn more.
           </p>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Card Component</h2>
+      <DemoSection title="Card Component">
 
         <div className="components__subsection">
           <h3>Variants</h3>
@@ -606,10 +636,9 @@ function Components() {
             </Card>
           </div>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Accordion Component</h2>
+      <DemoSection title="Accordion Component">
 
         <div className="components__subsection">
           <h3>Variants</h3>
@@ -771,10 +800,9 @@ function Components() {
             </Accordion.Item>
           </Accordion>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Dialog Component</h2>
+      <DemoSection title="Dialog Component">
 
         <div className="components__subsection">
           <h3>Basic Dialog</h3>
@@ -938,10 +966,9 @@ function Components() {
             <li>Full keyboard and screen reader support</li>
           </ul>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Fieldset Component</h2>
+      <DemoSection title="Fieldset Component">
 
         <div className="components__subsection">
           <h3>Basic Fieldset</h3>
@@ -1165,11 +1192,9 @@ function Components() {
             <li>Responsive on all screen sizes</li>
           </ul>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Input Component</h2>
-
+      <DemoSection title="Input Component">
         <div className="components__subsection">
           <h3>Floating Label Animation</h3>
           <div className="components__grid-inputs">
@@ -1491,13 +1516,12 @@ function Components() {
             <li>Full ARIA attributes and accessibility support</li>
           </ul>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Tickbox Component</h2>
-        <p className="text-responsive-base components__description">
-          A custom-styled, accessible checkbox component.
-        </p>
+      <DemoSection
+        title="Tickbox Component"
+        description="A custom-styled, accessible checkbox component."
+      >
 
         <div className="components__subsection">
           <h3>Sizes</h3>
@@ -1548,13 +1572,12 @@ function Components() {
             />
           </div>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Radio Component</h2>
-        <p className="text-responsive-base components__description">
-          A custom-styled, accessible radio button component for single-selection choices.
-        </p>
+      <DemoSection
+        title="Radio Component"
+        description="A custom-styled, accessible radio button component for single-selection choices."
+      >
 
         <div className="components__subsection">
           <h3>Sizes</h3>
@@ -1653,13 +1676,12 @@ function Components() {
             </div>
           </fieldset>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Spinner Component</h2>
-        <p className="text-responsive-base components__description">
-          A simple, accessible loading spinner for indicating ongoing processes.
-        </p>
+      <DemoSection
+        title="Spinner Component"
+        description="A simple, accessible loading spinner for indicating ongoing processes."
+      >
 
         <div className="components__subsection">
           <h3>Sizes</h3>
@@ -1685,6 +1707,23 @@ function Components() {
         </div>
 
         <div className="components__subsection">
+          <h3>Types</h3>
+          <div className="components__flex-group--center-spaced">
+            <Spinner type="circle" />
+            <Spinner type="pinwheel" />
+          </div>
+        </div>
+
+        <div className="components__subsection">
+          <h3>Pinwheel Sizes</h3>
+          <div className="components__flex-group--center-spaced">
+            <Spinner type="pinwheel" size="sm" />
+            <Spinner type="pinwheel" size="md" />
+            <Spinner type="pinwheel" size="lg" />
+          </div>
+        </div>
+
+        <div className="components__subsection">
           <h3>In Buttons</h3>
           <div className="components__flex-group--center-spaced">
             <Button loading>
@@ -1698,13 +1737,76 @@ function Components() {
             </Button>
           </div>
         </div>
-      </section>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Status Component</h2>
-        <p className="text-responsive-base components__description">
-          A flexible status indicator with circle and optional inline text for showing states and activity.
-        </p>
+        <div className="components__subsection">
+          <h3>With Background Colors</h3>
+          <div className="components__flex-group--center-spaced">
+            <Spinner backgroundColor="rgba(0, 123, 255, 0.1)" color="primary" />
+            <Spinner backgroundColor="rgba(40, 167, 69, 0.1)" color="success" />
+            <Spinner backgroundColor="rgba(220, 53, 69, 0.1)" color="danger" />
+          </div>
+        </div>
+
+        <div className="components__subsection">
+          <h3>Round Background Options</h3>
+          <div className="components__flex-group--center-spaced">
+            <Spinner
+              backgroundColor="rgba(220, 53, 69, 0.15)"
+              color="danger"
+              style={{ borderRadius: '50%', padding: '0.5rem' }}
+            />
+            <Spinner
+              backgroundColor="rgba(0, 123, 255, 0.15)"
+              color="primary"
+              style={{ borderRadius: '50%', padding: '0.5rem' }}
+            />
+            <Spinner
+              backgroundColor="rgba(40, 167, 69, 0.15)"
+              color="success"
+              style={{ borderRadius: '50%', padding: '0.75rem' }}
+              size="lg"
+            />
+            <Spinner
+              type="pinwheel"
+              backgroundColor="rgba(40, 167, 69, 0.2)"
+              style={{ borderRadius: '50%', padding: '0.75rem' }}
+              size="lg"
+            />
+          </div>
+        </div>
+
+        <div className="components__subsection">
+          <h3>Pinwheel with Background Colors</h3>
+          <div className="components__flex-group--center-spaced">
+            <Spinner type="pinwheel" backgroundColor="#f8f9fa" />
+            <Spinner type="pinwheel" backgroundColor="rgba(0, 0, 0, 0.05)" />
+            <Spinner type="pinwheel" backgroundColor="#e9ecef" size="lg" />
+          </div>
+        </div>
+
+        <div className="components__subsection">
+          <h3>On Dark Background</h3>
+          <div style={{ background: '#2c3e50', padding: '2rem', borderRadius: '8px' }}>
+            <div className="components__flex-group--center-spaced">
+              <Spinner color="inherit" style={{ color: '#fff' }} />
+              <Spinner
+                color="inherit"
+                backgroundColor="rgba(255, 255, 255, 0.1)"
+                style={{ color: '#fff' }}
+              />
+              <Spinner
+                type="pinwheel"
+                backgroundColor="rgba(255, 255, 255, 0.1)"
+              />
+            </div>
+          </div>
+        </div>
+      </DemoSection>
+
+      <DemoSection
+        title="Status Component"
+        description="A flexible status indicator with circle and optional inline text for showing states and activity."
+      >
 
         <div className="components__subsection">
           <h3>Variants</h3>
@@ -1850,13 +1952,12 @@ function Components() {
             <li>High contrast mode support</li>
           </ul>
         </div>
-      </section>
+      </DemoSection>
 
-      <section className="components__section">
-        <h2 className="text-responsive-lg">Select Component</h2>
-        <p className="text-responsive-base components__description">
-          A custom-styled, accessible select dropdown component.
-        </p>
+      <DemoSection
+        title="Select Component"
+        description="A custom-styled, accessible select dropdown component."
+      >
 
         <div className="components__subsection">
           <h3>Basic Select</h3>
@@ -1954,7 +2055,209 @@ function Components() {
             />
           </div>
         </div>
-      </section>
+      </DemoSection>
+
+      <DemoSection
+        title="Stepper Component"
+        description="A professional, accessible stepper for multi-step workflows. Perfect for forms, wizards, and processes that need step-by-step navigation."
+      >
+
+        <div className="components__subsection">
+          <h3>Horizontal Stepper (Responsive)</h3>
+          <p className="components__description">
+            Horizontal layout on desktop, automatically switches to vertical on mobile devices.
+          </p>
+
+          <Stepper
+            key={stepperHorizontalActive}
+            defaultActiveStep={stepperHorizontalActive}
+            orientation="horizontal"
+            prevCallback={handleHorizontalPrev}
+            nextCallback={handleHorizontalNext}
+          >
+            <Stepper.Panel>
+              <div style={{ padding: 'var(--spacing-md)' }}>
+                <h3 style={{ marginBottom: 'var(--spacing-md)' }}>Personal Information</h3>
+                <p style={{ marginBottom: 'var(--spacing-lg)', color: 'var(--color-text-secondary)' }}>
+                  Enter your basic personal details to get started.
+                </p>
+                <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+                  <Button
+                    variant="primary"
+                    onClick={() => handleHorizontalNext(0)}
+                    disabled={stepperHorizontalActive !== 0}
+                  >
+                    Next Step
+                  </Button>
+                </div>
+              </div>
+            </Stepper.Panel>
+
+            <Stepper.Panel>
+              <div style={{ padding: 'var(--spacing-md)' }}>
+                <h3 style={{ marginBottom: 'var(--spacing-md)' }}>Account Setup</h3>
+                <p style={{ marginBottom: 'var(--spacing-lg)', color: 'var(--color-text-secondary)' }}>
+                  Create your account credentials and preferences.
+                </p>
+                <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+                  <Button
+                    variant="outline"
+                    onClick={() => handleHorizontalPrev(1)}
+                    disabled={stepperHorizontalActive !== 1}
+                  >
+                    Previous
+                  </Button>
+                  <Button
+                    variant="primary"
+                    onClick={() => handleHorizontalNext(1)}
+                    disabled={stepperHorizontalActive !== 1}
+                  >
+                    Next Step
+                  </Button>
+                </div>
+              </div>
+            </Stepper.Panel>
+
+            <Stepper.Panel>
+              <div style={{ padding: 'var(--spacing-md)' }}>
+                <h3 style={{ marginBottom: 'var(--spacing-md)' }}>Review & Confirm</h3>
+                <p style={{ marginBottom: 'var(--spacing-lg)', color: 'var(--color-text-secondary)' }}>
+                  Review your information and complete the setup.
+                </p>
+                <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+                  <Button
+                    variant="outline"
+                    onClick={() => handleHorizontalPrev(2)}
+                    disabled={stepperHorizontalActive !== 2}
+                  >
+                    Previous
+                  </Button>
+                  <Button
+                    variant="primary"
+                    onClick={() => {
+                      addToast({
+                        title: 'Success!',
+                        description: 'Setup completed successfully.',
+                        variant: 'success'
+                      })
+                      setStepperHorizontalActive(0)
+                    }}
+                    disabled={stepperHorizontalActive !== 2}
+                  >
+                    Complete Setup
+                  </Button>
+                </div>
+              </div>
+            </Stepper.Panel>
+          </Stepper>
+        </div>
+
+        <div className="components__subsection">
+          <h3>Vertical Stepper</h3>
+          <p className="components__description">
+            Vertical layout on all screen sizes, great for sidebars or tall workflows.
+          </p>
+
+          <Stepper
+            key={stepperVerticalActive}
+            defaultActiveStep={stepperVerticalActive}
+            orientation="vertical"
+            prevCallback={handleVerticalPrev}
+            nextCallback={handleVerticalNext}
+          >
+            <Stepper.Panel>
+              <div style={{ padding: 'var(--spacing-md)' }}>
+                <h3 style={{ marginBottom: 'var(--spacing-md)' }}>Choose Plan</h3>
+                <p style={{ marginBottom: 'var(--spacing-lg)', color: 'var(--color-text-secondary)' }}>
+                  Select a plan that fits your needs.
+                </p>
+                <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+                  <Button
+                    variant="primary"
+                    onClick={() => handleVerticalNext(0)}
+                    disabled={stepperVerticalActive !== 0}
+                  >
+                    Continue
+                  </Button>
+                </div>
+              </div>
+            </Stepper.Panel>
+
+            <Stepper.Panel>
+              <div style={{ padding: 'var(--spacing-md)' }}>
+                <h3 style={{ marginBottom: 'var(--spacing-md)' }}>Payment Details</h3>
+                <p style={{ marginBottom: 'var(--spacing-lg)', color: 'var(--color-text-secondary)' }}>
+                  Enter your payment information securely.
+                </p>
+                <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+                  <Button
+                    variant="outline"
+                    onClick={() => handleVerticalPrev(1)}
+                    disabled={stepperVerticalActive !== 1}
+                  >
+                    Back
+                  </Button>
+                  <Button
+                    variant="primary"
+                    onClick={() => handleVerticalNext(1)}
+                    disabled={stepperVerticalActive !== 1}
+                  >
+                    Continue
+                  </Button>
+                </div>
+              </div>
+            </Stepper.Panel>
+
+            <Stepper.Panel>
+              <div style={{ padding: 'var(--spacing-md)' }}>
+                <h3 style={{ marginBottom: 'var(--spacing-md)' }}>Confirmation</h3>
+                <p style={{ marginBottom: 'var(--spacing-lg)', color: 'var(--color-text-secondary)' }}>
+                  Confirm your subscription and get started!
+                </p>
+                <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+                  <Button
+                    variant="outline"
+                    onClick={() => handleVerticalPrev(2)}
+                    disabled={stepperVerticalActive !== 2}
+                  >
+                    Back
+                  </Button>
+                  <Button
+                    variant="primary"
+                    onClick={() => {
+                      addToast({
+                        title: 'Subscribed!',
+                        description: 'Your subscription is now active.',
+                        variant: 'success'
+                      })
+                      setStepperVerticalActive(0)
+                    }}
+                    disabled={stepperVerticalActive !== 2}
+                  >
+                    Subscribe
+                  </Button>
+                </div>
+              </div>
+            </Stepper.Panel>
+          </Stepper>
+        </div>
+
+        <div className="components__info-box">
+          <h4 className="components__info-title">Stepper Features</h4>
+          <ul className="components__info-list">
+            <li>Numbered step indicators with visual states (active, completed, inactive)</li>
+            <li>Checkmark icons automatically shown for completed steps</li>
+            <li>Click completed steps to navigate backward</li>
+            <li>Horizontal orientation (responsive - switches to vertical on mobile)</li>
+            <li>Vertical orientation (always vertical on all screen sizes)</li>
+            <li>Connector lines between steps showing progress</li>
+            <li>Customizable navigation with prevCallback and nextCallback</li>
+            <li>Full keyboard navigation support (Tab, Enter, Space)</li>
+            <li>Comprehensive accessibility (ARIA labels, screen reader support)</li>
+            <li>Smooth transitions and animations</li>
+          </ul>
+        </div>
+      </DemoSection>
 
       <section className="components__coming-soon-section">
         <h2 className="text-responsive-lg">Coming Soon</h2>
