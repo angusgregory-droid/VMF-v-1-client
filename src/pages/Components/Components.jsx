@@ -60,15 +60,15 @@ function Components() {
   const [tickboxSizeMdChecked, setTickboxSizeMdChecked] = useState(true)
   const [tickboxSizeLgChecked, setTickboxSizeLgChecked] = useState(false)
   const [tickboxIndeterminateChecked, setTickboxIndeterminateChecked] = useState(false)
-  const [tickboxDisabledCheckedState, setTickboxDisabledCheckedState] = useState(true) // For tick-disabled-checked
-  const [tickboxDisabledIndeterminateChecked, setTickboxDisabledIndeterminateChecked] = useState(false) // For tick-disabled-indeterminate
   const [controlledTooltipOpen, setControlledTooltipOpen] = useState(false)
 
   // Stepper state
   const [stepperHorizontalActive, setStepperHorizontalActive] = useState(0)
-  const [stepperHorizontalCompleted, setStepperHorizontalCompleted] = useState(new Set())
   const [stepperVerticalActive, setStepperVerticalActive] = useState(0)
-  const [stepperVerticalCompleted, setStepperVerticalCompleted] = useState(new Set())
+
+  // Disabled tickbox states (read-only)
+  const tickboxDisabledCheckedState = true
+  const tickboxDisabledIndeterminateChecked = false
 
   const scrollItems = [
     { title: 'Design Tokens', copy: 'Single source of truth for spacing, colors, and typography.' },
@@ -129,7 +129,6 @@ function Components() {
 
   // Stepper handlers - Horizontal
   const handleHorizontalNext = (currentIndex) => {
-    setStepperHorizontalCompleted((prev) => new Set([...prev, currentIndex]))
     setStepperHorizontalActive(currentIndex + 1)
   }
 
@@ -139,7 +138,6 @@ function Components() {
 
   // Stepper handlers - Vertical
   const handleVerticalNext = (currentIndex) => {
-    setStepperVerticalCompleted((prev) => new Set([...prev, currentIndex]))
     setStepperVerticalActive(currentIndex + 1)
   }
 
@@ -2143,7 +2141,6 @@ function Components() {
                         variant: 'success'
                       })
                       setStepperHorizontalActive(0)
-                      setStepperHorizontalCompleted(new Set())
                     }}
                     disabled={stepperHorizontalActive !== 2}
                   >
@@ -2234,7 +2231,6 @@ function Components() {
                         variant: 'success'
                       })
                       setStepperVerticalActive(0)
-                      setStepperVerticalCompleted(new Set())
                     }}
                     disabled={stepperVerticalActive !== 2}
                   >
